@@ -87,27 +87,27 @@ export default async function OpenGraphImage() {
         <div style={{ display: "flex", width: 560, height: 630, alignItems: "center", justifyContent: "center", padding: 24 }}>
           <img src={mapSrc} width={540} height={586} alt="" />
         </div>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 22, padding: "60px 64px 60px 24px", flex: 1 }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: 22, padding: "60px 64px 60px 24px", width: 640, height: 630 }}>
           {canText ? (
-            <>
-              <div style={{ fontFamily: displayFamily, fontSize: 56, fontWeight: 700, letterSpacing: -1, lineHeight: 1.15 }}>{title}</div>
-              <div style={{ display: "flex", gap: 14 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+              <div style={{ display: "flex", fontFamily: displayFamily, fontSize: 56, fontWeight: 700, letterSpacing: -1, lineHeight: 1.15, height: 66, flexShrink: 0 }}>{title}</div>
+              <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 14, height: 56, flexShrink: 0 }}>
                 {lines.slice(0, 3).map((l) => (
-                  <div key={l} style={{ display: "flex", padding: "12px 18px", borderRadius: 14, background: "#FFFDF9", border: "1px solid #E3DBCC", fontSize: 24, fontWeight: 500 }}>
+                  <div key={l} style={{ display: "flex", alignItems: "center", height: 56, padding: "0 18px", borderRadius: 14, background: "#FFFDF9", border: "1px solid #E3DBCC", fontSize: 24, fontWeight: 500 }}>
                     {l}
                   </div>
                 ))}
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                <div style={{ display: "flex", height: 14, borderRadius: 999, background: "#EDE4D3", overflow: "hidden" }}>
-                  <div style={{ width: `${pct}%`, background: "#C9412F" }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: 10, width: 552, flexShrink: 0 }}>
+                <div style={{ display: "flex", width: 552, height: 14, borderRadius: 999, background: "#EDE4D3", overflow: "hidden" }}>
+                  <div style={{ display: "flex", width: Math.max(14, Math.round(552 * pct / 100)), height: 14, background: "#C9412F" }} />
                 </div>
-                <div style={{ fontSize: 22, color: "#6B655B" }}>{lines[3]}</div>
+                <div style={{ display: "flex", fontSize: 22, color: "#6B655B", height: 30 }}>{lines[3]}</div>
               </div>
-            </>
+            </div>
           ) : (
-            <div style={{ display: "flex", height: 14, borderRadius: 999, background: "#EDE4D3", overflow: "hidden" }}>
-              <div style={{ width: `${pct}%`, background: "#C9412F" }} />
+            <div style={{ display: "flex", width: 552, height: 14, borderRadius: 999, background: "#EDE4D3", overflow: "hidden" }}>
+              <div style={{ display: "flex", width: Math.max(14, Math.round(552 * pct / 100)), height: 14, background: "#C9412F" }} />
             </div>
           )}
         </div>
