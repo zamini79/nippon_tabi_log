@@ -6,6 +6,8 @@ import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWi
 import { formatRange, daysUntil, yearOf } from "@/lib/format";
 import { getNationalMap, OKINAWA_ID } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
+import { TripThumb } from "@/components/TripThumb";
+import { getPhotosForTrips, withSignedUrls } from "@/lib/photos";
 import { OkinawaLabel } from "./parts";
 import { CityNames } from "@/app/trips/parts";
 
@@ -51,6 +53,8 @@ export default async function HomePage() {
   });
 
   const doneTrips = trips.filter((t) => t.status === "done");
+  const recent = doneTrips.slice(0, 3);
+  const recentPhotos = await withSignedUrls(await getPhotosForTrips(recent.map((t) => t.id)));
   const plannedTrips = trips
     .filter((t) => t.status === "planned" && t.start_date && daysUntil(t.start_date) >= 0)
     .sort((a, b) => (a.start_date! < b.start_date! ? -1 : 1));
@@ -161,19 +165,20 @@ export default async function HomePage() {
               </p>
             ) : (
               <ul className="flex flex-col gap-2.5">
-                {doneTrips.slice(0, 3).map((trip) => (
+                {recent.map((trip) => (
                   <li key={trip.id}>
                     <Link
                       href={trip.visits[0] ? `/cities/${trip.visits[0].city.id}` : `/trips/${trip.id}/edit`}
                       className="grid grid-cols-[56px_1fr] items-center gap-3.5"
                     >
-                      <div className="flex size-14 items-center justify-center rounded-[10px] bg-v2 text-[11px] text-card">사진</div>
+                      <TripThumb trip={trip} photos={recentPhotos} />
                       <div className="flex min-w-0 flex-col gap-0.5">
                         <div className="truncate text-sm font-semibold">
                           <CityNames cities={trip.visits.map((v) => v.city)} fallback={trip.title} />
                         </div>
                         <div className="truncate text-xs text-muted">
                           {trip.title} · {formatRange(trip.start_date, trip.end_date)}
+                          {recentPhotos.some((p) => p.trip_id === trip.id) ? ` · ${recentPhotos.filter((p) => p.trip_id === trip.id).length}장` : ""}
                         </div>
                       </div>
                     </Link>

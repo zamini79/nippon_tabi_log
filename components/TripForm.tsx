@@ -150,9 +150,15 @@ export function TripForm({ trip, cities, prefectures, cityStats, prefStats, defa
         <textarea id="trip-memo" name="memo" rows={3} defaultValue={trip?.memo ?? ""} placeholder="기억해 둘 것, 다음에 갈 곳…" className="resize-none rounded-[10px] border border-[#D6CBB5] bg-card px-3.5 py-3 text-sm outline-none focus:border-ink" />
       </div>
 
-      <div className="rounded-xl border border-dashed border-line px-4 py-3 text-xs text-muted">
-        사진 업로드는 마일스톤 3에서 추가됩니다. 지금은 여행과 도시만 기록해도 지도가 채워져요.
-      </div>
+      {trip ? (
+        <div className="rounded-xl border border-dashed border-line px-4 py-3 text-xs text-muted">
+          사진은 아래 <a href="#photos" className="font-medium text-ink underline underline-offset-2">사진</a> 칸에서 올리고 도시를 지정할 수 있어요.
+        </div>
+      ) : (
+        <div className="rounded-xl border border-dashed border-line px-4 py-3 text-xs text-muted">
+          저장하면 도시 상세와 수정 화면에서 사진을 올릴 수 있어요. 사진마다 도시를 따로 지정할 수 있고, 지정하지 않으면 여행 전체 사진으로 들어가요.
+        </div>
+      )}
 
       {state?.error ? (
         <p className="text-sm text-v3" role="alert">

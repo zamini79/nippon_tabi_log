@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
+import { PhotoGrid } from "@/components/PhotoGrid";
+import { PhotoUploader } from "@/components/PhotoUploader";
 import { StampRow, type Stamp } from "@/components/StampRow";
 import { getCity, getPrefectureStats, getPrefectures, getTripsForCity, getTripsWithCities } from "@/lib/data";
 import { formatRange } from "@/lib/format";
+import { getPhotosForTrips, photosForCityInTrip, withSignedUrls } from "@/lib/photos";
 import { CityBreadcrumb, CityName, CitySubtitle, CompanionChips, NextIdeaText, PrefectureFilled } from "./parts";
 
 type Props = { params: Promise<{ id: string }> };
@@ -42,6 +45,10 @@ export default async function CityPage({ params }: Props) {
   const done = trips.filter((t) => t.status === "done");
   const planned = trips.filter((t) => t.status === "planned");
   const doneAll = allTrips.filter((t) => t.status === "done");
+
+  const photos = await withSignedUrls(await getPhotosForTrips(done.map((t) => t.id)));
+  const visitOf = (tripId: string) => trips.find((t) => t.id === tripId)?.visits.find((v) => v.city.id === city.id)?.id ?? null;
+  const cityPhotoCount = done.reduce((n, t) => n + photosForCityInTrip(photos, t.id, visitOf(t.id)).length, 0);
 
   const stamps: Stamp[] = [
     ...done.map((t) => ({ key: t.id, ...ym(t.start_date) })),
@@ -82,7 +89,7 @@ export default async function CityPage({ params }: Props) {
                 <span>아직 방문 기록이 없어요</span>
               )}
               <span>·</span>
-              <span>사진 0장</span>
+              <span>사진 {cityPhotoCount}장</span>
             </div>
           </div>
           <div className="flex items-center gap-3.5">
@@ -112,13 +119,19 @@ export default async function CityPage({ params }: Props) {
           <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {done.map((trip, i) => {
               const companions = trip.visits.map((v) => v.city).filter((c) => c.id !== city.id);
+              const myVisitId = visitOf(trip.id);
+              const tripPhotos = photosForCityInTrip(photos, trip.id, myVisitId);
+              const visits = trip.visits.map((v) => ({ id: v.id, city: v.city }));
               return (
                 <article key={trip.id} className="flex flex-col gap-3.5 rounded-[18px] border border-line bg-card p-[22px]">
                   <div className="flex items-center justify-between">
                     <div className="text-xs font-semibold tracking-[0.5px] text-v3">{i + 1}번째 방문</div>
-                    <Link href={`/trips/${trip.id}/edit`} className="text-xs text-muted hover:text-ink">
-                      수정
-                    </Link>
+                    <div className="flex items-center gap-3 text-xs text-muted">
+                      <span>사진 {tripPhotos.length}장</span>
+                      <Link href={`/trips/${trip.id}/edit`} className="hover:text-ink">
+                        수정
+                      </Link>
+                    </div>
                   </div>
                   <div className="flex flex-col gap-1">
                     <div className="serif text-xl font-bold">{trip.title}</div>
@@ -127,9 +140,8 @@ export default async function CityPage({ params }: Props) {
                       {trip.companions ? ` · ${trip.companions}명` : ""}
                     </div>
                   </div>
-                  <div className="flex h-[104px] items-center justify-center rounded-[10px] border-2 border-dashed border-sand text-xs text-muted">
-                    사진은 마일스톤 3에서
-                  </div>
+                  {tripPhotos.length ? <PhotoGrid photos={tripPhotos} visits={visits} /> : null}
+                  <PhotoUploader tripId={trip.id} visits={visits} defaultVisitId={myVisitId} compact />
                   <div className="flex flex-col gap-1.5">
                     <div className="text-xs text-muted">함께 간 도시</div>
                     <div className="flex flex-wrap gap-1.5">

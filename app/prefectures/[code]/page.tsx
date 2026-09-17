@@ -4,6 +4,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { PrefectureZoom, type ZoomCityView, type ZoomNeighborView } from "@/components/map/PrefectureZoom";
 import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWithCities } from "@/lib/data";
 import { yearOf } from "@/lib/format";
+import { getPhotosForTrips } from "@/lib/photos";
 import { getPrefectureZoom, prefectureIdFromCode } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
 import { Breadcrumb, CityRow, LocalName, PrefectureTitle, RegionName, UnvisitedChip, NeighborSummary } from "./parts";
@@ -72,6 +73,9 @@ export default async function PrefecturePage({ params }: Props) {
     new Set(prefTrips.map((t) => yearOf(t.start_date)).filter((y): y is string => Boolean(y))),
   ).slice(0, 4);
   const firstVisit = prefTrips[0]?.start_date ?? null;
+  const prefPhotos = await getPhotosForTrips(prefTrips.map((t) => t.id));
+  const prefVisitIds = new Set(prefTrips.flatMap((t) => t.visits.filter((v) => v.city.prefecture_id === id).map((v) => v.id)));
+  const photoCount = prefPhotos.filter((p) => p.visit_id === null || prefVisitIds.has(p.visit_id)).length;
   const yearsByCity = new Map<string, string[]>();
   for (const t of prefTrips) {
     const y = yearOf(t.start_date);
@@ -153,7 +157,7 @@ export default async function PrefecturePage({ params }: Props) {
               <div className="grid grid-cols-3 gap-2">
                 <Tile label="현 방문" value={`${stat?.visit_count ?? 0}회`} />
                 <Tile label="다녀온 도시" value={String(stat?.city_count ?? 0)} />
-                <Tile label="사진" value="0" />
+                <Tile label="사진" value={String(photoCount)} />
               </div>
             </section>
 

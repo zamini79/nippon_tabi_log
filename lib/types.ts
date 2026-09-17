@@ -78,3 +78,19 @@ export type CityWithPrefecture = City & { prefecture: Prefecture };
 
 /** 지도·폼에서 쓰는 가벼운 통계 맵 */
 export type CountStat = { visit_count: number; planned_count: number };
+
+export type Photo = {
+  id: string;
+  trip_id: string;
+  visit_id: string | null; // null = 여행 전체 사진
+  storage_path: string; // {trip_id}/{uuid}.jpg (썸네일은 _t.jpg)
+  width: number | null;
+  height: number | null;
+  taken_at: string | null;
+  caption: string | null;
+  sort_order: number;
+  created_at: string;
+};
+
+/** 서명 URL 이 붙은 사진 (서버에서 1시간 유효 URL 생성) */
+export type PhotoView = Photo & { url: string; thumbUrl: string };

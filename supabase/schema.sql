@@ -64,7 +64,7 @@ create table if not exists photos (
   id            uuid primary key default gen_random_uuid(),
   trip_id       uuid not null references trips(id) on delete cascade,
   visit_id      uuid references visits(id) on delete set null, -- null = 여행 전체 사진
-  storage_path  text not null,                 -- trip-photos/{trip_id}/{uuid}.jpg
+  storage_path  text not null,                 -- {trip_id}/{uuid}.jpg (버킷 trip-photos, 썸네일은 {uuid}_t.jpg, 원본은 처리 후 삭제)
   width         int,
   height        int,
   taken_at      timestamptz,                   -- EXIF

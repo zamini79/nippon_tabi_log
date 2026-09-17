@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { PHOTO_BUCKET, thumbPath } from "@/lib/photo-paths";
 import type { TripStatus } from "@/lib/types";
 
 /**
@@ -77,6 +78,10 @@ export async function deleteTrip(formData: FormData) {
   const id = str(formData, "id");
   if (!isUuid(id)) return;
   const admin = createAdminClient();
+  // 사진 파일은 FK cascade 로 지워지지 않으므로 Storage 에서 먼저 제거 (원본 orig/ 는 처리 직후 삭제됨)
+  const { data: photos } = await admin.from("photos").select("storage_path").eq("trip_id", id);
+  const paths = (photos ?? []).flatMap((p) => [p.storage_path as string, thumbPath(p.storage_path as string)]);
+  if (paths.length) await admin.storage.from(PHOTO_BUCKET).remove(paths);
   const { error } = await admin.from("trips").delete().eq("id", id);
   if (error) throw error;
   revalidatePath("/", "layout");

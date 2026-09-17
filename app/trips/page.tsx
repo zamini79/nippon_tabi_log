@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { DeleteTripButton } from "@/components/DeleteTripButton";
+import { TripThumb } from "@/components/TripThumb";
+import { getPhotosForTrips, withSignedUrls } from "@/lib/photos";
 import { getTripsWithCities } from "@/lib/data";
 import { daysUntil, formatRange } from "@/lib/format";
-import type { TripWithCities } from "@/lib/types";
+import type { PhotoView, TripWithCities } from "@/lib/types";
 import { CityNames } from "./parts";
 
 export const metadata = { title: "여행 기록" };
@@ -11,6 +13,7 @@ export const metadata = { title: "여행 기록" };
 export default async function TripsPage() {
   const trips = await getTripsWithCities();
   const done = trips.filter((t) => t.status === "done");
+  const photos = await withSignedUrls(await getPhotosForTrips(done.map((t) => t.id)));
   const planned = trips
     .filter((t) => t.status === "planned")
     .sort((a, b) => (a.start_date ?? "9999") < (b.start_date ?? "9999") ? -1 : 1);
@@ -40,7 +43,7 @@ export default async function TripsPage() {
             <h2 className="text-[13px] font-semibold text-plan">계획 중</h2>
             <ul className="flex flex-col gap-2.5">
               {planned.map((trip) => (
-                <TripRow key={trip.id} trip={trip} />
+                <TripRow key={trip.id} trip={trip} photos={photos} />
               ))}
             </ul>
           </section>
@@ -55,7 +58,7 @@ export default async function TripsPage() {
           ) : (
             <ul className="flex flex-col gap-2.5">
               {done.map((trip) => (
-                <TripRow key={trip.id} trip={trip} />
+                <TripRow key={trip.id} trip={trip} photos={photos} />
               ))}
             </ul>
           )}
@@ -65,7 +68,7 @@ export default async function TripsPage() {
   );
 }
 
-function TripRow({ trip }: { trip: TripWithCities }) {
+function TripRow({ trip, photos }: { trip: TripWithCities; photos: PhotoView[] }) {
   const cities = trip.visits.map((v) => v.city);
   const planned = trip.status === "planned";
   const dday = planned && trip.start_date ? daysUntil(trip.start_date) : null;
@@ -75,9 +78,7 @@ function TripRow({ trip }: { trip: TripWithCities }) {
         planned ? "border border-dashed border-plan bg-plan-bg" : "border border-line bg-card"
       }`}
     >
-      <div className={`flex size-14 items-center justify-center rounded-[10px] text-[11px] ${planned ? "bg-card text-plan" : "bg-v2 text-card"}`}>
-        {planned ? (dday !== null && dday >= 0 ? `D-${dday}` : "계획") : "사진"}
-      </div>
+      <TripThumb trip={trip} photos={photos} planned={planned} dday={dday} />
       <div className="flex min-w-0 flex-col gap-0.5">
         <Link href={cities[0] ? `/cities/${cities[0].id}` : `/trips/${trip.id}/edit`} className="truncate text-[15px] font-semibold hover:text-v3">
           {trip.title}
