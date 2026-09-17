@@ -1,7 +1,7 @@
 import "server-only";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { geoMercator, geoPath, type GeoProjection } from "d3-geo";
+import { geoContains, geoMercator, geoPath, type GeoProjection } from "d3-geo";
 import type { Feature, FeatureCollection, MultiPolygon } from "geojson";
 
 /**
@@ -262,4 +262,10 @@ export function prefectureIdFromCode(code: string): number | null {
   if (!/^\d{2}$/.test(code)) return null;
   const id = Number(code);
   return id >= 1 && id <= 47 ? id : null;
+}
+
+/** 경위도가 해당 현 경계(원거리 도서 포함) 안에 있는지 */
+export function isInsidePrefecture(prefectureId: number, lng: number, lat: number): boolean {
+  const f = loadFeatures().find((x) => x.properties.id === prefectureId);
+  return f ? geoContains(f, [lng, lat]) : false;
 }

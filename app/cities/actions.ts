@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { isUuid } from "@/lib/photo-paths";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isInsidePrefecture } from "@/lib/geo";
 
 export type CreateCityState = { error?: string; cityId?: string } | null;
 
@@ -18,6 +19,7 @@ export async function createCity(_prev: CreateCityState, formData: FormData): Pr
   if (!nameKo) return { error: "도시 이름을 입력해 주세요." };
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) return { error: "지도를 눌러 위치를 지정해 주세요." };
   if (lat < 20 || lat > 46 || lng < 122 || lng > 154) return { error: "일본 범위 밖 좌표예요." };
+  if (!isInsidePrefecture(prefectureId, lng, lat)) return { error: "이 현 경계 안쪽을 눌러 주세요. (바다나 이웃 현은 안 돼요)" };
 
   const admin = createAdminClient();
   const { data: dup } = await admin.from("cities").select("id").eq("prefecture_id", prefectureId).eq("name_ja", nameJa).maybeSingle();
