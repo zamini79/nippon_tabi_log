@@ -3,8 +3,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { createStore, useStore, type StoreApi } from "zustand";
 import type { Lang } from "./types";
-
-export const LANG_COOKIE = "lang";
+import { LANG_COOKIE } from "./lang-cookie";
 
 type LangState = { lang: Lang; setLang: (lang: Lang) => void };
 
@@ -38,8 +37,4 @@ export function useSetLang() {
   const store = useContext(LangContext);
   if (!store) throw new Error("useSetLang 은 LangProvider 안에서만 사용");
   return useStore(store, (s) => s.setLang);
-}
-
-export function parseLang(v: string | undefined | null): Lang {
-  return v === "ja" ? "ja" : "ko";
 }

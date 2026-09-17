@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Gowun_Batang, IBM_Plex_Sans_KR, Noto_Serif_JP } from "next/font/google";
 import { cookies } from "next/headers";
-import { LANG_COOKIE, LangProvider, parseLang } from "@/lib/lang";
+import { LangProvider } from "@/lib/lang";
+import { LANG_COOKIE, parseLang } from "@/lib/lang-cookie";
 import "./globals.css";
 
 const display = Gowun_Batang({

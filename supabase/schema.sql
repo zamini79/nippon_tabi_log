@@ -129,7 +129,7 @@ create policy "visits owner" on visits for all using (owner = auth.uid()) with c
 create policy "photos owner" on photos for all using (owner = auth.uid()) with check (owner = auth.uid());
 
 -- updated_at 자동 갱신
-create or replace function set_updated_at() returns trigger language plpgsql as $$
+create or replace function set_updated_at() returns trigger language plpgsql set search_path = '' as $$
 begin new.updated_at = now(); return new; end $$;
 create trigger trips_updated_at before update on trips for each row execute function set_updated_at();
 
