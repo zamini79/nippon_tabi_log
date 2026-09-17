@@ -56,7 +56,6 @@ async function main() {
   const cities = readJson<CitySeed[]>("data/cities-seed.json").map((c) => ({
     ...c,
     is_custom: false,
-    owner: null,
   }));
   const { error: cErr } = await supabase
     .from("cities")

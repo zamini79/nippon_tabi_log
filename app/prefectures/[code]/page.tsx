@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
 import { PrefectureZoom, type ZoomCityView, type ZoomNeighborView } from "@/components/map/PrefectureZoom";
-import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTrips, getUser } from "@/lib/data";
+import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTrips } from "@/lib/data";
 import { yearOf } from "@/lib/format";
 import { getPrefectureZoom, prefectureIdFromCode } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
@@ -24,15 +24,12 @@ export default async function PrefecturePage({ params }: Props) {
   const id = prefectureIdFromCode(code);
   if (!id) notFound();
 
-  const user = await getUser();
-  if (!user) redirect("/login");
-
   const [prefectures, cities, prefStats, cityStats, trips] = await Promise.all([
     getPrefectures(),
     getCities(id),
-    getPrefectureStats(user.id),
-    getCityStats(user.id),
-    getTrips(user.id),
+    getPrefectureStats(),
+    getCityStats(),
+    getTrips(),
   ]);
   const prefecture = prefectures.find((p) => p.id === id);
   if (!prefecture) notFound();
@@ -75,7 +72,7 @@ export default async function PrefecturePage({ params }: Props) {
 
   return (
     <>
-      <AppHeader subtitle={subtitle} userEmail={user.email} />
+      <AppHeader subtitle={subtitle} />
       <main className="flex flex-col gap-4 px-5 py-5 md:px-12 md:pb-9">
         <Breadcrumb prefecture={prefecture} />
 

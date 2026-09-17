@@ -1,14 +1,12 @@
 import Link from "next/link";
 import { LangToggle } from "./LangToggle";
 import { NavLinks } from "./NavLinks";
-import { signOut } from "@/app/login/actions";
 
 type Props = {
   subtitle: string;
-  userEmail?: string | null;
 };
 
-export function AppHeader({ subtitle, userEmail }: Props) {
+export function AppHeader({ subtitle }: Props) {
   return (
     <header className="flex h-[76px] items-center justify-between border-b border-line px-5 md:px-12">
       <div className="flex items-baseline gap-3">
@@ -29,17 +27,6 @@ export function AppHeader({ subtitle, userEmail }: Props) {
           </svg>
           여행 추가
         </Link>
-        {userEmail ? (
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="hidden rounded-full border border-line px-3 py-2 text-xs text-muted hover:text-ink lg:inline"
-              title={userEmail}
-            >
-              로그아웃
-            </button>
-          </form>
-        ) : null}
       </div>
     </header>
   );

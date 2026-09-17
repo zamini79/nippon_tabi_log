@@ -14,14 +14,11 @@ corepack pnpm dev
 
 ### Supabase 준비 (1회)
 
-1. 프로젝트 생성 후 SQL Editor 에서 `supabase/migrations/20260917000000_init.sql` 실행
-2. Storage 에 `trip-photos` 버킷(private) 생성 — 정책은 위 SQL 에 포함
-3. Authentication → URL Configuration: Site URL 과 Redirect URLs 에 `http://localhost:3000/auth/confirm`, 배포 도메인 `/auth/confirm` 추가
-4. (권장) Authentication → Email Templates → Magic Link 본문을 아래로 바꾸면 다른 기기에서 링크를 열어도 로그인된다
-   ```html
-   <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email">로그인</a>
-   ```
-5. `.env.local` 의 `AUTH_ALLOWED_EMAIL` 에 본인 이메일을 넣으면 그 주소만 로그인 링크를 받을 수 있다
+1. SQL Editor 에서 `supabase/migrations/` 파일을 순서대로 실행 (또는 MCP `apply_migration`)
+2. `supabase/seed.sql` 실행 → 현 47 · 도시 48
+3. `trip-photos` 비공개 버킷은 마이그레이션 SQL 이 생성한다
+
+로그인은 없다. 읽기는 anon 키로 공개, 쓰기는 서버에서 service_role 키로만 수행하므로 `SUPABASE_SERVICE_ROLE_KEY` 를 Vercel 환경변수에도 넣어야 한다.
 
 ## 스크립트
 
@@ -36,5 +33,5 @@ corepack pnpm dev
 
 - `app/(map)` 전국 지도(홈) · `app/prefectures/[code]` 현 확대 · `app/prefectures` 47현
 - `components/map` SVG 지도 컴포넌트 (경로 문자열은 서버에서 `lib/geo.ts` 가 생성)
-- `lib/supabase` 서버·브라우저·admin 클라이언트, `middleware.ts` 세션 갱신·로그인 보호
+- `lib/supabase` 서버(anon 읽기)·admin(service_role 쓰기) 클라이언트
 - `data/` 47현 GeoJSON, 현·도시 시드 JSON

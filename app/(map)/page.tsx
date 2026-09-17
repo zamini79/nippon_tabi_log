@@ -1,24 +1,20 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
 import { MapCard } from "@/components/map/MapCard";
 import type { MapCity, MapPrefecture } from "@/components/map/JapanMap";
-import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTrips, getUser } from "@/lib/data";
+import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTrips } from "@/lib/data";
 import { formatRange, daysUntil, yearOf } from "@/lib/format";
 import { getNationalMap, OKINAWA_ID } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
 import { OkinawaLabel, TripCities } from "./parts";
 
 export default async function HomePage() {
-  const user = await getUser();
-  if (!user) redirect("/login");
-
   const [prefectures, cities, prefStats, cityStats, trips] = await Promise.all([
     getPrefectures(),
     getCities(),
-    getPrefectureStats(user.id),
-    getCityStats(user.id),
-    getTrips(user.id),
+    getPrefectureStats(),
+    getCityStats(),
+    getTrips(),
   ]);
   const map = getNationalMap();
 
@@ -74,7 +70,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <AppHeader subtitle={subtitle} userEmail={user.email} />
+      <AppHeader subtitle={subtitle} />
       <main className="grid gap-6 px-5 py-6 md:px-12 md:py-7 lg:grid-cols-[minmax(0,840px)_1fr] lg:gap-8">
         <MapCard
           width={map.width}

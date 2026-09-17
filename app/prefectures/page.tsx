@@ -1,7 +1,6 @@
-import { redirect } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
 import { JapanMap, type MapPrefecture } from "@/components/map/JapanMap";
-import { getPrefectureStats, getPrefectures, getTrips, getUser } from "@/lib/data";
+import { getPrefectureStats, getPrefectures, getTrips } from "@/lib/data";
 import { getNationalMap, OKINAWA_ID } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
 import { OkinawaLabel } from "../(map)/parts";
@@ -10,13 +9,10 @@ export const metadata = { title: "47현 채우기" };
 
 /** 3 · 47현 채우기 — 마일스톤 1에서는 choropleth 지도까지. 지방별 진행·다음 목표는 마일스톤 4. */
 export default async function PrefecturesPage() {
-  const user = await getUser();
-  if (!user) redirect("/login");
-
   const [prefectures, prefStats, trips] = await Promise.all([
     getPrefectures(),
-    getPrefectureStats(user.id),
-    getTrips(user.id),
+    getPrefectureStats(),
+    getTrips(),
   ]);
   const map = getNationalMap();
   const prefById = new Map(prefectures.map((p) => [p.id, p]));
@@ -40,7 +36,7 @@ export default async function PrefecturesPage() {
 
   return (
     <>
-      <AppHeader subtitle={doneTrips ? `${doneTrips}번의 여행` : "첫 여행을 기록해 보세요"} userEmail={user.email} />
+      <AppHeader subtitle={doneTrips ? `${doneTrips}번의 여행` : "첫 여행을 기록해 보세요"} />
       <main className="grid gap-6 px-5 py-6 md:px-12 md:py-7 lg:grid-cols-[minmax(0,840px)_1fr] lg:gap-8">
         <section className="rounded-[20px] border border-line bg-card p-4 md:p-6">
           <div className="flex items-center justify-between">

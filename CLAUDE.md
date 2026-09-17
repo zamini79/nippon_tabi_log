@@ -5,10 +5,10 @@
 
 ## 스택 (확정)
 - Next.js 15 (App Router, TypeScript, Server Components 기본) + Tailwind v4
-- Supabase: Postgres + Auth(magic link, 본인 이메일 1명) + Storage(`trip-photos` private 버킷)
+- Supabase: Postgres + Storage(`trip-photos` private 버킷). **로그인 없음** (2026-09-17 결정) — 개인용 공개 사이트. 읽기는 anon 키(RLS 공개 select), 모든 쓰기는 서버 액션에서 service_role(`lib/supabase/admin.ts`)로만. 테이블에 owner 컬럼 없음
 - 지도: `d3-geo`(투영) + 직접 그리는 SVG. Mapbox/Leaflet 같은 타일 지도는 쓰지 않는다 — 지도 자체가 그래픽이고 현 단위 색칠이 핵심이라 SVG가 맞다.
 - 이미지: `sharp`로 업로드 시 리사이즈(장변 2000px + 400px 썸네일), `exifr`로 촬영일 추출. 업로드는 Supabase signed upload URL로 클라이언트 → Storage 직접.
-- 배포: Vercel (GitHub 연동, main 자동 배포). 환경변수: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`(서버 전용, 시드·이미지 처리).
+- 배포: Vercel (GitHub 연동, main 자동 배포, 프로젝트 `nippon-tabi-log`). 환경변수: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`(서버 전용, 쓰기·시드·이미지 처리).
 - 패키지 매니저 pnpm. macOS/zsh 기준으로 명령 작성 (Windows에서도 개발하므로 셸 특화 스크립트 지양, `package.json` scripts로 통일).
 
 ## 저장소 구조
@@ -76,7 +76,7 @@ radius: 카드 16~20px, 칩 999px. 이모지·그라데이션 사용 금지. 아
 6. **모바일**: 홈은 지도+요약+최근 여행, 하단 탭 4개. 여행 중 사진 업로드가 주 용도 → 업로드 UX 우선
 
 ## 마일스톤 (이 순서로, 각 단계 끝에 Vercel preview 배포)
-1. 프로젝트 생성, Supabase 연결, schema 적용, seed, 로그인(magic link). 빈 지도(전국·현 확대)가 실제 경계로 그려짐
+1. 프로젝트 생성, Supabase 연결, schema 적용, seed. 빈 지도(전국·현 확대)가 실제 경계로 그려짐 (로그인은 제거됨)
 2. trips/visits CRUD + 지도 색칠·점 크기·통계 뷰 연동. 언어 토글
 3. 사진 업로드(signed URL → Storage → process route) + 도시 상세 갤러리
 4. 계획(planned) 흐름, D-day, 47현 화면, 다음 목표 제안
@@ -84,6 +84,6 @@ radius: 카드 16~20px, 칩 999px. 이모지·그라데이션 사용 금지. 아
 
 ## 작업 규칙
 - 매 작업 전 이 파일과 `supabase/schema.sql`을 읽는다. 스키마 변경은 `supabase/migrations/`에 새 파일로, schema.sql도 갱신
-- 서버 액션 사용, API route는 파일 처리에만. 모든 쿼리는 RLS에 의존하되 서버에서도 `owner` 조건을 명시
+- 서버 액션 사용, API route는 파일 처리에만. 읽기는 서버 컴포넌트에서 anon 클라이언트, 쓰기는 서버 액션에서 admin(service_role) 클라이언트. 클라이언트 번들에 service_role 이 들어가지 않는지 항상 확인
 - 지명 텍스트를 코드에 하드코딩하지 않는다 — 항상 `t()`
 - 확인 안 된 라이브러리 API는 추측하지 말고 문서를 확인. 커밋 메시지는 한국어, 작은 단위
