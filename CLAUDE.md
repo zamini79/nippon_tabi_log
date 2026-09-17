@@ -75,7 +75,7 @@ radius: 카드 16~20px, 칩 999px. 이모지·그라데이션 사용 금지. 아
 5. **여행 추가/수정**: status 토글, 제목, 기간, 도시 다중 선택(검색, "N회째/첫 방문" 표시), **선택한 도시 → 채워지는 현 자동 표시("나라현 · 새 현!")**, 사진 드롭존(사진별 도시 지정 선택), 메모. 저장 후 도시 상세로
 6. **모바일**: 홈은 지도+요약+최근 여행, 하단 탭 4개. 여행 중 사진 업로드가 주 용도 → 업로드 UX 우선
 
-## 마일스톤 (이 순서로, 각 단계 끝에 Vercel preview 배포)
+## 마일스톤 (이 순서로, 각 단계 끝에 Vercel preview 배포) — 2026-09-18 기준 1~5 모두 완료, 프로덕션 https://nippon-tabi-log.vercel.app
 1. 프로젝트 생성, Supabase 연결, schema 적용, seed. 빈 지도(전국·현 확대)가 실제 경계로 그려짐 (로그인은 제거됨)
 2. trips/visits CRUD + 지도 색칠·점 크기·통계 뷰 연동. 언어 토글
 3. 사진 업로드(signed URL → Storage → process route) + 도시 상세 갤러리
@@ -87,3 +87,9 @@ radius: 카드 16~20px, 칩 999px. 이모지·그라데이션 사용 금지. 아
 - 서버 액션 사용, API route는 파일 처리에만. 읽기는 서버 컴포넌트에서 anon 클라이언트, 쓰기는 서버 액션에서 admin(service_role) 클라이언트. 클라이언트 번들에 service_role 이 들어가지 않는지 항상 확인
 - 지명 텍스트를 코드에 하드코딩하지 않는다 — 항상 `t()`
 - 확인 안 된 라이브러리 API는 추측하지 말고 문서를 확인. 커밋 메시지는 한국어, 작은 단위
+
+## 배포 메모 (2026-09-18)
+- Vercel: `vercel.json` 에 `framework: nextjs`, `installCommand: npx pnpm@12.4.2 install --frozen-lockfile`, `buildCommand: next build --turbopack`. pnpm 12 의 자체 버전 관리 래퍼가 Vercel 에서 깨지므로 pnpm 을 거치지 않고 실행한다
+- pnpm 은 `pnpm-workspace.yaml` 의 `nodeLinker: hoisted` (평탄한 node_modules). isolated 레이아웃에서는 sharp 의 `@img/sharp-linux-x64` 가 함수 번들에 들어가지 않는다. `next.config.ts` 의 `outputFileTracingIncludes` 로 `node_modules/@img/**` 를 처리 라우트에 포함
+- 서버 액션의 `redirect()` 는 route-intercept 모달 안에서 라우터를 움직이지 않는다 → `saveTrip` 은 `{ redirectTo }` 를 돌려주고 클라이언트가 이동
+- Satori(OG 이미지): Fragment 는 행 컨테이너처럼 배치되니 column div 로 감싼다. Google Fonts 는 옛 UA 로 요청하면 WOFF 로 온다
