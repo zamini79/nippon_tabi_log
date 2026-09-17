@@ -8,9 +8,9 @@ type Props = {
 
 export function AppHeader({ subtitle }: Props) {
   return (
-    <header className="flex h-[76px] items-center justify-between border-b border-line px-5 md:px-12">
+    <header className="flex h-[76px] items-center justify-between gap-3 border-b border-line px-4 md:px-12">
       <div className="flex items-baseline gap-3">
-        <Link href="/" className="serif text-[22px] font-bold tracking-[-0.5px] md:text-[26px]">
+        <Link href="/" className="serif whitespace-nowrap text-[19px] font-bold tracking-[-0.5px] md:text-[26px]">
           나의 일본 여행 지도
         </Link>
         <span className="hidden text-[13px] text-muted lg:inline">{subtitle}</span>
@@ -20,12 +20,13 @@ export function AppHeader({ subtitle }: Props) {
         <LangToggle />
         <Link
           href="/trips/new"
-          className="flex items-center gap-2 rounded-[10px] bg-v3 px-[18px] py-[11px] text-sm font-semibold text-card hover:brightness-95"
+          className="flex items-center gap-2 rounded-[10px] bg-v3 px-3 py-[11px] text-sm font-semibold text-card hover:brightness-95 md:px-[18px]"
+          aria-label="여행 추가"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
             <path d="M8 3v10M3 8h10" />
           </svg>
-          여행 추가
+          <span className="hidden md:inline">여행 추가</span>
         </Link>
       </div>
     </header>

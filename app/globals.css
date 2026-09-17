@@ -37,17 +37,21 @@
   --radius-card-lg: 20px;
 }
 
-html,
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body), var(--font-ja), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+/* Tailwind v4 유틸리티는 @layer utilities 에 있으므로, 기본 스타일은 반드시 @layer base 안에 둔다.
+   (레이어 밖에 두면 text-* 유틸리티가 a { color } 에 밀려 보이지 않는다) */
+@layer base {
+  html,
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body), var(--font-ja), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .serif {

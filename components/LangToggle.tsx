@@ -5,7 +5,7 @@ import { useLang, useSetLang } from "@/lib/lang";
 export function LangToggle() {
   const lang = useLang();
   const setLang = useSetLang();
-  const base = "rounded-full px-[13px] py-[7px] text-xs transition-colors cursor-pointer";
+  const base = "rounded-full px-2.5 py-[7px] text-xs transition-colors cursor-pointer md:px-[13px]";
   const on = "bg-ink text-bg font-semibold border border-ink";
   const off = "text-muted border border-transparent hover:text-ink";
   return (
