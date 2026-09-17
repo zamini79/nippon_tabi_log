@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
+import { CompleteTripButton } from "@/components/CompleteTripButton";
 import { DeleteTripButton } from "@/components/DeleteTripButton";
 import { TripThumb } from "@/components/TripThumb";
 import { getPhotosForTrips, withSignedUrls } from "@/lib/photos";
@@ -40,7 +41,12 @@ export default async function TripsPage() {
 
         {planned.length > 0 ? (
           <section className="flex flex-col gap-3">
-            <h2 className="text-[13px] font-semibold text-plan">계획 중</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-[13px] font-semibold text-plan">계획 중</h2>
+              <Link href="/plans" className="text-xs text-plan hover:underline">
+                계획 화면에서 보기 →
+              </Link>
+            </div>
             <ul className="flex flex-col gap-2.5">
               {planned.map((trip) => (
                 <TripRow key={trip.id} trip={trip} photos={photos} />
@@ -91,6 +97,7 @@ function TripRow({ trip, photos }: { trip: TripWithCities; photos: PhotoView[] }
         </div>
       </div>
       <div className="flex items-center gap-1">
+        {planned ? <CompleteTripButton tripId={trip.id} small /> : null}
         <Link href={`/trips/${trip.id}/edit`} className="rounded-lg px-2.5 py-1.5 text-xs text-muted hover:bg-bg hover:text-ink">
           수정
         </Link>

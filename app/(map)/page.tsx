@@ -6,7 +6,10 @@ import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWi
 import { formatRange, daysUntil, yearOf } from "@/lib/format";
 import { getNationalMap, OKINAWA_ID } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
+import { CompleteTripButton } from "@/components/CompleteTripButton";
 import { TripThumb } from "@/components/TripThumb";
+import { newPrefectureIdsForTrip, toStatMap } from "@/lib/goal";
+import { PrefNames } from "@/app/plans/parts";
 import { getPhotosForTrips, withSignedUrls } from "@/lib/photos";
 import { OkinawaLabel } from "./parts";
 import { CityNames } from "@/app/trips/parts";
@@ -59,6 +62,9 @@ export default async function HomePage() {
     .filter((t) => t.status === "planned" && t.start_date && daysUntil(t.start_date) >= 0)
     .sort((a, b) => (a.start_date! < b.start_date! ? -1 : 1));
   const nextTrip = plannedTrips[0] ?? null;
+  const overdue = trips.filter((t) => t.status === "planned" && t.start_date && daysUntil(t.start_date) < 0);
+  const statMap = toStatMap(prefStats);
+  const nextNewPrefs = nextTrip ? newPrefectureIdsForTrip(nextTrip, statMap).map((id) => prefById.get(id)!).filter(Boolean) : [];
 
   const visitedCities = cityStats.filter((s) => s.visit_count > 0).length;
   const visitedPrefs = prefStats.filter((s) => s.visit_count > 0).length;
@@ -123,8 +129,8 @@ export default async function HomePage() {
 
           <section id="plans" className="flex flex-col gap-2 rounded-2xl border border-dashed border-plan bg-plan-bg px-5 py-[18px]">
             <div className="flex items-center justify-between text-xs font-semibold tracking-[0.5px] text-plan">
-              <span>다가오는 여행</span>
-              {nextTrip?.start_date ? <span>D-{daysUntil(nextTrip.start_date)}</span> : null}
+              <Link href="/plans" className="hover:underline">다가오는 여행</Link>
+              {nextTrip?.start_date ? <span>D-{daysUntil(nextTrip.start_date)}</span> : plannedTrips.length + overdue.length > 0 ? <Link href="/plans" className="font-medium hover:underline">전체 계획 →</Link> : null}
             </div>
             {nextTrip ? (
               <>
@@ -141,11 +147,28 @@ export default async function HomePage() {
                     </>
                   ) : null}
                 </div>
+                {nextNewPrefs.length ? (
+                  <div className="text-xs text-plan">
+                    <PrefNames prefectures={nextNewPrefs} /> 첫 방문
+                  </div>
+                ) : null}
+                {plannedTrips.length > 1 ? (
+                  <Link href="/plans" className="text-xs text-plan hover:underline">
+                    계획 {plannedTrips.length}개 모두 보기 →
+                  </Link>
+                ) : null}
               </>
+            ) : overdue.length ? (
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="text-[13px] text-[#3F4A55]">
+                  <span className="font-semibold">{overdue[0].title}</span> 출발일이 지났어요. 다녀오셨나요?
+                </div>
+                <CompleteTripButton tripId={overdue[0].id} small />
+              </div>
             ) : (
               <div className="text-[13px] text-[#3F4A55]">
                 아직 계획한 여행이 없어요.{" "}
-                <Link href="/trips/new" className="font-medium text-plan underline-offset-2 hover:underline">
+                <Link href="/trips/new?status=planned" className="font-medium text-plan underline-offset-2 hover:underline">
                   계획 추가
                 </Link>
               </div>

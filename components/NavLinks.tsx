@@ -7,7 +7,7 @@ const ITEMS: { href: string; label: string; match: (p: string) => boolean }[] = 
   { href: "/", label: "도시 지도", match: (p) => p === "/" || p.startsWith("/cities") },
   { href: "/prefectures", label: "현 별 보기", match: (p) => p.startsWith("/prefectures") },
   { href: "/trips", label: "여행 기록", match: (p) => p.startsWith("/trips") && p !== "/trips/new" },
-  { href: "/#plans", label: "앞으로의 계획", match: () => false },
+  { href: "/plans", label: "앞으로의 계획", match: (p) => p.startsWith("/plans") },
 ];
 
 export function NavLinks() {

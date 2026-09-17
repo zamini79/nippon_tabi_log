@@ -87,3 +87,13 @@ export async function deleteTrip(formData: FormData) {
   revalidatePath("/", "layout");
   redirect("/trips");
 }
+
+/** 계획 → 다녀온 여행. 날짜·도시는 그대로 두고 상태만 바꾼다. */
+export async function completeTrip(formData: FormData) {
+  const id = str(formData, "id");
+  if (!isUuid(id)) return;
+  const admin = createAdminClient();
+  const { error } = await admin.from("trips").update({ status: "done" }).eq("id", id).eq("status", "planned");
+  if (error) throw error;
+  revalidatePath("/", "layout");
+}
