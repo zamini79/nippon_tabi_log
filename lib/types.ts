@@ -1,0 +1,64 @@
+export type Lang = "ko" | "ja";
+
+export type Prefecture = {
+  id: number;
+  code: string;
+  name_ko: string;
+  name_ko_short: string;
+  name_ja: string;
+  name_en: string;
+  region: string;
+  region_ko: string;
+  region_ja: string;
+};
+
+export type City = {
+  id: string;
+  prefecture_id: number;
+  name_ko: string;
+  name_ja: string;
+  name_en: string | null;
+  lat: number;
+  lng: number;
+  is_custom: boolean;
+};
+
+export type PrefectureStat = {
+  prefecture_id: number;
+  region: string;
+  visit_count: number;
+  planned_count: number;
+  city_count: number;
+};
+
+export type CityStat = {
+  city_id: string;
+  prefecture_id: number;
+  visit_count: number;
+  planned_count: number;
+  last_visit: string | null;
+  first_visit: string | null;
+};
+
+export type TripStatus = "done" | "planned";
+
+export type Trip = {
+  id: string;
+  title: string;
+  status: TripStatus;
+  start_date: string | null;
+  end_date: string | null;
+  companions: number | null;
+  memo: string | null;
+  cover_photo: string | null;
+};
+
+/** 색 단계: 0 미방문 / 1 / 2 / 3+ / plan(계획만 있음) */
+export type Level = 0 | 1 | 2 | 3 | "plan";
+
+export function levelOf(visitCount: number, plannedCount: number): Level {
+  if (visitCount >= 3) return 3;
+  if (visitCount === 2) return 2;
+  if (visitCount === 1) return 1;
+  return plannedCount > 0 ? "plan" : 0;
+}
