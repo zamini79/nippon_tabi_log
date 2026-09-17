@@ -80,7 +80,7 @@ function TripRow({ trip, photos }: { trip: TripWithCities; photos: PhotoView[] }
   const dday = planned && trip.start_date ? daysUntil(trip.start_date) : null;
   return (
     <li
-      className={`grid grid-cols-[56px_1fr_auto] items-center gap-4 rounded-2xl px-4 py-3.5 ${
+      className={`grid grid-cols-[56px_1fr] items-center gap-x-4 gap-y-2 rounded-2xl px-4 py-3.5 sm:grid-cols-[56px_1fr_auto] ${
         planned ? "border border-dashed border-plan bg-plan-bg" : "border border-line bg-card"
       }`}
     >
@@ -96,7 +96,7 @@ function TripRow({ trip, photos }: { trip: TripWithCities; photos: PhotoView[] }
           {trip.companions ? ` · ${trip.companions}명` : ""}
         </div>
       </div>
-      <div className="flex items-center gap-1">
+      <div className="col-span-2 flex items-center gap-1 sm:col-span-1">
         {planned ? <CompleteTripButton tripId={trip.id} small /> : null}
         <Link href={`/trips/${trip.id}/edit`} className="rounded-lg px-2.5 py-1.5 text-xs text-muted hover:bg-bg hover:text-ink">
           수정

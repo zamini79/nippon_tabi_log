@@ -11,10 +11,12 @@ export function LangToggle() {
   return (
     <div className="flex gap-0.5 rounded-full bg-land-0 p-[3px]" role="group" aria-label="표시 언어">
       <button type="button" onClick={() => setLang("ko")} className={`${base} ${lang === "ko" ? on : off}`} aria-pressed={lang === "ko"}>
-        한글
+        <span className="md:hidden">한</span>
+        <span className="hidden md:inline">한글</span>
       </button>
       <button type="button" onClick={() => setLang("ja")} className={`${base} ${lang === "ja" ? on : off}`} aria-pressed={lang === "ja"}>
-        日本語
+        <span className="md:hidden">日</span>
+        <span className="hidden md:inline">日本語</span>
       </button>
     </div>
   );

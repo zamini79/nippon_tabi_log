@@ -22,7 +22,7 @@ const FILTERS: { key: MapFilter; label: string }[] = [
 export function MapCard(props: Props) {
   const [filter, setFilter] = useState<MapFilter>("all");
   return (
-    <section className="relative flex flex-col rounded-[20px] border border-line bg-card p-4 md:p-6">
+    <section className="relative flex flex-col rounded-[18px] border border-line bg-card p-3 md:rounded-[20px] md:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex gap-1.5" role="group" aria-label="표시 필터">
           {FILTERS.map((f) => (
@@ -39,7 +39,7 @@ export function MapCard(props: Props) {
             </button>
           ))}
         </div>
-        <ul className="flex items-center gap-4 text-xs text-muted">
+        <ul className="hidden items-center gap-4 text-xs text-muted sm:flex">
           <li className="flex items-center gap-1.5"><span className="inline-block size-2.5 rounded-full bg-v3" />1회</li>
           <li className="flex items-center gap-1.5"><span className="inline-block size-3.5 rounded-full bg-v3" />2회</li>
           <li className="flex items-center gap-1.5"><span className="inline-block size-[18px] rounded-full bg-v3" />3회 이상</li>
