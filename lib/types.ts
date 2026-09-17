@@ -51,6 +51,7 @@ export type Trip = {
   companions: number | null;
   memo: string | null;
   cover_photo: string | null;
+  created_at?: string;
 };
 
 /** 색 단계: 0 미방문 / 1 / 2 / 3+ / plan(계획만 있음) */

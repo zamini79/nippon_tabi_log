@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
-import { PrefectureZoom, type ZoomCityView, type ZoomNeighborView } from "@/components/map/PrefectureZoom";
+import type { ZoomCityView, ZoomNeighborView } from "@/components/map/PrefectureZoom";
+import { ZoomWithAddCity } from "@/components/map/ZoomWithAddCity";
 import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWithCities } from "@/lib/data";
 import { yearOf } from "@/lib/format";
 import { getPhotosForTrips } from "@/lib/photos";
@@ -9,7 +10,7 @@ import { getPrefectureZoom, prefectureIdFromCode } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
 import { Breadcrumb, CityRow, LocalName, PrefectureTitle, RegionName, UnvisitedChip, NeighborSummary } from "./parts";
 
-type Props = { params: Promise<{ code: string }> };
+type Props = { params: Promise<{ code: string }>; searchParams: Promise<{ add?: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { code } = await params;
@@ -20,8 +21,9 @@ export async function generateMetadata({ params }: Props) {
   return { title: p?.name_ko ?? code };
 }
 
-export default async function PrefecturePage({ params }: Props) {
+export default async function PrefecturePage({ params, searchParams }: Props) {
   const { code } = await params;
+  const { add } = await searchParams;
   const id = prefectureIdFromCode(code);
   if (!id) notFound();
 
@@ -59,6 +61,8 @@ export default async function PrefecturePage({ params }: Props) {
       name_ja: c.name_ja,
       visit_count: s?.visit_count ?? 0,
       planned: (s?.planned_count ?? 0) > 0,
+      approximate: zoom.isApproximate(c.lng, c.lat),
+      is_custom: c.is_custom,
     };
   });
 
@@ -115,12 +119,15 @@ export default async function PrefecturePage({ params }: Props) {
               </ul>
             </div>
             <div className="mt-2.5">
-              <PrefectureZoom
+              <ZoomWithAddCity
                 width={zoom.width}
                 height={zoom.height}
                 target={{ d: zoom.target.d, level, name_ko: prefecture.name_ko, name_ja: prefecture.name_ja }}
                 neighbors={neighbors}
                 cities={cityViews}
+                prefectureId={id}
+                mercator={zoom.mercator}
+                startOpen={add === "1"}
               />
             </div>
             <div className="absolute bottom-5 right-6 hidden rounded-lg bg-bg px-3 py-2 text-xs text-muted md:block">
@@ -178,8 +185,8 @@ export default async function PrefecturePage({ params }: Props) {
                   {unvisited.map((c) => (
                     <UnvisitedChip key={c.id} city={c} />
                   ))}
-                  <Link href="/trips/new" className="rounded-full border border-dashed border-line px-2.5 py-[5px] text-xs text-muted hover:border-ink hover:text-ink">
-                    + 여행 추가
+                  <Link href={`/prefectures/${prefecture.code}?add=1`} className="rounded-full border border-dashed border-line px-2.5 py-[5px] text-xs text-muted hover:border-ink hover:text-ink">
+                    + 도시 추가
                   </Link>
                 </div>
               </div>

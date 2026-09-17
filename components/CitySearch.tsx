@@ -98,6 +98,11 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
           autoComplete="off"
         />
       </div>
+      {open && q && candidates.length === 0 && (
+        <div className="absolute left-0 right-0 top-full z-20 mt-1 rounded-xl border border-line bg-card px-3 py-2.5 text-xs text-muted shadow-lg">
+          &lsquo;{query}&rsquo; 와 맞는 도시가 없어요. 현 확대 화면의 <span className="font-medium text-ink">+ 도시 추가</span>로 새 도시를 만들 수 있어요.
+        </div>
+      )}
       {open && candidates.length > 0 && (
         <ul className="absolute left-0 right-0 top-full z-20 mt-1 max-h-72 overflow-auto rounded-xl border border-line bg-card p-1 shadow-lg" role="listbox">
           {candidates.map((c) => {

@@ -28,6 +28,8 @@ export type MapCity = {
   name_ja: string;
   visit_count: number;
   planned: boolean;
+  /** 인셋 범위 밖이라 가장자리로 끌어온 개략 위치 (사키시마 등) */
+  approximate?: boolean;
 };
 
 export type MapFilter = "all" | "done" | "planned";
@@ -135,6 +137,7 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
               const r = planned ? 6 : radius(c.visit_count);
               return (
                 <g key={c.id} className="cursor-pointer" onClick={() => router.push(`/cities/${c.id}`)}>
+                  {c.approximate ? <circle cx={c.x} cy={c.y} r={r + 4} fill="none" stroke="var(--muted)" strokeWidth="1" strokeDasharray="2 2" /> : null}
                   {planned ? (
                     <circle cx={c.x} cy={c.y} r={r} fill="var(--plan-bg)" stroke="var(--plan)" strokeWidth="2" strokeDasharray="3 2" />
                   ) : (

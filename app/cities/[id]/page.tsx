@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
+import { deleteCity } from "@/app/cities/actions";
 import { PhotoGrid } from "@/components/PhotoGrid";
 import { PhotoUploader } from "@/components/PhotoUploader";
 import { StampRow, type Stamp } from "@/components/StampRow";
@@ -79,6 +80,7 @@ export default async function CityPage({ params }: Props) {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-2.5 text-sm text-muted">
+              {city.is_custom ? <span className="rounded-full border border-line px-2 py-0.5 text-xs">직접 추가한 도시</span> : null}
               {first ? (
                 <>
                   <span>첫 방문 {ymd(first)}</span>
@@ -106,13 +108,21 @@ export default async function CityPage({ params }: Props) {
           <section className="flex flex-col items-start gap-3 rounded-[18px] border border-dashed border-line bg-card px-6 py-8">
             <div className="serif text-xl font-bold">아직 이 도시의 기록이 없어요</div>
             <p className="text-sm text-muted">다녀온 여행을 추가하면 이 도시에 스탬프가 찍히고 지도에 점이 생겨요.</p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Link href={`/trips/new?city=${city.id}`} className="rounded-[10px] bg-v3 px-4 py-2.5 text-sm font-semibold text-card hover:brightness-95">
                 다녀온 여행 기록
               </Link>
               <Link href={`/trips/new?city=${city.id}&status=planned`} className="rounded-[10px] border border-plan px-4 py-2.5 text-sm font-semibold text-plan hover:bg-plan-bg">
                 계획에 넣기
               </Link>
+              {city.is_custom && trips.length === 0 ? (
+                <form action={deleteCity}>
+                  <input type="hidden" name="id" value={city.id} />
+                  <button type="submit" className="rounded-[10px] px-4 py-2.5 text-sm text-muted hover:text-v3">
+                    이 도시 삭제
+                  </button>
+                </form>
+              ) : null}
             </div>
           </section>
         ) : (

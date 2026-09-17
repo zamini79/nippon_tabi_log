@@ -11,9 +11,24 @@ import { CityNames } from "./parts";
 
 export const metadata = { title: "여행 기록" };
 
-export default async function TripsPage() {
+type Sort = "date" | "created" | "title";
+const SORTS: { key: Sort; label: string }[] = [
+  { key: "date", label: "여행 날짜순" },
+  { key: "created", label: "최근 추가순" },
+  { key: "title", label: "이름순" },
+];
+
+export default async function TripsPage({ searchParams }: { searchParams: Promise<{ sort?: string }> }) {
+  const { sort: sortRaw } = await searchParams;
+  const sort: Sort = sortRaw === "created" || sortRaw === "title" ? sortRaw : "date";
   const trips = await getTripsWithCities();
-  const done = trips.filter((t) => t.status === "done");
+  const done = trips
+    .filter((t) => t.status === "done")
+    .sort((a, b) => {
+      if (sort === "title") return a.title.localeCompare(b.title, "ko");
+      if (sort === "created") return (a.created_at ?? "") < (b.created_at ?? "") ? 1 : -1;
+      return (a.start_date ?? "") < (b.start_date ?? "") ? 1 : -1;
+    });
   const photos = await withSignedUrls(await getPhotosForTrips(done.map((t) => t.id)));
   const planned = trips
     .filter((t) => t.status === "planned")
@@ -56,7 +71,21 @@ export default async function TripsPage() {
         ) : null}
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-[13px] font-semibold">다녀온 여행</h2>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="text-[13px] font-semibold">다녀온 여행</h2>
+            <div className="flex gap-1 rounded-full bg-land-0 p-[3px]" role="group" aria-label="정렬">
+              {SORTS.map((s) => (
+                <Link
+                  key={s.key}
+                  href={s.key === "date" ? "/trips" : `/trips?sort=${s.key}`}
+                  className={`rounded-full px-3 py-1 text-xs ${sort === s.key ? "bg-ink font-semibold text-bg" : "text-muted hover:text-ink"}`}
+                  aria-current={sort === s.key ? "true" : undefined}
+                >
+                  {s.label}
+                </Link>
+              ))}
+            </div>
+          </div>
           {done.length === 0 ? (
             <p className="rounded-2xl border border-dashed border-line bg-card px-5 py-8 text-sm text-muted">
               아직 기록이 없어요. 첫 여행을 추가하면 지도에 도시와 현이 채워져요.

@@ -53,7 +53,7 @@ const isUuid = (v: string) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-
 
 // ---------- 여행 × 도시 ----------
 const TRIP_SELECT =
-  "id,title,status,start_date,end_date,companions,memo,cover_photo,visits(id,seq,nights,memo,city:cities(*))";
+  "id,title,status,start_date,end_date,companions,memo,cover_photo,created_at,visits(id,seq,nights,memo,city:cities(*))";
 
 function normalizeTrips(rows: unknown): TripWithCities[] {
   const trips = (rows ?? []) as TripWithCities[];

@@ -52,6 +52,7 @@ export default async function HomePage() {
       name_ja: c.name_ja,
       visit_count: s?.visit_count ?? 0,
       planned: (s?.planned_count ?? 0) > 0,
+      approximate: map.isApproximate(c.lng, c.lat, c.prefecture_id),
     };
   });
 

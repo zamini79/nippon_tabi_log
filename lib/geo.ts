@@ -96,6 +96,13 @@ function mainCluster(f: PrefFeature, grow = 1): PrefFeature {
 export type Point = [x: number, y: number];
 export type Projector = (lng: number, lat: number, prefectureId: number) => Point;
 
+/** 인셋 박스 밖으로 나가는 점을 안쪽 여백까지 끌어온다 (사키시마 제도 등 개략 위치) */
+function clampInto(p: Point, box: { x: number; y: number; w: number; h: number }, m: number): { point: Point; clamped: boolean } {
+  const x = Math.min(Math.max(p[0], box.x + m), box.x + box.w - m);
+  const y = Math.min(Math.max(p[1], box.y + m), box.y + box.h - m);
+  return { point: [x, y], clamped: x !== p[0] || y !== p[1] };
+}
+
 export type NationalPrefecturePath = {
   id: number;
   code: string;
@@ -111,6 +118,8 @@ export type NationalMap = {
   inset: { x: number; y: number; w: number; h: number };
   prefectures: NationalPrefecturePath[];
   project: Projector;
+  /** 인셋 범위 밖이라 개략 위치로 끌어온 점인지 */
+  isApproximate: (lng: number, lat: number, prefectureId: number) => boolean;
 };
 
 const nationalCache = new Map<string, NationalMap>();
@@ -151,12 +160,22 @@ export function getNationalMap(width = 700, height = 760): NationalMap {
     return { id: f.properties.id, code: f.properties.code, d: p(f) ?? "", labelX: cx, labelY: cy };
   });
 
-  const project: Projector = (lng, lat, prefectureId) => {
+  const rawProject = (lng: number, lat: number, prefectureId: number): Point => {
     const proj = prefectureId === OKINAWA_ID ? ok : main;
     return (proj([lng, lat]) ?? [NaN, NaN]) as Point;
   };
+  const project: Projector = (lng, lat, prefectureId) => {
+    const p = rawProject(lng, lat, prefectureId);
+    if (prefectureId !== OKINAWA_ID || !Number.isFinite(p[0])) return p;
+    return clampInto(p, inset, 14).point;
+  };
+  const isApproximate = (lng: number, lat: number, prefectureId: number) => {
+    if (prefectureId !== OKINAWA_ID) return false;
+    const p = rawProject(lng, lat, prefectureId);
+    return Number.isFinite(p[0]) && clampInto(p, inset, 14).clamped;
+  };
 
-  const result: NationalMap = { width, height, inset, prefectures, project };
+  const result: NationalMap = { width, height, inset, prefectures, project, isApproximate };
   nationalCache.set(key, result);
   return result;
 }
@@ -169,6 +188,9 @@ export type ZoomMap = {
   target: { id: number; code: string; d: string };
   neighbors: ZoomNeighbor[];
   project: Projector;
+  isApproximate: (lng: number, lat: number) => boolean;
+  /** geoMercator 의 scale/translate — 클라이언트에서 클릭 위치 → 경위도 역변환에 사용 */
+  mercator: { scale: number; translate: [number, number] };
 };
 
 const zoomCache = new Map<string, ZoomMap>();
@@ -212,7 +234,16 @@ export function getPrefectureZoom(id: number, width = 790, height = 670): ZoomMa
       };
     });
 
-  const project: Projector = (lng, lat) => (proj([lng, lat]) ?? [NaN, NaN]) as Point;
+  const box = { x: 0, y: 0, w: width, h: height };
+  const rawProject = (lng: number, lat: number): Point => (proj([lng, lat]) ?? [NaN, NaN]) as Point;
+  const project: Projector = (lng, lat) => {
+    const p = rawProject(lng, lat);
+    return Number.isFinite(p[0]) ? clampInto(p, box, 18).point : p;
+  };
+  const isApproximate = (lng: number, lat: number) => {
+    const p = rawProject(lng, lat);
+    return Number.isFinite(p[0]) && clampInto(p, box, 18).clamped;
+  };
 
   const result: ZoomMap = {
     width,
@@ -220,6 +251,8 @@ export function getPrefectureZoom(id: number, width = 790, height = 670): ZoomMa
     target: { id, code: target.properties.code, d: pathGen(target) ?? "" },
     neighbors,
     project,
+    isApproximate,
+    mercator: { scale: proj.scale(), translate: proj.translate() as [number, number] },
   };
   zoomCache.set(key, result);
   return result;
