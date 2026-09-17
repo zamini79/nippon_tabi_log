@@ -49,6 +49,8 @@ export async function getTrips(): Promise<Trip[]> {
   return data as Trip[];
 }
 
+const isUuid = (v: string) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v);
+
 // ---------- 여행 × 도시 ----------
 const TRIP_SELECT =
   "id,title,status,start_date,end_date,companions,memo,cover_photo,visits(id,seq,nights,memo,city:cities(*))";
@@ -71,6 +73,7 @@ export async function getTripsWithCities(): Promise<TripWithCities[]> {
 }
 
 export async function getTrip(id: string): Promise<TripWithCities | null> {
+  if (!isUuid(id)) return null; // uuid 가 아니면 Postgres 오류(500) 대신 404 로
   const supabase = await createClient();
   const { data, error } = await supabase.from("trips").select(TRIP_SELECT).eq("id", id).maybeSingle();
   if (error) throw error;
@@ -79,6 +82,7 @@ export async function getTrip(id: string): Promise<TripWithCities | null> {
 
 /** 이 도시를 포함한 여행 전체 (동행 도시까지 포함해 돌려준다) */
 export async function getTripsForCity(cityId: string): Promise<TripWithCities[]> {
+  if (!isUuid(cityId)) return [];
   const supabase = await createClient();
   const { data: visits, error: vErr } = await supabase.from("visits").select("trip_id").eq("city_id", cityId);
   if (vErr) throw vErr;
@@ -94,6 +98,7 @@ export async function getTripsForCity(cityId: string): Promise<TripWithCities[]>
 }
 
 export async function getCity(id: string): Promise<City | null> {
+  if (!isUuid(id)) return null;
   const supabase = await createClient();
   const { data, error } = await supabase.from("cities").select("*").eq("id", id).maybeSingle();
   if (error) throw error;
