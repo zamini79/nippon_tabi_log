@@ -1,3 +1,8 @@
+# Vercel 서버리스 패키징은 심볼릭 링크 디렉터리를 허용하지 않고, pnpm 기본(isolated) 레이아웃에서는
+# sharp 의 플랫폼 바이너리(@img/sharp-linux-x64)가 트레이싱에서 빠진다 → 평탄한(hoisted) node_modules 사용
+nodeLinker: hoisted
+
 allowBuilds:
   esbuild: true
   unrs-resolver: true
+  sharp: true
