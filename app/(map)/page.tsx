@@ -2,11 +2,12 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { MapCard } from "@/components/map/MapCard";
 import type { MapCity, MapPrefecture } from "@/components/map/JapanMap";
-import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTrips } from "@/lib/data";
+import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWithCities } from "@/lib/data";
 import { formatRange, daysUntil, yearOf } from "@/lib/format";
 import { getNationalMap, OKINAWA_ID } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
-import { OkinawaLabel, TripCities } from "./parts";
+import { OkinawaLabel } from "./parts";
+import { CityNames } from "@/app/trips/parts";
 
 export default async function HomePage() {
   const [prefectures, cities, prefStats, cityStats, trips] = await Promise.all([
@@ -14,7 +15,7 @@ export default async function HomePage() {
     getCities(),
     getPrefectureStats(),
     getCityStats(),
-    getTrips(),
+    getTripsWithCities(),
   ]);
   const map = getNationalMap();
 
@@ -123,10 +124,18 @@ export default async function HomePage() {
             </div>
             {nextTrip ? (
               <>
-                <div className="serif text-xl font-bold">{nextTrip.title}</div>
+                <Link href={`/trips/${nextTrip.id}/edit`} className="serif text-xl font-bold hover:text-plan">
+                  {nextTrip.title}
+                </Link>
                 <div className="text-[13px] text-[#3F4A55]">
                   {formatRange(nextTrip.start_date, nextTrip.end_date)}
                   {nextTrip.companions ? ` · ${nextTrip.companions}명` : ""}
+                  {nextTrip.visits.length ? (
+                    <>
+                      {" · "}
+                      <CityNames cities={nextTrip.visits.map((v) => v.city)} />
+                    </>
+                  ) : null}
                 </div>
               </>
             ) : (
@@ -154,13 +163,18 @@ export default async function HomePage() {
               <ul className="flex flex-col gap-2.5">
                 {doneTrips.slice(0, 3).map((trip) => (
                   <li key={trip.id}>
-                    <Link href={`/trips/${trip.id}`} className="grid grid-cols-[56px_1fr] items-center gap-3.5">
+                    <Link
+                      href={trip.visits[0] ? `/cities/${trip.visits[0].city.id}` : `/trips/${trip.id}/edit`}
+                      className="grid grid-cols-[56px_1fr] items-center gap-3.5"
+                    >
                       <div className="flex size-14 items-center justify-center rounded-[10px] bg-v2 text-[11px] text-card">사진</div>
-                      <div className="flex flex-col gap-0.5">
-                        <div className="text-sm font-semibold">
-                          <TripCities tripId={trip.id} fallback={trip.title} />
+                      <div className="flex min-w-0 flex-col gap-0.5">
+                        <div className="truncate text-sm font-semibold">
+                          <CityNames cities={trip.visits.map((v) => v.city)} fallback={trip.title} />
                         </div>
-                        <div className="text-xs text-muted">{formatRange(trip.start_date, trip.end_date)}</div>
+                        <div className="truncate text-xs text-muted">
+                          {trip.title} · {formatRange(trip.start_date, trip.end_date)}
+                        </div>
                       </div>
                     </Link>
                   </li>

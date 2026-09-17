@@ -47,6 +47,19 @@ type Props = {
 
 const R: Record<1 | 2 | 3, number> = { 1: 5, 2: 7, 3: 9 };
 
+/** 라벨 겹침 방지: 중요도(방문 횟수) 순으로 배치하고, 이미 놓인 라벨과 가까우면 생략 */
+function pickLabels<T extends { x: number; y: number; weight: number }>(items: T[], dx = 64, dy = 14): Set<T> {
+  const placed: T[] = [];
+  const keep = new Set<T>();
+  for (const it of [...items].sort((a, b) => b.weight - a.weight)) {
+    if (!placed.some((p) => Math.abs(p.x - it.x) < dx && Math.abs(p.y - it.y) < dy)) {
+      placed.push(it);
+      keep.add(it);
+    }
+  }
+  return keep;
+}
+
 function radius(count: number) {
   return R[Math.min(3, Math.max(1, count)) as 1 | 2 | 3];
 }
@@ -69,6 +82,10 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
     if (filter === "planned") return c.planned;
     return c.visit_count > 0 || c.planned;
   });
+  const cityLabelItems = visibleCities.map((c) => ({ x: c.x, y: c.y, weight: c.visit_count + (c.planned ? 0.5 : 0), id: c.id }));
+  const cityLabels = new Set(Array.from(pickLabels(cityLabelItems)).map((i) => i.id));
+  const prefLabelItems = prefectures.filter((p) => p.level !== 0).map((p) => ({ x: p.labelX, y: p.labelY, weight: p.visit_count, id: p.id }));
+  const prefLabels = new Set(Array.from(pickLabels(prefLabelItems, 56, 14)).map((i) => i.id));
 
   return (
     <div data-map-root className={`relative ${className ?? ""}`}>
@@ -103,7 +120,7 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
         {mode === "prefectures" && (
           <g>
             {prefectures
-              .filter((p) => p.level !== 0)
+              .filter((p) => p.level !== 0 && prefLabels.has(p.id))
               .map((p) => (
                 <text key={p.id} className="lb" x={p.labelX} y={p.labelY} textAnchor="middle" fill={p.level === "plan" ? "var(--plan)" : "var(--ink)"}>
                   {tShort(p, lang)}
@@ -123,9 +140,11 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
                   ) : (
                     <circle cx={c.x} cy={c.y} r={r} fill="var(--v3)" stroke="var(--card)" strokeWidth="2" />
                   )}
-                  <text className="lb" x={c.x + r + 4} y={c.y + 4} fill={planned ? "var(--plan)" : "var(--ink)"} style={{ fontWeight: c.visit_count >= 3 ? 600 : 500 }}>
-                    {t(c, lang)}
-                  </text>
+                  {cityLabels.has(c.id) ? (
+                    <text className="lb" x={c.x + r + 4} y={c.y + 4} fill={planned ? "var(--plan)" : "var(--ink)"} style={{ fontWeight: c.visit_count >= 3 ? 600 : 500 }}>
+                      {t(c, lang)}
+                    </text>
+                  ) : null}
                 </g>
               );
             })}

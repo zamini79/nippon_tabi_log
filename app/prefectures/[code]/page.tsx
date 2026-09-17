@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
 import { PrefectureZoom, type ZoomCityView, type ZoomNeighborView } from "@/components/map/PrefectureZoom";
-import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTrips } from "@/lib/data";
+import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWithCities } from "@/lib/data";
 import { yearOf } from "@/lib/format";
 import { getPrefectureZoom, prefectureIdFromCode } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
@@ -29,7 +29,7 @@ export default async function PrefecturePage({ params }: Props) {
     getCities(id),
     getPrefectureStats(),
     getCityStats(),
-    getTrips(),
+    getTripsWithCities(),
   ]);
   const prefecture = prefectures.find((p) => p.id === id);
   if (!prefecture) notFound();
@@ -65,9 +65,23 @@ export default async function PrefecturePage({ params }: Props) {
   const unvisited = cityViews.filter((c) => c.visit_count === 0 && !c.planned);
 
   const doneTrips = trips.filter((t) => t.status === "done");
+  const prefTrips = doneTrips
+    .filter((t) => t.visits.some((v) => v.city.prefecture_id === id))
+    .sort((a, b) => ((a.start_date ?? "") < (b.start_date ?? "") ? -1 : 1));
   const stampYears = Array.from(
-    new Set(doneTrips.map((t) => yearOf(t.start_date)).filter((y): y is string => Boolean(y))),
+    new Set(prefTrips.map((t) => yearOf(t.start_date)).filter((y): y is string => Boolean(y))),
   ).slice(0, 4);
+  const firstVisit = prefTrips[0]?.start_date ?? null;
+  const yearsByCity = new Map<string, string[]>();
+  for (const t of prefTrips) {
+    const y = yearOf(t.start_date);
+    for (const v of t.visits) {
+      if (v.city.prefecture_id !== id || !y) continue;
+      const arr = yearsByCity.get(v.city.id) ?? [];
+      if (!arr.includes(y)) arr.push(y);
+      yearsByCity.set(v.city.id, arr);
+    }
+  }
   const subtitle = doneTrips.length ? `${doneTrips.length}번의 여행` : "첫 여행을 기록해 보세요";
 
   return (
@@ -119,6 +133,7 @@ export default async function PrefecturePage({ params }: Props) {
                   </div>
                   <div className="text-[13px] text-muted">
                     <LocalName prefecture={prefecture} /> · <RegionName prefecture={prefecture} />
+                    {firstVisit ? ` · 첫 방문 ${firstVisit.slice(0, 7).replace("-", ".")}` : ""}
                   </div>
                 </div>
                 {stampYears.length > 0 ? (
@@ -149,7 +164,7 @@ export default async function PrefecturePage({ params }: Props) {
               ) : (
                 <ul className="flex flex-col gap-2">
                   {visited.map((c) => (
-                    <CityRow key={c.id} city={c} />
+                    <CityRow key={c.id} city={c} years={yearsByCity.get(c.id) ?? []} />
                   ))}
                 </ul>
               )}
@@ -160,7 +175,7 @@ export default async function PrefecturePage({ params }: Props) {
                     <UnvisitedChip key={c.id} city={c} />
                   ))}
                   <Link href="/trips/new" className="rounded-full border border-dashed border-line px-2.5 py-[5px] text-xs text-muted hover:border-ink hover:text-ink">
-                    + 도시 추가
+                    + 여행 추가
                   </Link>
                 </div>
               </div>

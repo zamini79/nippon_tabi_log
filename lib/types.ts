@@ -62,3 +62,19 @@ export function levelOf(visitCount: number, plannedCount: number): Level {
   if (visitCount === 1) return 1;
   return plannedCount > 0 ? "plan" : 0;
 }
+
+export type VisitWithCity = {
+  id: string;
+  seq: number;
+  nights: number | null;
+  memo: string | null;
+  city: City;
+};
+
+/** trips + visits(도시 포함). 도시 상세·여행 목록·최근 여행에서 사용 */
+export type TripWithCities = Trip & { visits: VisitWithCity[] };
+
+export type CityWithPrefecture = City & { prefecture: Prefecture };
+
+/** 지도·폼에서 쓰는 가벼운 통계 맵 */
+export type CountStat = { visit_count: number; planned_count: number };

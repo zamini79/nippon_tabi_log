@@ -40,7 +40,7 @@ export function Breadcrumb({ prefecture }: { prefecture: Prefecture }) {
   );
 }
 
-export function CityRow({ city }: { city: CityLike }) {
+export function CityRow({ city, years = [] }: { city: CityLike; years?: string[] }) {
   const lang = useLang();
   const planned = city.visit_count === 0 && city.planned;
   const badge =
@@ -63,6 +63,7 @@ export function CityRow({ city }: { city: CityLike }) {
           <span className={`text-[15px] font-semibold ${planned ? "text-plan" : ""}`}>
             {t(city, lang)} <span className="text-xs font-normal text-muted">{t(city, other(lang))}</span>
           </span>
+          {years.length ? <span className="text-xs text-muted">{years.join(" · ")}</span> : null}
         </div>
         <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${badge}`}>
           {planned ? "계획" : `${city.visit_count}회`}

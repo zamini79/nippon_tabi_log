@@ -35,13 +35,16 @@ export const viewport: Viewport = {
   themeColor: "#F4EFE6",
 };
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children, modal }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
   const cookieStore = await cookies();
   const lang = parseLang(cookieStore.get(LANG_COOKIE)?.value);
   return (
     <html lang={lang} data-lang={lang} className={`${display.variable} ${body.variable} ${ja.variable}`}>
       <body className="min-h-screen">
-        <LangProvider initial={lang}>{children}</LangProvider>
+        <LangProvider initial={lang}>
+          {children}
+          {modal}
+        </LangProvider>
       </body>
     </html>
   );
