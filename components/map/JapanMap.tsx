@@ -6,6 +6,8 @@ import { useLang } from "@/lib/lang";
 import { t, tShort } from "@/lib/names";
 import type { Level } from "@/lib/types";
 import { OkinawaInset } from "./OkinawaInset";
+import { MapZoomControls } from "./MapZoomControls";
+import { useMapZoom } from "./useMapZoom";
 
 export type MapPrefecture = {
   id: number;
@@ -72,6 +74,9 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
   const lang = useLang();
   const router = useRouter();
   const [hover, setHover] = useState<{ id: number; x: number; y: number } | null>(null);
+  const zoom = useMapZoom(width, height);
+  // 확대 배율의 역수: 점·글자·테두리는 화면 크기를 유지하고, 라벨 겹침 판정 거리도 화면 기준으로
+  const k = 1 / zoom.scale;
 
   const onMove = (id: number) => (e: MouseEvent<Element>) => {
     const box = e.currentTarget.closest("[data-map-root]")?.getBoundingClientRect();
@@ -87,14 +92,21 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
     return c.visit_count > 0 || c.planned;
   });
   const cityLabelItems = visibleCities.map((c) => ({ x: c.x, y: c.y, weight: c.visit_count + (c.planned ? 0.5 : 0), id: c.id }));
-  const cityLabels = new Set(Array.from(pickLabels(cityLabelItems)).map((i) => i.id));
+  const cityLabels = new Set(Array.from(pickLabels(cityLabelItems, 64 * k, 14 * k)).map((i) => i.id));
   const prefLabelItems = prefectures.filter((p) => p.level !== 0).map((p) => ({ x: p.labelX, y: p.labelY, weight: p.visit_count, id: p.id }));
-  const prefLabels = new Set(Array.from(pickLabels(prefLabelItems, 56, 14)).map((i) => i.id));
+  const prefLabels = new Set(Array.from(pickLabels(prefLabelItems, 56 * k, 14 * k)).map((i) => i.id));
 
   return (
     <div data-map-root className={`relative ${className ?? ""}`}>
       {/* 데스크톱에서는 지도가 한 화면 안에 들어오도록 세로를 뷰포트 기준으로 제한 (비율 유지, 가운데 정렬) */}
-      <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full lg:max-h-[calc(100dvh-140px)]" role="img" aria-label="일본 지도">
+      <svg
+        ref={zoom.svgRef}
+        viewBox={zoom.viewBox}
+        className="block h-auto w-full select-none lg:max-h-[calc(100dvh-140px)]"
+        role="img"
+        aria-label="일본 지도"
+        {...zoom.svgProps}
+      >
         <g>
           {prefectures.map((p) => {
             // 현 별 보기: 항상 단계 색. 도시 지도: '다녀온 곳' 필터면 방문 현 색칠, '계획' 필터면 계획 현 점선
@@ -115,18 +127,18 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
                 onMouseLeave={() => setHover(null)}
                 aria-label={t(p, lang)}
               >
-                <path d={p.d} className={cls} />
+                <path d={p.d} className={cls} vectorEffect="non-scaling-stroke" />
               </a>
             );
           })}
         </g>
-        <OkinawaInset inset={inset} label={okinawaLabel} />
+        <OkinawaInset inset={inset} label={okinawaLabel} k={k} />
         {mode === "prefectures" && (
           <g>
             {prefectures
               .filter((p) => p.level !== 0 && prefLabels.has(p.id))
               .map((p) => (
-                <text key={p.id} className="lb" x={p.labelX} y={p.labelY} textAnchor="middle" fill={p.level === "plan" ? "var(--plan)" : "var(--ink)"}>
+                <text key={p.id} className="lb" x={p.labelX} y={p.labelY} textAnchor="middle" fill={p.level === "plan" ? "var(--plan)" : "var(--ink)"} style={{ fontSize: 12 * k, strokeWidth: 3 * k }}>
                   {tShort(p, lang)}
                 </text>
               ))}
@@ -136,17 +148,17 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
           <g>
             {visibleCities.map((c) => {
               const planned = c.visit_count === 0 && c.planned;
-              const r = planned ? 6 : radius(c.visit_count);
+              const r = (planned ? 6 : radius(c.visit_count)) * k;
               return (
                 <g key={c.id} className="cursor-pointer" onClick={() => router.push(`/cities/${c.id}`)}>
-                  {c.approximate ? <circle cx={c.x} cy={c.y} r={r + 4} fill="none" stroke="var(--muted)" strokeWidth="1" strokeDasharray="2 2" /> : null}
+                  {c.approximate ? <circle cx={c.x} cy={c.y} r={r + 4 * k} fill="none" stroke="var(--muted)" strokeWidth={k} strokeDasharray={`${2 * k} ${2 * k}`} /> : null}
                   {planned ? (
-                    <circle cx={c.x} cy={c.y} r={r} fill="var(--plan-bg)" stroke="var(--plan)" strokeWidth="2" strokeDasharray="3 2" />
+                    <circle cx={c.x} cy={c.y} r={r} fill="var(--plan-bg)" stroke="var(--plan)" strokeWidth={2 * k} strokeDasharray={`${3 * k} ${2 * k}`} />
                   ) : (
-                    <circle cx={c.x} cy={c.y} r={r} fill="var(--v3)" stroke="var(--card)" strokeWidth="2" />
+                    <circle cx={c.x} cy={c.y} r={r} fill="var(--v3)" stroke="var(--card)" strokeWidth={2 * k} />
                   )}
                   {cityLabels.has(c.id) ? (
-                    <text className="lb" x={c.x + r + 4} y={c.y + 4} fill={planned ? "var(--plan)" : "var(--ink)"} style={{ fontWeight: c.visit_count >= 3 ? 600 : 500 }}>
+                    <text className="lb" x={c.x + r + 4 * k} y={c.y + 4 * k} fill={planned ? "var(--plan)" : "var(--ink)"} style={{ fontWeight: c.visit_count >= 3 ? 600 : 500, fontSize: 12 * k, strokeWidth: 3 * k }}>
                       {t(c, lang)}
                     </text>
                   ) : null}
@@ -157,6 +169,8 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
         )}
       </svg>
 
+      <MapZoomControls className="absolute bottom-2 right-2" scale={zoom.scale} zoomed={zoom.zoomed} onZoomIn={zoom.zoomIn} onZoomOut={zoom.zoomOut} onReset={zoom.reset} />
+
       {hovered && hover && (
         <div
           className="pointer-events-none absolute z-10 rounded-lg bg-ink px-3 py-2 text-xs text-bg shadow"
@@ -165,7 +179,7 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
         >
           <div className="serif text-sm font-bold">{t(hovered, lang)}</div>
           <div className="text-sand">
-            {hovered.visit_count > 0 ? `${hovered.visit_count}번 방문` : hovered.level === "plan" ? "계획 중" : "아직 미방문"} · 클릭하면 확대
+            {hovered.visit_count > 0 ? `${hovered.visit_count}번 방문` : hovered.level === "plan" ? "계획 중" : "아직 미방문"} · 클릭하면 현 화면으로
           </div>
         </div>
       )}

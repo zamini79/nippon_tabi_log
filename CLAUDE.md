@@ -54,6 +54,7 @@ scripts/seed.ts             # prefectures/cities upsert (service role)
 - 현 확대: 해당 현 bbox + 여백으로 fitExtent, 이웃 현은 opacity .55, 그 안의 도시 점 + 이름. 브레드크럼 `전국 › 지방 › 현 (› 도시)`
 - SVG 경로는 서버 컴포넌트에서 `d3-geo` `geoPath`로 생성해 문자열로 넘긴다 (클라이언트 번들에 geojson 350KB를 넣지 않는다). 확대 뷰용은 요청 시 같은 함수를 bbox에 맞춰 호출
 - 라벨 겹침: 전국 지도에서는 방문/계획 현·도시만 라벨. `paint-order: stroke` 흰 테두리 글자
+- 확대·이동(2026-09-18): `components/map/useMapZoom.ts` 가 viewBox 를 바꿔 휠(커서 중심, 최대 8배)·드래그 이동·＋/－/전체 버튼(`MapZoomControls`)을 제공. 전국 지도와 현 확대 모두 사용. 점 반지름·글자 크기·라벨 겹침 거리는 배율의 역수 `k` 를 곱해 화면 크기를 유지하고, 경계선은 `vector-effect: non-scaling-stroke`. 전체 보기 상태에서 축소 방향 휠은 페이지 스크롤로 넘긴다. 드래그 뒤 click 은 삼킨다(현/도시 링크 오작동 방지). 도시 추가 클릭 좌표는 `toViewBox()` 로 변환
 
 ## 언어 전환
 - 모든 지명(도시·현·지방)은 DB에 `name_ko`/`name_ja` 둘 다 있음. `lang` 상태는 zustand + cookie, 서버 렌더에서도 cookie 읽어 초기값. 전환은 클라이언트에서 즉시(재조회 없음)

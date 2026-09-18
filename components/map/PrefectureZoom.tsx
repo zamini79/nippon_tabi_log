@@ -5,6 +5,8 @@ import type React from "react";
 import { useLang } from "@/lib/lang";
 import { t, tShort } from "@/lib/names";
 import type { Level } from "@/lib/types";
+import { MapZoomControls } from "./MapZoomControls";
+import { useMapZoom } from "./useMapZoom";
 
 export type ZoomNeighborView = {
   id: number;
@@ -60,74 +62,83 @@ function radius(c: ZoomCityView) {
 export function PrefectureZoom({ width, height, target, neighbors, cities, pickMode, picked, onPick }: Props) {
   const lang = useLang();
   const targetFill = target.level === "plan" ? "var(--plan-bg)" : FILL[target.level];
+  const zoom = useMapZoom(width, height);
+  const k = 1 / zoom.scale;
   const handlePick = (e: React.MouseEvent<SVGSVGElement>) => {
     if (!pickMode || !onPick) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    onPick({ x: ((e.clientX - rect.left) / rect.width) * width, y: ((e.clientY - rect.top) / rect.height) * height });
+    const p = zoom.toViewBox(e.clientX, e.clientY);
+    onPick({ x: p.x, y: p.y });
   };
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      className={`block h-auto w-full ${pickMode ? "cursor-crosshair" : ""}`}
-      role="img"
-      aria-label={`${t(target, lang)} 확대 지도`}
-      onClick={handlePick}
-    >
-      <g style={pickMode ? { pointerEvents: "none" } : undefined}>
-        {neighbors.map((n) => (
-          <Link key={n.id} href={`/prefectures/${n.code}`} aria-label={t(n, lang)}>
-            <path d={n.d} className="zd hover:opacity-80" />
-          </Link>
-        ))}
-      </g>
-      <path
-        d={target.d}
-        className="zt"
-        fill={targetFill}
-        strokeDasharray={target.level === "plan" ? "4 3" : undefined}
-        stroke={target.level === "plan" ? "var(--plan)" : "var(--ink)"}
-      />
-      <g>
-        {neighbors
-          .filter((n) => Number.isFinite(n.labelX) && Number.isFinite(n.labelY))
-          .map((n) => (
-            <text key={n.id} className="zr" x={n.labelX} y={n.labelY} textAnchor="middle">
-              {tShort(n, lang)}
-            </text>
-          ))}
-      </g>
-      <g style={pickMode ? { pointerEvents: "none" } : undefined}>
-        {cities.map((c) => {
-          const r = radius(c);
-          const visited = c.visit_count > 0;
-          const planned = !visited && c.planned;
-          const color = visited ? "var(--ink)" : planned ? "var(--plan)" : "var(--muted)";
-          return (
-            <Link key={c.id} href={`/cities/${c.id}`} aria-label={`${t(c, lang)}${c.approximate ? " (지도 범위 밖, 개략 위치)" : ""}`}>
-              <g className="cursor-pointer">
-                {c.approximate ? <circle cx={c.x} cy={c.y} r={r + 5} fill="none" stroke="var(--muted)" strokeWidth="1" strokeDasharray="2 2" /> : null}
-                {visited ? (
-                  <circle cx={c.x} cy={c.y} r={r} fill="var(--v3)" stroke="var(--card)" strokeWidth="2.5" />
-                ) : planned ? (
-                  <circle cx={c.x} cy={c.y} r={r} fill="var(--plan-bg)" stroke="var(--plan)" strokeWidth="2" strokeDasharray="3 2" />
-                ) : (
-                  <circle cx={c.x} cy={c.y} r={r} fill="var(--card)" stroke="#8A8378" strokeWidth="1.5" />
-                )}
-                <text className="lb" x={c.x + r + 5} y={c.y + 4} fill={color} style={{ fontWeight: visited ? 600 : 500 }}>
-                  {t(c, lang)}
-                  {c.approximate ? " ↗" : ""}
-                </text>
-              </g>
+    <div className="relative">
+      <svg
+        ref={zoom.svgRef}
+        viewBox={zoom.viewBox}
+        className={`block h-auto w-full select-none ${pickMode ? "cursor-crosshair" : ""}`}
+        role="img"
+        aria-label={`${t(target, lang)} 확대 지도`}
+        onClick={handlePick}
+        {...zoom.svgProps}
+        style={pickMode ? { ...zoom.svgProps.style, cursor: "crosshair" } : zoom.svgProps.style}
+      >
+        <g style={pickMode ? { pointerEvents: "none" } : undefined}>
+          {neighbors.map((n) => (
+            <Link key={n.id} href={`/prefectures/${n.code}`} aria-label={t(n, lang)}>
+              <path d={n.d} className="zd hover:opacity-80" vectorEffect="non-scaling-stroke" />
             </Link>
-          );
-        })}
-      </g>
-      {pickMode && picked ? (
-        <g pointerEvents="none">
-          <circle cx={picked.x} cy={picked.y} r="14" fill="none" stroke="var(--v3)" strokeWidth="2" strokeDasharray="4 3" />
-          <circle cx={picked.x} cy={picked.y} r="5" fill="var(--v3)" stroke="var(--card)" strokeWidth="2" />
+          ))}
         </g>
-      ) : null}
-    </svg>
+        <path
+          d={target.d}
+          className="zt"
+          vectorEffect="non-scaling-stroke"
+          fill={targetFill}
+          strokeDasharray={target.level === "plan" ? "4 3" : undefined}
+          stroke={target.level === "plan" ? "var(--plan)" : "var(--ink)"}
+        />
+        <g>
+          {neighbors
+            .filter((n) => Number.isFinite(n.labelX) && Number.isFinite(n.labelY))
+            .map((n) => (
+              <text key={n.id} className="zr" x={n.labelX} y={n.labelY} textAnchor="middle" style={{ fontSize: 13 * k }}>
+                {tShort(n, lang)}
+              </text>
+            ))}
+        </g>
+        <g style={pickMode ? { pointerEvents: "none" } : undefined}>
+          {cities.map((c) => {
+            const r = radius(c) * k;
+            const visited = c.visit_count > 0;
+            const planned = !visited && c.planned;
+            const color = visited ? "var(--ink)" : planned ? "var(--plan)" : "var(--muted)";
+            return (
+              <Link key={c.id} href={`/cities/${c.id}`} aria-label={`${t(c, lang)}${c.approximate ? " (지도 범위 밖, 개략 위치)" : ""}`}>
+                <g className="cursor-pointer">
+                  {c.approximate ? <circle cx={c.x} cy={c.y} r={r + 5 * k} fill="none" stroke="var(--muted)" strokeWidth={k} strokeDasharray={`${2 * k} ${2 * k}`} /> : null}
+                  {visited ? (
+                    <circle cx={c.x} cy={c.y} r={r} fill="var(--v3)" stroke="var(--card)" strokeWidth={2.5 * k} />
+                  ) : planned ? (
+                    <circle cx={c.x} cy={c.y} r={r} fill="var(--plan-bg)" stroke="var(--plan)" strokeWidth={2 * k} strokeDasharray={`${3 * k} ${2 * k}`} />
+                  ) : (
+                    <circle cx={c.x} cy={c.y} r={r} fill="var(--card)" stroke="#8A8378" strokeWidth={1.5 * k} />
+                  )}
+                  <text className="lb" x={c.x + r + 5 * k} y={c.y + 4 * k} fill={color} style={{ fontWeight: visited ? 600 : 500, fontSize: 12 * k, strokeWidth: 3 * k }}>
+                    {t(c, lang)}
+                    {c.approximate ? " ↗" : ""}
+                  </text>
+                </g>
+              </Link>
+            );
+          })}
+        </g>
+        {pickMode && picked ? (
+          <g pointerEvents="none">
+            <circle cx={picked.x} cy={picked.y} r={14 * k} fill="none" stroke="var(--v3)" strokeWidth={2 * k} strokeDasharray={`${4 * k} ${3 * k}`} />
+            <circle cx={picked.x} cy={picked.y} r={5 * k} fill="var(--v3)" stroke="var(--card)" strokeWidth={2 * k} />
+          </g>
+        ) : null}
+      </svg>
+    <MapZoomControls className="absolute bottom-2 right-2" scale={zoom.scale} zoomed={zoom.zoomed} onZoomIn={zoom.zoomIn} onZoomOut={zoom.zoomOut} onReset={zoom.reset} />
+    </div>
   );
 }
