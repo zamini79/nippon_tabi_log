@@ -75,7 +75,9 @@ export type VisitWithCity = {
 /** trips + visits(도시 포함). 도시 상세·여행 목록·최근 여행에서 사용 */
 export type TripWithCities = Trip & { visits: VisitWithCity[] };
 
-export type CityWithPrefecture = City & { prefecture: Prefecture };
+/** 폼 검색용 최소 필드 (RSC 페이로드 절약) */
+export type SlimCity = Pick<City, "id" | "prefecture_id" | "name_ko" | "name_ja" | "name_en">;
+export type CityWithPrefecture = SlimCity & { prefecture: Prefecture };
 
 /** 지도·폼에서 쓰는 가벼운 통계 맵 */
 export type CountStat = { visit_count: number; planned_count: number; city_count?: number };

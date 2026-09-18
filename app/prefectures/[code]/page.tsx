@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
+import { ChipList } from "@/components/ChipList";
 import type { ZoomCityView, ZoomNeighborView } from "@/components/map/PrefectureZoom";
 import { ZoomWithAddCity } from "@/components/map/ZoomWithAddCity";
 import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWithCities } from "@/lib/data";
@@ -180,15 +181,19 @@ export default async function PrefecturePage({ params, searchParams }: Props) {
                 </ul>
               )}
               <div className="mt-1 flex flex-col gap-2">
-                <div className="text-xs text-muted">아직 안 간 곳</div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="text-xs text-muted">아직 안 간 곳 {unvisited.length ? `(${unvisited.length})` : ""}</div>
+                <ChipList
+                  limit={12}
+                  extra={
+                    <Link href={`/prefectures/${prefecture.code}?add=1`} className="rounded-full border border-dashed border-line px-2.5 py-[5px] text-xs text-muted hover:border-ink hover:text-ink">
+                      + 도시 추가
+                    </Link>
+                  }
+                >
                   {unvisited.map((c) => (
                     <UnvisitedChip key={c.id} city={c} />
                   ))}
-                  <Link href={`/prefectures/${prefecture.code}?add=1`} className="rounded-full border border-dashed border-line px-2.5 py-[5px] text-xs text-muted hover:border-ink hover:text-ink">
-                    + 도시 추가
-                  </Link>
-                </div>
+                </ChipList>
               </div>
             </section>
 

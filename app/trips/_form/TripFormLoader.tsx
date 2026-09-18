@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { TripForm } from "@/components/TripForm";
 import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTrip } from "@/lib/data";
-import type { CityWithPrefecture, CountStat, TripStatus } from "@/lib/types";
+import type { CountStat, SlimCity, TripStatus } from "@/lib/types";
 
 type Props = {
   tripId?: string;
@@ -22,10 +22,8 @@ export async function TripFormLoader({ tripId, defaultCityIds, defaultStatus, ca
   ]);
   if (tripId && !trip) notFound();
 
-  const prefById = new Map(prefectures.map((p) => [p.id, p]));
-  const citiesWithPref: CityWithPrefecture[] = cities
-    .map((c) => ({ ...c, prefecture: prefById.get(c.prefecture_id)! }))
-    .filter((c) => c.prefecture);
+  // 796개 도시를 클라이언트로 보내므로 필요한 필드만 (현 정보는 prefectures 로 따로 전달해 클라이언트에서 조인)
+  const slimCities: SlimCity[] = cities.map((c) => ({ id: c.id, prefecture_id: c.prefecture_id, name_ko: c.name_ko, name_ja: c.name_ja, name_en: c.name_en }));
 
   const cityStatMap: Record<string, CountStat> = {};
   for (const s of cityStats) cityStatMap[s.city_id] = { visit_count: s.visit_count, planned_count: s.planned_count };
@@ -35,7 +33,7 @@ export async function TripFormLoader({ tripId, defaultCityIds, defaultStatus, ca
   return (
     <TripForm
       trip={trip}
-      cities={citiesWithPref}
+      cities={slimCities}
       prefectures={prefectures}
       cityStats={cityStatMap}
       prefStats={prefStatMap}

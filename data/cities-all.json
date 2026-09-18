@@ -1,0 +1,6338 @@
+[
+ {
+  "name_ko": "아사히카와",
+  "name_ja": "旭川",
+  "name_en": "Asahikawa",
+  "prefecture_id": 1,
+  "lat": 43.7706,
+  "lng": 142.365
+ },
+ {
+  "name_ko": "아시베쓰",
+  "name_ja": "芦別",
+  "name_en": "Ashibetsu",
+  "prefecture_id": 1,
+  "lat": 43.4253,
+  "lng": 142.2017
+ },
+ {
+  "name_ko": "다테",
+  "name_ja": "伊達",
+  "name_en": "Date",
+  "prefecture_id": 1,
+  "lat": 42.4719,
+  "lng": 140.8647
+ },
+ {
+  "name_ko": "우타시나이",
+  "name_ja": "歌志内",
+  "name_en": "Utashinai",
+  "prefecture_id": 1,
+  "lat": 43.5214,
+  "lng": 142.0344
+ },
+ {
+  "name_ko": "이와미자와",
+  "name_ja": "岩見沢",
+  "name_en": "Iwamizawa",
+  "prefecture_id": 1,
+  "lat": 43.1962,
+  "lng": 141.7759
+ },
+ {
+  "name_ko": "구시로",
+  "name_ja": "釧路",
+  "name_en": "Kushiro",
+  "prefecture_id": 1,
+  "lat": 42.9849,
+  "lng": 144.3817
+ },
+ {
+  "name_ko": "에니와",
+  "name_ja": "恵庭",
+  "name_en": "Eniwa",
+  "prefecture_id": 1,
+  "lat": 42.8826,
+  "lng": 141.5778
+ },
+ {
+  "name_ko": "에베쓰",
+  "name_ja": "江別",
+  "name_en": "Ebetsu",
+  "prefecture_id": 1,
+  "lat": 43.1037,
+  "lng": 141.5362
+ },
+ {
+  "name_ko": "네무로",
+  "name_ja": "根室",
+  "name_en": "Nemuro",
+  "prefecture_id": 1,
+  "lat": 43.3301,
+  "lng": 145.5829
+ },
+ {
+  "name_ko": "스나가와",
+  "name_ja": "砂川",
+  "name_en": "Sunagawa",
+  "prefecture_id": 1,
+  "lat": 43.4948,
+  "lng": 141.9035
+ },
+ {
+  "name_ko": "삿포로",
+  "name_ja": "札幌",
+  "name_en": "Sapporo",
+  "prefecture_id": 1,
+  "lat": 43.0619,
+  "lng": 141.3544
+ },
+ {
+  "name_ko": "미카사",
+  "name_ja": "三笠",
+  "name_en": "Mikasa",
+  "prefecture_id": 1,
+  "lat": 43.2457,
+  "lng": 141.8752
+ },
+ {
+  "name_ko": "시베쓰",
+  "name_ja": "士別",
+  "name_en": "Shibetsu",
+  "prefecture_id": 1,
+  "lat": 44.1786,
+  "lng": 142.4001
+ },
+ {
+  "name_ko": "무로란",
+  "name_ja": "室蘭",
+  "name_en": "Muroran",
+  "prefecture_id": 1,
+  "lat": 42.3152,
+  "lng": 140.974
+ },
+ {
+  "name_ko": "오타루",
+  "name_ja": "小樽",
+  "name_en": "Otaru",
+  "prefecture_id": 1,
+  "lat": 43.1907,
+  "lng": 140.9944
+ },
+ {
+  "name_ko": "후카가와",
+  "name_ja": "深川",
+  "name_en": "Fukagawa",
+  "prefecture_id": 1,
+  "lat": 43.7933,
+  "lng": 142.0992
+ },
+ {
+  "name_ko": "이시카리",
+  "name_ja": "石狩",
+  "name_en": "Ishikari",
+  "prefecture_id": 1,
+  "lat": 43.1714,
+  "lng": 141.3155
+ },
+ {
+  "name_ko": "아카비라",
+  "name_ja": "赤平",
+  "name_en": "Akabira",
+  "prefecture_id": 1,
+  "lat": 43.5581,
+  "lng": 142.0442
+ },
+ {
+  "name_ko": "지토세",
+  "name_ja": "千歳",
+  "name_en": "Chitose",
+  "prefecture_id": 1,
+  "lat": 42.821,
+  "lng": 141.6509
+ },
+ {
+  "name_ko": "오비히로",
+  "name_ja": "帯広",
+  "name_en": "Obihiro",
+  "prefecture_id": 1,
+  "lat": 42.924,
+  "lng": 143.1961
+ },
+ {
+  "name_ko": "다키카와",
+  "name_ja": "滝川",
+  "name_en": "Takikawa",
+  "prefecture_id": 1,
+  "lat": 43.5578,
+  "lng": 141.9104
+ },
+ {
+  "name_ko": "왓카나이",
+  "name_ja": "稚内",
+  "name_en": "Wakkanai",
+  "prefecture_id": 1,
+  "lat": 45.3325,
+  "lng": 141.8283
+ },
+ {
+  "name_ko": "노보리베쓰",
+  "name_ja": "登別",
+  "name_en": "Noboribetsu",
+  "prefecture_id": 1,
+  "lat": 42.4656,
+  "lng": 141.0758
+ },
+ {
+  "name_ko": "도마코마이",
+  "name_ja": "苫小牧",
+  "name_en": "Tomakomai",
+  "prefecture_id": 1,
+  "lat": 42.6341,
+  "lng": 141.6055
+ },
+ {
+  "name_ko": "하코다테",
+  "name_ja": "函館",
+  "name_en": "Hakodate",
+  "prefecture_id": 1,
+  "lat": 41.7687,
+  "lng": 140.7289
+ },
+ {
+  "name_ko": "비바이",
+  "name_ja": "美唄",
+  "name_en": "Bibai",
+  "prefecture_id": 1,
+  "lat": 43.3329,
+  "lng": 141.8538
+ },
+ {
+  "name_ko": "후라노",
+  "name_ja": "富良野",
+  "name_en": "Furano",
+  "prefecture_id": 1,
+  "lat": 43.342,
+  "lng": 142.3832
+ },
+ {
+  "name_ko": "기타미",
+  "name_ja": "北見",
+  "name_en": "Kitami",
+  "prefecture_id": 1,
+  "lat": 43.8031,
+  "lng": 143.8947
+ },
+ {
+  "name_ko": "기타히로시마",
+  "name_ja": "北広島",
+  "name_en": "Kitahiroshima",
+  "prefecture_id": 1,
+  "lat": 42.9855,
+  "lng": 141.5631
+ },
+ {
+  "name_ko": "호쿠토",
+  "name_ja": "北斗",
+  "name_en": "Hokuto",
+  "prefecture_id": 1,
+  "lat": 41.8241,
+  "lng": 140.653
+ },
+ {
+  "name_ko": "나요로",
+  "name_ja": "名寄",
+  "name_en": "Nayoro",
+  "prefecture_id": 1,
+  "lat": 44.3559,
+  "lng": 142.4632
+ },
+ {
+  "name_ko": "아바시리",
+  "name_ja": "網走",
+  "name_en": "Abashiri",
+  "prefecture_id": 1,
+  "lat": 44.0206,
+  "lng": 144.2736
+ },
+ {
+  "name_ko": "몬베쓰",
+  "name_ja": "紋別",
+  "name_en": "Monbetsu",
+  "prefecture_id": 1,
+  "lat": 44.3564,
+  "lng": 143.3544
+ },
+ {
+  "name_ko": "유바리",
+  "name_ja": "夕張",
+  "name_en": "Yūbari-shi",
+  "prefecture_id": 1,
+  "lat": 43.0568,
+  "lng": 141.9739
+ },
+ {
+  "name_ko": "루모이",
+  "name_ja": "留萌",
+  "name_en": "Rumoi",
+  "prefecture_id": 1,
+  "lat": 43.941,
+  "lng": 141.637
+ },
+ {
+  "name_ko": "쓰가루",
+  "name_ja": "つがる",
+  "name_en": "Tsugaru",
+  "prefecture_id": 2,
+  "lat": 40.87,
+  "lng": 140.3497
+ },
+ {
+  "name_ko": "무쓰",
+  "name_ja": "むつ",
+  "name_en": "Mutsu",
+  "prefecture_id": 2,
+  "lat": 41.2928,
+  "lng": 141.1836
+ },
+ {
+  "name_ko": "고쇼가와라",
+  "name_ja": "五所川原",
+  "name_en": "Goshogawara",
+  "prefecture_id": 2,
+  "lat": 40.8077,
+  "lng": 140.4461
+ },
+ {
+  "name_ko": "히로사키",
+  "name_ja": "弘前",
+  "name_en": "Hirosaki",
+  "prefecture_id": 2,
+  "lat": 40.6031,
+  "lng": 140.4638
+ },
+ {
+  "name_ko": "구로이",
+  "name_ja": "黒石",
+  "name_en": "Kuroishi",
+  "prefecture_id": 2,
+  "lat": 40.6426,
+  "lng": 140.5946
+ },
+ {
+  "name_ko": "미사와",
+  "name_ja": "三沢",
+  "name_en": "Misawa",
+  "prefecture_id": 2,
+  "lat": 40.6831,
+  "lng": 141.3691
+ },
+ {
+  "name_ko": "도와다",
+  "name_ja": "十和田",
+  "name_en": "Towada",
+  "prefecture_id": 2,
+  "lat": 40.6127,
+  "lng": 141.2059
+ },
+ {
+  "name_ko": "아오모리",
+  "name_ja": "青森",
+  "name_en": "Aomori",
+  "prefecture_id": 2,
+  "lat": 40.8228,
+  "lng": 140.7469
+ },
+ {
+  "name_ko": "하치노헤",
+  "name_ja": "八戸",
+  "name_en": "Hachinohe",
+  "prefecture_id": 2,
+  "lat": 40.5123,
+  "lng": 141.4884
+ },
+ {
+  "name_ko": "히라카와",
+  "name_ja": "平川",
+  "name_en": "Hirakawa",
+  "prefecture_id": 2,
+  "lat": 40.5841,
+  "lng": 140.5665
+ },
+ {
+  "name_ko": "이치노세키",
+  "name_ja": "一関",
+  "name_en": "Ichinoseki",
+  "prefecture_id": 3,
+  "lat": 38.9347,
+  "lng": 141.1266
+ },
+ {
+  "name_ko": "도노",
+  "name_ja": "遠野",
+  "name_en": "Tōno-shi",
+  "prefecture_id": 3,
+  "lat": 39.332,
+  "lng": 141.5329
+ },
+ {
+  "name_ko": "오슈",
+  "name_ja": "奥州",
+  "name_en": "Ōshū-shi",
+  "prefecture_id": 3,
+  "lat": 39.1445,
+  "lng": 141.1391
+ },
+ {
+  "name_ko": "하나마키",
+  "name_ja": "花巻",
+  "name_en": "Hanamaki",
+  "prefecture_id": 3,
+  "lat": 39.4419,
+  "lng": 141.1675
+ },
+ {
+  "name_ko": "가마이",
+  "name_ja": "釜石",
+  "name_en": "Kamaishi",
+  "prefecture_id": 3,
+  "lat": 39.2758,
+  "lng": 141.8857
+ },
+ {
+  "name_ko": "구지",
+  "name_ja": "久慈",
+  "name_en": "Kuji",
+  "prefecture_id": 3,
+  "lat": 40.1905,
+  "lng": 141.7757
+ },
+ {
+  "name_ko": "미야코",
+  "name_ja": "宮古",
+  "name_en": "Miyako",
+  "prefecture_id": 3,
+  "lat": 39.6397,
+  "lng": 141.9461
+ },
+ {
+  "name_ko": "모리오카",
+  "name_ja": "盛岡",
+  "name_en": "Morioka",
+  "prefecture_id": 3,
+  "lat": 39.7455,
+  "lng": 141.2691
+ },
+ {
+  "name_ko": "오후나토",
+  "name_ja": "大船渡",
+  "name_en": "Ōfunato",
+  "prefecture_id": 3,
+  "lat": 39.0819,
+  "lng": 141.7089
+ },
+ {
+  "name_ko": "다키자와",
+  "name_ja": "滝沢",
+  "name_en": "Takizawa",
+  "prefecture_id": 3,
+  "lat": 39.7347,
+  "lng": 141.0771
+ },
+ {
+  "name_ko": "니노헤",
+  "name_ja": "二戸",
+  "name_en": "Ninohe",
+  "prefecture_id": 3,
+  "lat": 40.2713,
+  "lng": 141.3048
+ },
+ {
+  "name_ko": "하치만타이",
+  "name_ja": "八幡平",
+  "name_en": "Hachimantai",
+  "prefecture_id": 3,
+  "lat": 39.9564,
+  "lng": 141.0716
+ },
+ {
+  "name_ko": "기타카미",
+  "name_ja": "北上",
+  "name_en": "Kitakami",
+  "prefecture_id": 3,
+  "lat": 39.2867,
+  "lng": 141.1132
+ },
+ {
+  "name_ko": "리쿠젠타카타",
+  "name_ja": "陸前高田",
+  "name_en": "Rikuzentakata",
+  "prefecture_id": 3,
+  "lat": 39.0204,
+  "lng": 141.6331
+ },
+ {
+  "name_ko": "시오가마",
+  "name_ja": "塩竈",
+  "name_en": "Shiogama",
+  "prefecture_id": 4,
+  "lat": 38.3144,
+  "lng": 141.022
+ },
+ {
+  "name_ko": "가쿠다",
+  "name_ja": "角田",
+  "name_en": "Kakuda",
+  "prefecture_id": 4,
+  "lat": 37.977,
+  "lng": 140.7821
+ },
+ {
+  "name_ko": "이와누마",
+  "name_ja": "岩沼",
+  "name_en": "Iwanuma",
+  "prefecture_id": 4,
+  "lat": 38.1043,
+  "lng": 140.8702
+ },
+ {
+  "name_ko": "게센누마",
+  "name_ja": "気仙沼",
+  "name_en": "Kesennuma",
+  "prefecture_id": 4,
+  "lat": 38.9081,
+  "lng": 141.5699
+ },
+ {
+  "name_ko": "구리하라",
+  "name_ja": "栗原",
+  "name_en": "Kurihara",
+  "prefecture_id": 4,
+  "lat": 38.7301,
+  "lng": 141.0215
+ },
+ {
+  "name_ko": "이시노마키",
+  "name_ja": "石巻",
+  "name_en": "Ishinomaki",
+  "prefecture_id": 4,
+  "lat": 38.4342,
+  "lng": 141.3027
+ },
+ {
+  "name_ko": "센다이",
+  "name_ja": "仙台",
+  "name_en": "Sendai",
+  "prefecture_id": 4,
+  "lat": 38.2682,
+  "lng": 140.8694
+ },
+ {
+  "name_ko": "다가조",
+  "name_ja": "多賀城",
+  "name_en": "Tagajō",
+  "prefecture_id": 4,
+  "lat": 38.2938,
+  "lng": 141.0043
+ },
+ {
+  "name_ko": "오사키",
+  "name_ja": "大崎",
+  "name_en": "Ōsaki-shi",
+  "prefecture_id": 4,
+  "lat": 38.5771,
+  "lng": 140.9556
+ },
+ {
+  "name_ko": "도메",
+  "name_ja": "登米",
+  "name_en": "Tome",
+  "prefecture_id": 4,
+  "lat": 38.6918,
+  "lng": 141.1877
+ },
+ {
+  "name_ko": "히가시마쓰시마",
+  "name_ja": "東松島",
+  "name_en": "Higashimatsushima",
+  "prefecture_id": 4,
+  "lat": 38.4264,
+  "lng": 141.2111
+ },
+ {
+  "name_ko": "시로이",
+  "name_ja": "白石",
+  "name_en": "Shiroishi",
+  "prefecture_id": 4,
+  "lat": 38.0024,
+  "lng": 140.6199
+ },
+ {
+  "name_ko": "도미야",
+  "name_ja": "富谷",
+  "name_en": "Tomiya",
+  "prefecture_id": 4,
+  "lat": 38.3999,
+  "lng": 140.8953
+ },
+ {
+  "name_ko": "나토리",
+  "name_ja": "名取",
+  "name_en": "Natori",
+  "prefecture_id": 4,
+  "lat": 38.1715,
+  "lng": 140.8918
+ },
+ {
+  "name_ko": "니카호",
+  "name_ja": "にかほ",
+  "name_en": "Nikaho",
+  "prefecture_id": 5,
+  "lat": 39.203,
+  "lng": 139.9077
+ },
+ {
+  "name_ko": "요코테",
+  "name_ja": "横手",
+  "name_en": "Yokote",
+  "prefecture_id": 5,
+  "lat": 39.3137,
+  "lng": 140.5666
+ },
+ {
+  "name_ko": "가타가미",
+  "name_ja": "潟上",
+  "name_en": "Katagami",
+  "prefecture_id": 5,
+  "lat": 39.8573,
+  "lng": 140.013
+ },
+ {
+  "name_ko": "가즈노",
+  "name_ja": "鹿角",
+  "name_en": "Kazuno",
+  "prefecture_id": 5,
+  "lat": 40.2158,
+  "lng": 140.7885
+ },
+ {
+  "name_ko": "아키타",
+  "name_ja": "秋田",
+  "name_en": "Akita",
+  "prefecture_id": 5,
+  "lat": 39.7199,
+  "lng": 140.1026
+ },
+ {
+  "name_ko": "센보쿠",
+  "name_ja": "仙北",
+  "name_en": "Semboku",
+  "prefecture_id": 5,
+  "lat": 39.7001,
+  "lng": 140.7306
+ },
+ {
+  "name_ko": "오다테",
+  "name_ja": "大館",
+  "name_en": "Ōdate",
+  "prefecture_id": 5,
+  "lat": 40.2716,
+  "lng": 140.5653
+ },
+ {
+  "name_ko": "다이센",
+  "name_ja": "大仙",
+  "name_en": "Daisen",
+  "prefecture_id": 5,
+  "lat": 39.4531,
+  "lng": 140.4754
+ },
+ {
+  "name_ko": "오가",
+  "name_ja": "男鹿",
+  "name_en": "Oga",
+  "prefecture_id": 5,
+  "lat": 39.8867,
+  "lng": 139.8476
+ },
+ {
+  "name_ko": "유자와",
+  "name_ja": "湯沢",
+  "name_en": "Yuzawa",
+  "prefecture_id": 5,
+  "lat": 39.1644,
+  "lng": 140.4958
+ },
+ {
+  "name_ko": "노시로",
+  "name_ja": "能代",
+  "name_en": "Noshiro",
+  "prefecture_id": 5,
+  "lat": 40.2118,
+  "lng": 140.0271
+ },
+ {
+  "name_ko": "기타아키타",
+  "name_ja": "北秋田",
+  "name_en": "Kitaakita",
+  "prefecture_id": 5,
+  "lat": 40.226,
+  "lng": 140.3707
+ },
+ {
+  "name_ko": "유리혼조",
+  "name_ja": "由利本荘",
+  "name_en": "Yurihonjo",
+  "prefecture_id": 5,
+  "lat": 39.3859,
+  "lng": 140.0488
+ },
+ {
+  "name_ko": "사가에",
+  "name_ja": "寒河江",
+  "name_en": "Sagae",
+  "prefecture_id": 6,
+  "lat": 38.3809,
+  "lng": 140.276
+ },
+ {
+  "name_ko": "야마가타",
+  "name_ja": "山形",
+  "name_en": "Yamagata",
+  "prefecture_id": 6,
+  "lat": 38.2554,
+  "lng": 140.3396
+ },
+ {
+  "name_ko": "사카타",
+  "name_ja": "酒田",
+  "name_en": "Sakata",
+  "prefecture_id": 6,
+  "lat": 38.9149,
+  "lng": 139.8367
+ },
+ {
+  "name_ko": "가미노야마",
+  "name_ja": "上山",
+  "name_en": "Kaminoyama",
+  "prefecture_id": 6,
+  "lat": 38.1496,
+  "lng": 140.2679
+ },
+ {
+  "name_ko": "신조",
+  "name_ja": "新庄",
+  "name_en": "Shinjō-shi",
+  "prefecture_id": 6,
+  "lat": 38.765,
+  "lng": 140.3016
+ },
+ {
+  "name_ko": "무라야마",
+  "name_ja": "村山",
+  "name_en": "Murayama",
+  "prefecture_id": 6,
+  "lat": 38.4833,
+  "lng": 140.3803
+ },
+ {
+  "name_ko": "나가이",
+  "name_ja": "長井",
+  "name_en": "Nagai",
+  "prefecture_id": 6,
+  "lat": 38.1075,
+  "lng": 140.0405
+ },
+ {
+  "name_ko": "쓰루오카",
+  "name_ja": "鶴岡",
+  "name_en": "Tsuruoka",
+  "prefecture_id": 6,
+  "lat": 38.7272,
+  "lng": 139.8267
+ },
+ {
+  "name_ko": "덴도",
+  "name_ja": "天童",
+  "name_en": "Tendō-shi",
+  "prefecture_id": 6,
+  "lat": 38.3621,
+  "lng": 140.3784
+ },
+ {
+  "name_ko": "히가시네",
+  "name_ja": "東根",
+  "name_en": "Higashine",
+  "prefecture_id": 6,
+  "lat": 38.4313,
+  "lng": 140.3911
+ },
+ {
+  "name_ko": "난요",
+  "name_ja": "南陽",
+  "name_en": "Nanyo",
+  "prefecture_id": 6,
+  "lat": 38.0551,
+  "lng": 140.1484
+ },
+ {
+  "name_ko": "오바나자와",
+  "name_ja": "尾花沢",
+  "name_en": "Obanazawa",
+  "prefecture_id": 6,
+  "lat": 38.6006,
+  "lng": 140.4057
+ },
+ {
+  "name_ko": "요네자와",
+  "name_ja": "米沢",
+  "name_en": "Yonezawa",
+  "prefecture_id": 6,
+  "lat": 37.9222,
+  "lng": 140.1167
+ },
+ {
+  "name_ko": "이와키",
+  "name_ja": "いわき",
+  "name_en": "Iwaki",
+  "prefecture_id": 7,
+  "lat": 37.0505,
+  "lng": 140.8877
+ },
+ {
+  "name_ko": "다테",
+  "name_ja": "伊達",
+  "name_en": "Date",
+  "prefecture_id": 7,
+  "lat": 37.8191,
+  "lng": 140.563
+ },
+ {
+  "name_ko": "아이즈와카마쓰",
+  "name_ja": "会津若松",
+  "name_en": "Aizuwakamatsu",
+  "prefecture_id": 7,
+  "lat": 37.4948,
+  "lng": 139.9298
+ },
+ {
+  "name_ko": "기타카타",
+  "name_ja": "喜多方",
+  "name_en": "Kitakata",
+  "prefecture_id": 7,
+  "lat": 37.6511,
+  "lng": 139.8748
+ },
+ {
+  "name_ko": "고리야마",
+  "name_ja": "郡山",
+  "name_en": "Kōriyama",
+  "prefecture_id": 7,
+  "lat": 37.4003,
+  "lng": 140.3597
+ },
+ {
+  "name_ko": "스카가와",
+  "name_ja": "須賀川",
+  "name_en": "Sukagawa",
+  "prefecture_id": 7,
+  "lat": 37.2869,
+  "lng": 140.3726
+ },
+ {
+  "name_ko": "소마",
+  "name_ja": "相馬",
+  "name_en": "Sōma-shi",
+  "prefecture_id": 7,
+  "lat": 37.7967,
+  "lng": 140.9196
+ },
+ {
+  "name_ko": "다무라",
+  "name_ja": "田村",
+  "name_en": "Tamura",
+  "prefecture_id": 7,
+  "lat": 37.4406,
+  "lng": 140.5762
+ },
+ {
+  "name_ko": "미나미소마",
+  "name_ja": "南相馬",
+  "name_en": "Minamisōma-shi",
+  "prefecture_id": 7,
+  "lat": 37.6422,
+  "lng": 140.9573
+ },
+ {
+  "name_ko": "니혼마쓰",
+  "name_ja": "二本松",
+  "name_en": "Nihonmatsu",
+  "prefecture_id": 7,
+  "lat": 37.5849,
+  "lng": 140.4312
+ },
+ {
+  "name_ko": "시라카와",
+  "name_ja": "白河",
+  "name_en": "Shirakawa",
+  "prefecture_id": 7,
+  "lat": 37.1263,
+  "lng": 140.2109
+ },
+ {
+  "name_ko": "후쿠시마",
+  "name_ja": "福島",
+  "name_en": "Fukushima",
+  "prefecture_id": 7,
+  "lat": 37.7608,
+  "lng": 140.4747
+ },
+ {
+  "name_ko": "모토미야",
+  "name_ja": "本宮",
+  "name_en": "Motomiya",
+  "prefecture_id": 7,
+  "lat": 37.5132,
+  "lng": 140.3938
+ },
+ {
+  "name_ko": "가스미가우라",
+  "name_ja": "かすみがうら",
+  "name_en": "Kasumigaura",
+  "prefecture_id": 8,
+  "lat": 36.1517,
+  "lng": 140.2371
+ },
+ {
+  "name_ko": "쓰쿠바",
+  "name_ja": "つくば",
+  "name_en": "Tsukuba",
+  "prefecture_id": 8,
+  "lat": 36.0835,
+  "lng": 140.0764
+ },
+ {
+  "name_ko": "쓰쿠바미라이",
+  "name_ja": "つくばみらい",
+  "name_en": "Tsukubamirai",
+  "prefecture_id": 8,
+  "lat": 35.9819,
+  "lng": 140.0381
+ },
+ {
+  "name_ko": "히타치나카",
+  "name_ja": "ひたちなか",
+  "name_en": "Hitachinaka",
+  "prefecture_id": 8,
+  "lat": 36.3967,
+  "lng": 140.5347
+ },
+ {
+  "name_ko": "이나시키",
+  "name_ja": "稲敷",
+  "name_en": "Inashiki",
+  "prefecture_id": 8,
+  "lat": 35.9565,
+  "lng": 140.3239
+ },
+ {
+  "name_ko": "시모쓰마",
+  "name_ja": "下妻",
+  "name_en": "Shimotsuma",
+  "prefecture_id": 8,
+  "lat": 36.1844,
+  "lng": 139.9684
+ },
+ {
+  "name_ko": "가사마",
+  "name_ja": "笠間",
+  "name_en": "Kasama",
+  "prefecture_id": 8,
+  "lat": 36.3452,
+  "lng": 140.3043
+ },
+ {
+  "name_ko": "우시쿠",
+  "name_ja": "牛久",
+  "name_en": "Ushiku",
+  "prefecture_id": 8,
+  "lat": 35.9794,
+  "lng": 140.1496
+ },
+ {
+  "name_ko": "유키",
+  "name_ja": "結城",
+  "name_en": "Yūki-shi",
+  "prefecture_id": 8,
+  "lat": 36.2897,
+  "lng": 139.8715
+ },
+ {
+  "name_ko": "고가",
+  "name_ja": "古河",
+  "name_en": "Koga",
+  "prefecture_id": 8,
+  "lat": 36.1782,
+  "lng": 139.7554
+ },
+ {
+  "name_ko": "나메가타",
+  "name_ja": "行方",
+  "name_en": "Namegata",
+  "prefecture_id": 8,
+  "lat": 35.9905,
+  "lng": 140.489
+ },
+ {
+  "name_ko": "다카하기",
+  "name_ja": "高萩",
+  "name_en": "Takahagi",
+  "prefecture_id": 8,
+  "lat": 36.7137,
+  "lng": 140.7095
+ },
+ {
+  "name_ko": "반도",
+  "name_ja": "坂東",
+  "name_en": "Bando",
+  "prefecture_id": 8,
+  "lat": 36.0484,
+  "lng": 139.8887
+ },
+ {
+  "name_ko": "사쿠라가와",
+  "name_ja": "桜川",
+  "name_en": "Sakuragawa",
+  "prefecture_id": 8,
+  "lat": 36.3273,
+  "lng": 140.0906
+ },
+ {
+  "name_ko": "가시마",
+  "name_ja": "鹿嶋",
+  "name_en": "Kashima",
+  "prefecture_id": 8,
+  "lat": 35.9656,
+  "lng": 140.6448
+ },
+ {
+  "name_ko": "도리데",
+  "name_ja": "取手",
+  "name_en": "Toride",
+  "prefecture_id": 8,
+  "lat": 35.9115,
+  "lng": 140.0504
+ },
+ {
+  "name_ko": "모리야",
+  "name_ja": "守谷",
+  "name_en": "Moriya",
+  "prefecture_id": 8,
+  "lat": 35.9514,
+  "lng": 139.9754
+ },
+ {
+  "name_ko": "오미타마",
+  "name_ja": "小美玉",
+  "name_en": "Omitama",
+  "prefecture_id": 8,
+  "lat": 36.2393,
+  "lng": 140.3526
+ },
+ {
+  "name_ko": "조소",
+  "name_ja": "常総",
+  "name_en": "Jōsō-shi",
+  "prefecture_id": 8,
+  "lat": 36.0236,
+  "lng": 139.9938
+ },
+ {
+  "name_ko": "히타치오타",
+  "name_ja": "常陸太田",
+  "name_en": "Hitachiōta-shi",
+  "prefecture_id": 8,
+  "lat": 36.6483,
+  "lng": 140.5053
+ },
+ {
+  "name_ko": "히타치오미야",
+  "name_ja": "常陸大宮",
+  "name_en": "Hitachiōmiya-shi",
+  "prefecture_id": 8,
+  "lat": 36.5425,
+  "lng": 140.4109
+ },
+ {
+  "name_ko": "가미스",
+  "name_ja": "神栖",
+  "name_en": "Kamisu",
+  "prefecture_id": 8,
+  "lat": 35.8899,
+  "lng": 140.6645
+ },
+ {
+  "name_ko": "미토",
+  "name_ja": "水戸",
+  "name_en": "Mito",
+  "prefecture_id": 8,
+  "lat": 36.3658,
+  "lng": 140.4712
+ },
+ {
+  "name_ko": "이시오카",
+  "name_ja": "石岡",
+  "name_en": "Ishioka",
+  "prefecture_id": 8,
+  "lat": 36.1908,
+  "lng": 140.2872
+ },
+ {
+  "name_ko": "지쿠세이",
+  "name_ja": "筑西",
+  "name_en": "Chikusei",
+  "prefecture_id": 8,
+  "lat": 36.3071,
+  "lng": 139.9831
+ },
+ {
+  "name_ko": "이타코",
+  "name_ja": "潮来",
+  "name_en": "Itako",
+  "prefecture_id": 8,
+  "lat": 35.9471,
+  "lng": 140.5554
+ },
+ {
+  "name_ko": "쓰치우라",
+  "name_ja": "土浦",
+  "name_en": "Tsuchiura",
+  "prefecture_id": 8,
+  "lat": 36.0783,
+  "lng": 140.2045
+ },
+ {
+  "name_ko": "나카",
+  "name_ja": "那珂",
+  "name_en": "Naka",
+  "prefecture_id": 8,
+  "lat": 36.4574,
+  "lng": 140.4868
+ },
+ {
+  "name_ko": "히타치",
+  "name_ja": "日立",
+  "name_en": "Hitachi",
+  "prefecture_id": 8,
+  "lat": 36.5991,
+  "lng": 140.6515
+ },
+ {
+  "name_ko": "호코타",
+  "name_ja": "鉾田",
+  "name_en": "Hokota",
+  "prefecture_id": 8,
+  "lat": 36.1587,
+  "lng": 140.5164
+ },
+ {
+  "name_ko": "기타이바라키",
+  "name_ja": "北茨城",
+  "name_en": "Kitaibaraki",
+  "prefecture_id": 8,
+  "lat": 36.8019,
+  "lng": 140.751
+ },
+ {
+  "name_ko": "류가사키",
+  "name_ja": "龍ケ崎",
+  "name_en": "Ryūgasaki-shi",
+  "prefecture_id": 8,
+  "lat": 35.9116,
+  "lng": 140.1823
+ },
+ {
+  "name_ko": "사쿠라",
+  "name_ja": "さくら",
+  "name_en": "Sakura",
+  "prefecture_id": 9,
+  "lat": 36.6853,
+  "lng": 139.9664
+ },
+ {
+  "name_ko": "우쓰노미야",
+  "name_ja": "宇都宮",
+  "name_en": "Utsunomiya",
+  "prefecture_id": 9,
+  "lat": 36.5551,
+  "lng": 139.8826
+ },
+ {
+  "name_ko": "시모쓰케",
+  "name_ja": "下野",
+  "name_en": "Shimotsuke",
+  "prefecture_id": 9,
+  "lat": 36.3949,
+  "lng": 139.8518
+ },
+ {
+  "name_ko": "사노",
+  "name_ja": "佐野",
+  "name_en": "Sano",
+  "prefecture_id": 9,
+  "lat": 36.3144,
+  "lng": 139.5783
+ },
+ {
+  "name_ko": "가누마",
+  "name_ja": "鹿沼",
+  "name_en": "Kanuma",
+  "prefecture_id": 9,
+  "lat": 36.5671,
+  "lng": 139.7451
+ },
+ {
+  "name_ko": "오야마",
+  "name_ja": "小山",
+  "name_en": "Oyama",
+  "prefecture_id": 9,
+  "lat": 36.3146,
+  "lng": 139.8002
+ },
+ {
+  "name_ko": "모카",
+  "name_ja": "真岡",
+  "name_en": "Mooka",
+  "prefecture_id": 9,
+  "lat": 36.4404,
+  "lng": 140.0134
+ },
+ {
+  "name_ko": "아시카가",
+  "name_ja": "足利",
+  "name_en": "Ashikaga",
+  "prefecture_id": 9,
+  "lat": 36.3594,
+  "lng": 139.4531
+ },
+ {
+  "name_ko": "오타와라",
+  "name_ja": "大田原",
+  "name_en": "Ōtawara-shi",
+  "prefecture_id": 9,
+  "lat": 36.871,
+  "lng": 140.0159
+ },
+ {
+  "name_ko": "도치기",
+  "name_ja": "栃木",
+  "name_en": "Tochigi",
+  "prefecture_id": 9,
+  "lat": 36.3824,
+  "lng": 139.7341
+ },
+ {
+  "name_ko": "나스카라스야마",
+  "name_ja": "那須烏山",
+  "name_en": "Nasukarasuyama",
+  "prefecture_id": 9,
+  "lat": 36.6569,
+  "lng": 140.1514
+ },
+ {
+  "name_ko": "나스시오바라",
+  "name_ja": "那須塩原",
+  "name_en": "Nasushiobara",
+  "prefecture_id": 9,
+  "lat": 36.9617,
+  "lng": 140.0461
+ },
+ {
+  "name_ko": "닛코",
+  "name_ja": "日光",
+  "name_en": "Nikkō-shi",
+  "prefecture_id": 9,
+  "lat": 36.7198,
+  "lng": 139.6982
+ },
+ {
+  "name_ko": "야이타",
+  "name_ja": "矢板",
+  "name_en": "Yaita",
+  "prefecture_id": 9,
+  "lat": 36.8067,
+  "lng": 139.9241
+ },
+ {
+  "name_ko": "미도리",
+  "name_ja": "みどり",
+  "name_en": "Midori",
+  "prefecture_id": 10,
+  "lat": 36.3948,
+  "lng": 139.2811
+ },
+ {
+  "name_ko": "안나카",
+  "name_ja": "安中",
+  "name_en": "Annaka",
+  "prefecture_id": 10,
+  "lat": 36.3263,
+  "lng": 138.8877
+ },
+ {
+  "name_ko": "이세사키",
+  "name_ja": "伊勢崎",
+  "name_en": "Isesaki",
+  "prefecture_id": 10,
+  "lat": 36.3114,
+  "lng": 139.1968
+ },
+ {
+  "name_ko": "다테바야",
+  "name_ja": "館林",
+  "name_en": "Tatebayashi",
+  "prefecture_id": 10,
+  "lat": 36.2448,
+  "lng": 139.5421
+ },
+ {
+  "name_ko": "기류",
+  "name_ja": "桐生",
+  "name_en": "Kiryū",
+  "prefecture_id": 10,
+  "lat": 36.4053,
+  "lng": 139.3305
+ },
+ {
+  "name_ko": "다카사키",
+  "name_ja": "高崎",
+  "name_en": "Takasaki",
+  "prefecture_id": 10,
+  "lat": 36.3231,
+  "lng": 139.0024
+ },
+ {
+  "name_ko": "시부카와",
+  "name_ja": "渋川",
+  "name_en": "Shibukawa",
+  "prefecture_id": 10,
+  "lat": 36.4895,
+  "lng": 139.0004
+ },
+ {
+  "name_ko": "누마타",
+  "name_ja": "沼田",
+  "name_en": "Numata",
+  "prefecture_id": 10,
+  "lat": 36.6439,
+  "lng": 139.0428
+ },
+ {
+  "name_ko": "마에바",
+  "name_ja": "前橋",
+  "name_en": "Maebashi",
+  "prefecture_id": 10,
+  "lat": 36.3895,
+  "lng": 139.0634
+ },
+ {
+  "name_ko": "오타",
+  "name_ja": "太田",
+  "name_en": "Ōta-shi",
+  "prefecture_id": 10,
+  "lat": 36.2911,
+  "lng": 139.3754
+ },
+ {
+  "name_ko": "후지오카",
+  "name_ja": "藤岡",
+  "name_en": "Fujioka",
+  "prefecture_id": 10,
+  "lat": 36.2587,
+  "lng": 139.0746
+ },
+ {
+  "name_ko": "도미오카",
+  "name_ja": "富岡",
+  "name_en": "Tomioka",
+  "prefecture_id": 10,
+  "lat": 36.2599,
+  "lng": 138.8899
+ },
+ {
+  "name_ko": "사이타마",
+  "name_ja": "さいたま",
+  "name_en": "Saitama",
+  "prefecture_id": 11,
+  "lat": 35.8614,
+  "lng": 139.6456
+ },
+ {
+  "name_ko": "후지미노",
+  "name_ja": "ふじみ野",
+  "name_en": "Fujimino",
+  "prefecture_id": 11,
+  "lat": 35.8795,
+  "lng": 139.5198
+ },
+ {
+  "name_ko": "하뉴",
+  "name_ja": "羽生",
+  "name_en": "Hanyū-shi",
+  "prefecture_id": 11,
+  "lat": 36.1725,
+  "lng": 139.5533
+ },
+ {
+  "name_ko": "고시가야",
+  "name_ja": "越谷",
+  "name_en": "Koshigaya",
+  "prefecture_id": 11,
+  "lat": 35.8911,
+  "lng": 139.7909
+ },
+ {
+  "name_ko": "오케가와",
+  "name_ja": "桶川",
+  "name_en": "Okegawa",
+  "prefecture_id": 11,
+  "lat": 36.0028,
+  "lng": 139.5585
+ },
+ {
+  "name_ko": "가조",
+  "name_ja": "加須",
+  "name_en": "Kazo",
+  "prefecture_id": 11,
+  "lat": 36.1314,
+  "lng": 139.6018
+ },
+ {
+  "name_ko": "요시카와",
+  "name_ja": "吉川",
+  "name_en": "Yoshikawa",
+  "prefecture_id": 11,
+  "lat": 35.8958,
+  "lng": 139.8556
+ },
+ {
+  "name_ko": "구키",
+  "name_ja": "久喜",
+  "name_en": "Kuki",
+  "prefecture_id": 11,
+  "lat": 36.0621,
+  "lng": 139.6668
+ },
+ {
+  "name_ko": "사야마",
+  "name_ja": "狭山",
+  "name_en": "Sayama",
+  "prefecture_id": 11,
+  "lat": 35.853,
+  "lng": 139.4122
+ },
+ {
+  "name_ko": "구마가야",
+  "name_ja": "熊谷",
+  "name_en": "Kumagaya",
+  "prefecture_id": 11,
+  "lat": 36.1474,
+  "lng": 139.3886
+ },
+ {
+  "name_ko": "도다",
+  "name_ja": "戸田",
+  "name_en": "Toda",
+  "prefecture_id": 11,
+  "lat": 35.8176,
+  "lng": 139.6779
+ },
+ {
+  "name_ko": "삿테",
+  "name_ja": "幸手",
+  "name_en": "Satte",
+  "prefecture_id": 11,
+  "lat": 36.0781,
+  "lng": 139.7259
+ },
+ {
+  "name_ko": "교다",
+  "name_ja": "行田",
+  "name_en": "Gyōda-shi",
+  "prefecture_id": 11,
+  "lat": 36.1389,
+  "lng": 139.4556
+ },
+ {
+  "name_ko": "고노스",
+  "name_ja": "鴻巣",
+  "name_en": "Kōnosu-shi",
+  "prefecture_id": 11,
+  "lat": 36.0659,
+  "lng": 139.5222
+ },
+ {
+  "name_ko": "사카도",
+  "name_ja": "坂戸",
+  "name_en": "Sakado",
+  "prefecture_id": 11,
+  "lat": 35.9573,
+  "lng": 139.403
+ },
+ {
+  "name_ko": "미사토",
+  "name_ja": "三郷",
+  "name_en": "Misato",
+  "prefecture_id": 11,
+  "lat": 35.8301,
+  "lng": 139.8723
+ },
+ {
+  "name_ko": "시키",
+  "name_ja": "志木",
+  "name_en": "Shiki",
+  "prefecture_id": 11,
+  "lat": 35.8367,
+  "lng": 139.5803
+ },
+ {
+  "name_ko": "가스카베",
+  "name_ja": "春日部",
+  "name_en": "Kasukabe",
+  "prefecture_id": 11,
+  "lat": 35.9753,
+  "lng": 139.7522
+ },
+ {
+  "name_ko": "도코로자와",
+  "name_ja": "所沢",
+  "name_en": "Tokorozawa",
+  "prefecture_id": 11,
+  "lat": 35.7994,
+  "lng": 139.4689
+ },
+ {
+  "name_ko": "아게오",
+  "name_ja": "上尾",
+  "name_en": "Ageo",
+  "prefecture_id": 11,
+  "lat": 35.9774,
+  "lng": 139.5932
+ },
+ {
+  "name_ko": "니자",
+  "name_ja": "新座",
+  "name_en": "Niiza",
+  "prefecture_id": 11,
+  "lat": 35.7935,
+  "lng": 139.5653
+ },
+ {
+  "name_ko": "후카야",
+  "name_ja": "深谷",
+  "name_en": "Fukaya",
+  "prefecture_id": 11,
+  "lat": 36.1975,
+  "lng": 139.2815
+ },
+ {
+  "name_ko": "가와고에",
+  "name_ja": "川越",
+  "name_en": "Kawagoe",
+  "prefecture_id": 11,
+  "lat": 35.9251,
+  "lng": 139.4858
+ },
+ {
+  "name_ko": "가와구치",
+  "name_ja": "川口",
+  "name_en": "Kawaguchi",
+  "prefecture_id": 11,
+  "lat": 35.8076,
+  "lng": 139.7241
+ },
+ {
+  "name_ko": "소카",
+  "name_ja": "草加",
+  "name_en": "Sōka-shi",
+  "prefecture_id": 11,
+  "lat": 35.8254,
+  "lng": 139.8053
+ },
+ {
+  "name_ko": "지치부",
+  "name_ja": "秩父",
+  "name_en": "Chichibu",
+  "prefecture_id": 11,
+  "lat": 35.9597,
+  "lng": 138.9333
+ },
+ {
+  "name_ko": "아사카",
+  "name_ja": "朝霞",
+  "name_en": "Asaka",
+  "prefecture_id": 11,
+  "lat": 35.7972,
+  "lng": 139.5939
+ },
+ {
+  "name_ko": "쓰루가시마",
+  "name_ja": "鶴ヶ島",
+  "name_en": "Tsurugashima",
+  "prefecture_id": 11,
+  "lat": 35.9358,
+  "lng": 139.3944
+ },
+ {
+  "name_ko": "히가시마쓰야마",
+  "name_ja": "東松山",
+  "name_en": "Higashimatsuyama",
+  "prefecture_id": 11,
+  "lat": 36.0422,
+  "lng": 139.3999
+ },
+ {
+  "name_ko": "히다카",
+  "name_ja": "日高",
+  "name_en": "Hidaka",
+  "prefecture_id": 11,
+  "lat": 35.9078,
+  "lng": 139.3391
+ },
+ {
+  "name_ko": "이루마",
+  "name_ja": "入間",
+  "name_en": "Iruma",
+  "prefecture_id": 11,
+  "lat": 35.8358,
+  "lng": 139.3911
+ },
+ {
+  "name_ko": "시라오카",
+  "name_ja": "白岡",
+  "name_en": "Shiraoka",
+  "prefecture_id": 11,
+  "lat": 36.0191,
+  "lng": 139.6769
+ },
+ {
+  "name_ko": "야시오",
+  "name_ja": "八潮",
+  "name_en": "Yashio",
+  "prefecture_id": 11,
+  "lat": 35.8225,
+  "lng": 139.8392
+ },
+ {
+  "name_ko": "한노",
+  "name_ja": "飯能",
+  "name_en": "Hannō",
+  "prefecture_id": 11,
+  "lat": 35.8556,
+  "lng": 139.3278
+ },
+ {
+  "name_ko": "후지미",
+  "name_ja": "富士見",
+  "name_en": "Fujimi",
+  "prefecture_id": 11,
+  "lat": 35.8566,
+  "lng": 139.5492
+ },
+ {
+  "name_ko": "기타모토",
+  "name_ja": "北本",
+  "name_en": "Kitamoto",
+  "prefecture_id": 11,
+  "lat": 36.0269,
+  "lng": 139.5302
+ },
+ {
+  "name_ko": "혼조",
+  "name_ja": "本庄",
+  "name_en": "Honjō-shi",
+  "prefecture_id": 11,
+  "lat": 36.2436,
+  "lng": 139.1904
+ },
+ {
+  "name_ko": "하스다",
+  "name_ja": "蓮田",
+  "name_en": "Hasuda",
+  "prefecture_id": 11,
+  "lat": 35.9945,
+  "lng": 139.6624
+ },
+ {
+  "name_ko": "와코",
+  "name_ja": "和光",
+  "name_en": "Wakō-shi",
+  "prefecture_id": 11,
+  "lat": 35.7812,
+  "lng": 139.6057
+ },
+ {
+  "name_ko": "와라비",
+  "name_ja": "蕨",
+  "name_en": "Warabi",
+  "prefecture_id": 11,
+  "lat": 35.8256,
+  "lng": 139.6797
+ },
+ {
+  "name_ko": "이스미",
+  "name_ja": "いすみ",
+  "name_en": "Isumi",
+  "prefecture_id": 12,
+  "lat": 35.2539,
+  "lng": 140.3852
+ },
+ {
+  "name_ko": "아사히",
+  "name_ja": "旭",
+  "name_en": "Asahi",
+  "prefecture_id": 12,
+  "lat": 35.7344,
+  "lng": 140.6556
+ },
+ {
+  "name_ko": "인자이",
+  "name_ja": "印西",
+  "name_en": "Inzai",
+  "prefecture_id": 12,
+  "lat": 35.8323,
+  "lng": 140.1457
+ },
+ {
+  "name_ko": "우라야스",
+  "name_ja": "浦安",
+  "name_en": "Urayasu",
+  "prefecture_id": 12,
+  "lat": 35.6531,
+  "lng": 139.902
+ },
+ {
+  "name_ko": "아비코",
+  "name_ja": "我孫子",
+  "name_en": "Abiko",
+  "prefecture_id": 12,
+  "lat": 35.8642,
+  "lng": 140.0284
+ },
+ {
+  "name_ko": "가마가야",
+  "name_ja": "鎌ケ谷",
+  "name_en": "Kamagaya",
+  "prefecture_id": 12,
+  "lat": 35.7768,
+  "lng": 140.0008
+ },
+ {
+  "name_ko": "가모가와",
+  "name_ja": "鴨川",
+  "name_en": "Kamogawa",
+  "prefecture_id": 12,
+  "lat": 35.1141,
+  "lng": 140.0989
+ },
+ {
+  "name_ko": "다테야마",
+  "name_ja": "館山",
+  "name_en": "Tateyama",
+  "prefecture_id": 12,
+  "lat": 34.9966,
+  "lng": 139.87
+ },
+ {
+  "name_ko": "기미쓰",
+  "name_ja": "君津",
+  "name_en": "Kimitsu",
+  "prefecture_id": 12,
+  "lat": 35.3305,
+  "lng": 139.9025
+ },
+ {
+  "name_ko": "가토리",
+  "name_ja": "香取",
+  "name_en": "Katori",
+  "prefecture_id": 12,
+  "lat": 35.8977,
+  "lng": 140.4992
+ },
+ {
+  "name_ko": "사쿠라",
+  "name_ja": "佐倉",
+  "name_en": "Sakura",
+  "prefecture_id": 12,
+  "lat": 35.7235,
+  "lng": 140.2239
+ },
+ {
+  "name_ko": "산무",
+  "name_ja": "山武",
+  "name_en": "Sanmu",
+  "prefecture_id": 12,
+  "lat": 35.6029,
+  "lng": 140.4135
+ },
+ {
+  "name_ko": "요쓰카이도",
+  "name_ja": "四街道",
+  "name_en": "Yotsukaidō-shi",
+  "prefecture_id": 12,
+  "lat": 35.6698,
+  "lng": 140.1679
+ },
+ {
+  "name_ko": "이치하라",
+  "name_ja": "市原",
+  "name_en": "Ichihara",
+  "prefecture_id": 12,
+  "lat": 35.4981,
+  "lng": 140.1154
+ },
+ {
+  "name_ko": "이치카와",
+  "name_ja": "市川",
+  "name_en": "Ichikawa",
+  "prefecture_id": 12,
+  "lat": 35.7219,
+  "lng": 139.9311
+ },
+ {
+  "name_ko": "나라시노",
+  "name_ja": "習志野",
+  "name_en": "Narashino",
+  "prefecture_id": 12,
+  "lat": 35.6813,
+  "lng": 140.0266
+ },
+ {
+  "name_ko": "가쓰우라",
+  "name_ja": "勝浦",
+  "name_en": "Katsuura",
+  "prefecture_id": 12,
+  "lat": 35.1522,
+  "lng": 140.3208
+ },
+ {
+  "name_ko": "마쓰도",
+  "name_ja": "松戸",
+  "name_en": "Matsudo",
+  "prefecture_id": 12,
+  "lat": 35.7876,
+  "lng": 139.9032
+ },
+ {
+  "name_ko": "나리타",
+  "name_ja": "成田",
+  "name_en": "Narita",
+  "prefecture_id": 12,
+  "lat": 35.7767,
+  "lng": 140.3183
+ },
+ {
+  "name_ko": "지바",
+  "name_ja": "千葉",
+  "name_en": "Chiba",
+  "prefecture_id": 12,
+  "lat": 35.6073,
+  "lng": 140.1064
+ },
+ {
+  "name_ko": "후나바",
+  "name_ja": "船橋",
+  "name_en": "Funabashi",
+  "prefecture_id": 12,
+  "lat": 35.6946,
+  "lng": 139.9826
+ },
+ {
+  "name_ko": "소사",
+  "name_ja": "匝瑳",
+  "name_en": "Sōsa-shi",
+  "prefecture_id": 12,
+  "lat": 35.7079,
+  "lng": 140.5643
+ },
+ {
+  "name_ko": "소데가우라",
+  "name_ja": "袖ケ浦",
+  "name_en": "Sodegaura",
+  "prefecture_id": 12,
+  "lat": 35.43,
+  "lng": 139.9544
+ },
+ {
+  "name_ko": "오아미시라사토",
+  "name_ja": "大網白里",
+  "name_en": "Oamishirasato",
+  "prefecture_id": 12,
+  "lat": 35.5217,
+  "lng": 140.321
+ },
+ {
+  "name_ko": "조시",
+  "name_ja": "銚子",
+  "name_en": "Chōshi",
+  "prefecture_id": 12,
+  "lat": 35.7346,
+  "lng": 140.8268
+ },
+ {
+  "name_ko": "도가네",
+  "name_ja": "東金",
+  "name_en": "Tōgane-shi",
+  "prefecture_id": 12,
+  "lat": 35.5599,
+  "lng": 140.3661
+ },
+ {
+  "name_ko": "미나미보소",
+  "name_ja": "南房総",
+  "name_en": "Minamiboso",
+  "prefecture_id": 12,
+  "lat": 35.0432,
+  "lng": 139.84
+ },
+ {
+  "name_ko": "가시와",
+  "name_ja": "柏",
+  "name_en": "Kashiwa",
+  "prefecture_id": 12,
+  "lat": 35.8676,
+  "lng": 139.9758
+ },
+ {
+  "name_ko": "시로이",
+  "name_ja": "白井",
+  "name_en": "Shiroi",
+  "prefecture_id": 12,
+  "lat": 35.7915,
+  "lng": 140.0563
+ },
+ {
+  "name_ko": "야치마타",
+  "name_ja": "八街",
+  "name_en": "Yachimata",
+  "prefecture_id": 12,
+  "lat": 35.6659,
+  "lng": 140.3179
+ },
+ {
+  "name_ko": "야치요",
+  "name_ja": "八千代",
+  "name_en": "Yachiyo",
+  "prefecture_id": 12,
+  "lat": 35.7224,
+  "lng": 140.0999
+ },
+ {
+  "name_ko": "훗쓰",
+  "name_ja": "富津",
+  "name_en": "Futtsu",
+  "prefecture_id": 12,
+  "lat": 35.3041,
+  "lng": 139.857
+ },
+ {
+  "name_ko": "도미사토",
+  "name_ja": "富里",
+  "name_en": "Tomisato",
+  "prefecture_id": 12,
+  "lat": 35.7268,
+  "lng": 140.3429
+ },
+ {
+  "name_ko": "모바라",
+  "name_ja": "茂原",
+  "name_en": "Mobara",
+  "prefecture_id": 12,
+  "lat": 35.4497,
+  "lng": 140.3017
+ },
+ {
+  "name_ko": "기사라즈",
+  "name_ja": "木更津",
+  "name_en": "Kisarazu",
+  "prefecture_id": 12,
+  "lat": 35.376,
+  "lng": 139.9168
+ },
+ {
+  "name_ko": "노다",
+  "name_ja": "野田",
+  "name_en": "Noda",
+  "prefecture_id": 12,
+  "lat": 35.9551,
+  "lng": 139.8748
+ },
+ {
+  "name_ko": "나가레야마",
+  "name_ja": "流山",
+  "name_en": "Nagareyama",
+  "prefecture_id": 12,
+  "lat": 35.8563,
+  "lng": 139.9029
+ },
+ {
+  "name_ko": "아키루노",
+  "name_ja": "あきる野",
+  "name_en": "Akiruno",
+  "prefecture_id": 13,
+  "lat": 35.7289,
+  "lng": 139.2941
+ },
+ {
+  "name_ko": "이나기",
+  "name_ja": "稲城",
+  "name_en": "Inagi",
+  "prefecture_id": 13,
+  "lat": 35.6381,
+  "lng": 139.5044
+ },
+ {
+  "name_ko": "하무라",
+  "name_ja": "羽村",
+  "name_en": "Hamura",
+  "prefecture_id": 13,
+  "lat": 35.7672,
+  "lng": 139.3109
+ },
+ {
+  "name_ko": "고쿠분지",
+  "name_ja": "国分寺",
+  "name_en": "Kokubunji",
+  "prefecture_id": 13,
+  "lat": 35.7103,
+  "lng": 139.4632
+ },
+ {
+  "name_ko": "구니타치",
+  "name_ja": "国立",
+  "name_en": "Kunitachi",
+  "prefecture_id": 13,
+  "lat": 35.6839,
+  "lng": 139.4414
+ },
+ {
+  "name_ko": "고마에",
+  "name_ja": "狛江",
+  "name_en": "Komae",
+  "prefecture_id": 13,
+  "lat": 35.6348,
+  "lng": 139.5787
+ },
+ {
+  "name_ko": "미타카",
+  "name_ja": "三鷹",
+  "name_en": "Mitaka",
+  "prefecture_id": 13,
+  "lat": 35.6836,
+  "lng": 139.5595
+ },
+ {
+  "name_ko": "고가네이",
+  "name_ja": "小金井",
+  "name_en": "Koganei",
+  "prefecture_id": 13,
+  "lat": 35.6995,
+  "lng": 139.503
+ },
+ {
+  "name_ko": "고다이라",
+  "name_ja": "小平",
+  "name_en": "Kodaira",
+  "prefecture_id": 13,
+  "lat": 35.7285,
+  "lng": 139.4774
+ },
+ {
+  "name_ko": "아키시마",
+  "name_ja": "昭島",
+  "name_en": "Akishima",
+  "prefecture_id": 13,
+  "lat": 35.7057,
+  "lng": 139.3535
+ },
+ {
+  "name_ko": "기요세",
+  "name_ja": "清瀬",
+  "name_en": "Kiyose",
+  "prefecture_id": 13,
+  "lat": 35.7857,
+  "lng": 139.5265
+ },
+ {
+  "name_ko": "니시토쿄",
+  "name_ja": "西東京",
+  "name_en": "Nishitōkyō-shi",
+  "prefecture_id": 13,
+  "lat": 35.7256,
+  "lng": 139.5383
+ },
+ {
+  "name_ko": "오메",
+  "name_ja": "青梅",
+  "name_en": "Ōme-shi",
+  "prefecture_id": 13,
+  "lat": 35.788,
+  "lng": 139.2758
+ },
+ {
+  "name_ko": "다마",
+  "name_ja": "多摩",
+  "name_en": "Tama",
+  "prefecture_id": 13,
+  "lat": 35.6369,
+  "lng": 139.4463
+ },
+ {
+  "name_ko": "마치다",
+  "name_ja": "町田",
+  "name_en": "Machida",
+  "prefecture_id": 13,
+  "lat": 35.5467,
+  "lng": 139.4386
+ },
+ {
+  "name_ko": "조후",
+  "name_ja": "調布",
+  "name_en": "Chōfu",
+  "prefecture_id": 13,
+  "lat": 35.6506,
+  "lng": 139.5407
+ },
+ {
+  "name_ko": "히가시쿠루메",
+  "name_ja": "東久留米",
+  "name_en": "Higashikurume",
+  "prefecture_id": 13,
+  "lat": 35.758,
+  "lng": 139.5299
+ },
+ {
+  "name_ko": "히가시무라야마",
+  "name_ja": "東村山",
+  "name_en": "Higashimurayama",
+  "prefecture_id": 13,
+  "lat": 35.7546,
+  "lng": 139.4685
+ },
+ {
+  "name_ko": "히가시야마토",
+  "name_ja": "東大和",
+  "name_en": "Higashiyamato",
+  "prefecture_id": 13,
+  "lat": 35.7454,
+  "lng": 139.4265
+ },
+ {
+  "name_ko": "히노",
+  "name_ja": "日野",
+  "name_en": "Hino",
+  "prefecture_id": 13,
+  "lat": 35.6713,
+  "lng": 139.3951
+ },
+ {
+  "name_ko": "하치오지",
+  "name_ja": "八王子",
+  "name_en": "Hachiōji-shi",
+  "prefecture_id": 13,
+  "lat": 35.6664,
+  "lng": 139.316
+ },
+ {
+  "name_ko": "후추",
+  "name_ja": "府中",
+  "name_en": "Fuchū",
+  "prefecture_id": 13,
+  "lat": 35.6694,
+  "lng": 139.4775
+ },
+ {
+  "name_ko": "무사시무라야마",
+  "name_ja": "武蔵村山",
+  "name_en": "Musashimurayama",
+  "prefecture_id": 13,
+  "lat": 35.7548,
+  "lng": 139.3874
+ },
+ {
+  "name_ko": "무사시노",
+  "name_ja": "武蔵野",
+  "name_en": "Musashino",
+  "prefecture_id": 13,
+  "lat": 35.7177,
+  "lng": 139.5661
+ },
+ {
+  "name_ko": "훗사",
+  "name_ja": "福生",
+  "name_en": "Fussa",
+  "prefecture_id": 13,
+  "lat": 35.7385,
+  "lng": 139.3269
+ },
+ {
+  "name_ko": "다치카와",
+  "name_ja": "立川",
+  "name_en": "Tachikawa",
+  "prefecture_id": 13,
+  "lat": 35.7139,
+  "lng": 139.4079
+ },
+ {
+  "name_ko": "아야세",
+  "name_ja": "綾瀬",
+  "name_en": "Ayase",
+  "prefecture_id": 14,
+  "lat": 35.4371,
+  "lng": 139.4261
+ },
+ {
+  "name_ko": "이세하라",
+  "name_ja": "伊勢原",
+  "name_en": "Isehara",
+  "prefecture_id": 14,
+  "lat": 35.4029,
+  "lng": 139.315
+ },
+ {
+  "name_ko": "요코스카",
+  "name_ja": "横須賀",
+  "name_en": "Yokosuka",
+  "prefecture_id": 14,
+  "lat": 35.2813,
+  "lng": 139.6721
+ },
+ {
+  "name_ko": "요코하마",
+  "name_ja": "横浜",
+  "name_en": "Yokohama",
+  "prefecture_id": 14,
+  "lat": 35.4503,
+  "lng": 139.6342
+ },
+ {
+  "name_ko": "에비나",
+  "name_ja": "海老名",
+  "name_en": "Ebina",
+  "prefecture_id": 14,
+  "lat": 35.4464,
+  "lng": 139.3908
+ },
+ {
+  "name_ko": "가마쿠라",
+  "name_ja": "鎌倉",
+  "name_en": "Kamakura",
+  "prefecture_id": 14,
+  "lat": 35.3192,
+  "lng": 139.5472
+ },
+ {
+  "name_ko": "지가사키",
+  "name_ja": "茅ヶ崎",
+  "name_en": "Chigasaki",
+  "prefecture_id": 14,
+  "lat": 35.3339,
+  "lng": 139.4047
+ },
+ {
+  "name_ko": "아쓰기",
+  "name_ja": "厚木",
+  "name_en": "Atsugi",
+  "prefecture_id": 14,
+  "lat": 35.4431,
+  "lng": 139.3625
+ },
+ {
+  "name_ko": "자마",
+  "name_ja": "座間",
+  "name_en": "Zama",
+  "prefecture_id": 14,
+  "lat": 35.4886,
+  "lng": 139.4076
+ },
+ {
+  "name_ko": "미우라",
+  "name_ja": "三浦",
+  "name_en": "Miura",
+  "prefecture_id": 14,
+  "lat": 35.1442,
+  "lng": 139.6207
+ },
+ {
+  "name_ko": "오다와라",
+  "name_ja": "小田原",
+  "name_en": "Odawara",
+  "prefecture_id": 14,
+  "lat": 35.2646,
+  "lng": 139.1522
+ },
+ {
+  "name_ko": "하다노",
+  "name_ja": "秦野",
+  "name_en": "Hadano",
+  "prefecture_id": 14,
+  "lat": 35.3747,
+  "lng": 139.2201
+ },
+ {
+  "name_ko": "즈시",
+  "name_ja": "逗子",
+  "name_en": "Zushi",
+  "prefecture_id": 14,
+  "lat": 35.2956,
+  "lng": 139.5803
+ },
+ {
+  "name_ko": "가와사키",
+  "name_ja": "川崎",
+  "name_en": "Kawasaki",
+  "prefecture_id": 14,
+  "lat": 35.5309,
+  "lng": 139.703
+ },
+ {
+  "name_ko": "사가미하라",
+  "name_ja": "相模原",
+  "name_en": "Sagamihara",
+  "prefecture_id": 14,
+  "lat": 35.5714,
+  "lng": 139.3731
+ },
+ {
+  "name_ko": "야마토",
+  "name_ja": "大和",
+  "name_en": "Yamato",
+  "prefecture_id": 14,
+  "lat": 35.4875,
+  "lng": 139.458
+ },
+ {
+  "name_ko": "후지사와",
+  "name_ja": "藤沢",
+  "name_en": "Fujisawa",
+  "prefecture_id": 14,
+  "lat": 35.3388,
+  "lng": 139.4909
+ },
+ {
+  "name_ko": "미나미아시가라",
+  "name_ja": "南足柄",
+  "name_en": "Minamiashigara",
+  "prefecture_id": 14,
+  "lat": 35.3207,
+  "lng": 139.0996
+ },
+ {
+  "name_ko": "히라쓰카",
+  "name_ja": "平塚",
+  "name_en": "Hiratsuka",
+  "prefecture_id": 14,
+  "lat": 35.3355,
+  "lng": 139.3494
+ },
+ {
+  "name_ko": "아가노",
+  "name_ja": "阿賀野",
+  "name_en": "Agano",
+  "prefecture_id": 15,
+  "lat": 37.8344,
+  "lng": 139.226
+ },
+ {
+  "name_ko": "쓰바메",
+  "name_ja": "燕",
+  "name_en": "Tsubame",
+  "prefecture_id": 15,
+  "lat": 37.6731,
+  "lng": 138.8822
+ },
+ {
+  "name_ko": "가모",
+  "name_ja": "加茂",
+  "name_en": "Kamo",
+  "prefecture_id": 15,
+  "lat": 37.6663,
+  "lng": 139.0402
+ },
+ {
+  "name_ko": "우오누마",
+  "name_ja": "魚沼",
+  "name_en": "Uonuma",
+  "prefecture_id": 15,
+  "lat": 37.2364,
+  "lng": 138.9638
+ },
+ {
+  "name_ko": "미쓰케",
+  "name_ja": "見附",
+  "name_en": "Mitsuke",
+  "prefecture_id": 15,
+  "lat": 37.5316,
+  "lng": 138.9127
+ },
+ {
+  "name_ko": "고센",
+  "name_ja": "五泉",
+  "name_en": "Gosen",
+  "prefecture_id": 15,
+  "lat": 37.7444,
+  "lng": 139.1826
+ },
+ {
+  "name_ko": "사도",
+  "name_ja": "佐渡",
+  "name_en": "Sado",
+  "prefecture_id": 15,
+  "lat": 38.0444,
+  "lng": 138.3897
+ },
+ {
+  "name_ko": "산조",
+  "name_ja": "三条",
+  "name_en": "Sanjō-shi",
+  "prefecture_id": 15,
+  "lat": 37.6368,
+  "lng": 138.9617
+ },
+ {
+  "name_ko": "이토이가와",
+  "name_ja": "糸魚川",
+  "name_en": "Itoigawa",
+  "prefecture_id": 15,
+  "lat": 37.039,
+  "lng": 137.8627
+ },
+ {
+  "name_ko": "도카마치",
+  "name_ja": "十日町",
+  "name_en": "Tōkamachi-shi",
+  "prefecture_id": 15,
+  "lat": 37.1275,
+  "lng": 138.7557
+ },
+ {
+  "name_ko": "오지야",
+  "name_ja": "小千谷",
+  "name_en": "Ojiya",
+  "prefecture_id": 15,
+  "lat": 37.3144,
+  "lng": 138.7951
+ },
+ {
+  "name_ko": "조에쓰",
+  "name_ja": "上越",
+  "name_en": "Jōetsu-shi",
+  "prefecture_id": 15,
+  "lat": 37.1479,
+  "lng": 138.2361
+ },
+ {
+  "name_ko": "니가타",
+  "name_ja": "新潟",
+  "name_en": "Niigata",
+  "prefecture_id": 15,
+  "lat": 37.9162,
+  "lng": 139.0364
+ },
+ {
+  "name_ko": "시바타",
+  "name_ja": "新発田",
+  "name_en": "Shibata",
+  "prefecture_id": 15,
+  "lat": 37.9479,
+  "lng": 139.3273
+ },
+ {
+  "name_ko": "무라카미",
+  "name_ja": "村上",
+  "name_en": "Murakami",
+  "prefecture_id": 15,
+  "lat": 38.2239,
+  "lng": 139.4801
+ },
+ {
+  "name_ko": "다이나이",
+  "name_ja": "胎内",
+  "name_en": "Tainai",
+  "prefecture_id": 15,
+  "lat": 38.0597,
+  "lng": 139.4103
+ },
+ {
+  "name_ko": "나가오카",
+  "name_ja": "長岡",
+  "name_en": "Nagaoka",
+  "prefecture_id": 15,
+  "lat": 37.4453,
+  "lng": 138.8567
+ },
+ {
+  "name_ko": "미나미우오누마",
+  "name_ja": "南魚沼",
+  "name_en": "Minamiuonuma",
+  "prefecture_id": 15,
+  "lat": 37.0655,
+  "lng": 138.8761
+ },
+ {
+  "name_ko": "가시와자키",
+  "name_ja": "柏崎",
+  "name_en": "Kashiwazaki",
+  "prefecture_id": 15,
+  "lat": 37.3649,
+  "lng": 138.5579
+ },
+ {
+  "name_ko": "묘코",
+  "name_ja": "妙高",
+  "name_en": "Myōkō",
+  "prefecture_id": 15,
+  "lat": 37.0252,
+  "lng": 138.2535
+ },
+ {
+  "name_ko": "나메리카와",
+  "name_ja": "滑川",
+  "name_en": "Namerikawa",
+  "prefecture_id": 16,
+  "lat": 36.7644,
+  "lng": 137.3412
+ },
+ {
+  "name_ko": "우오즈",
+  "name_ja": "魚津",
+  "name_en": "Uozu",
+  "prefecture_id": 16,
+  "lat": 36.8273,
+  "lng": 137.4092
+ },
+ {
+  "name_ko": "다카오카",
+  "name_ja": "高岡",
+  "name_en": "Takaoka",
+  "prefecture_id": 16,
+  "lat": 36.7541,
+  "lng": 137.0257
+ },
+ {
+  "name_ko": "구로베",
+  "name_ja": "黒部",
+  "name_en": "Kurobe",
+  "prefecture_id": 16,
+  "lat": 36.8714,
+  "lng": 137.4478
+ },
+ {
+  "name_ko": "이미즈",
+  "name_ja": "射水",
+  "name_en": "Imizu",
+  "prefecture_id": 16,
+  "lat": 36.7306,
+  "lng": 137.0756
+ },
+ {
+  "name_ko": "오야베",
+  "name_ja": "小矢部",
+  "name_en": "Oyabe",
+  "prefecture_id": 16,
+  "lat": 36.6755,
+  "lng": 136.8687
+ },
+ {
+  "name_ko": "도나미",
+  "name_ja": "砺波",
+  "name_en": "Tonami",
+  "prefecture_id": 16,
+  "lat": 36.6475,
+  "lng": 136.9621
+ },
+ {
+  "name_ko": "난토",
+  "name_ja": "南砺",
+  "name_en": "Nanto",
+  "prefecture_id": 16,
+  "lat": 36.5574,
+  "lng": 136.8755
+ },
+ {
+  "name_ko": "히미",
+  "name_ja": "氷見",
+  "name_en": "Himi",
+  "prefecture_id": 16,
+  "lat": 36.8559,
+  "lng": 136.973
+ },
+ {
+  "name_ko": "도야마",
+  "name_ja": "富山",
+  "name_en": "Toyama",
+  "prefecture_id": 16,
+  "lat": 36.6959,
+  "lng": 137.2137
+ },
+ {
+  "name_ko": "가호쿠",
+  "name_ja": "かほく",
+  "name_en": "Kahoku",
+  "prefecture_id": 17,
+  "lat": 36.7198,
+  "lng": 136.7067
+ },
+ {
+  "name_ko": "하쿠이",
+  "name_ja": "羽咋",
+  "name_en": "Hakui",
+  "prefecture_id": 17,
+  "lat": 36.8936,
+  "lng": 136.779
+ },
+ {
+  "name_ko": "가가",
+  "name_ja": "加賀",
+  "name_en": "Kaga",
+  "prefecture_id": 17,
+  "lat": 36.3028,
+  "lng": 136.315
+ },
+ {
+  "name_ko": "가나자와",
+  "name_ja": "金沢",
+  "name_en": "Kanazawa",
+  "prefecture_id": 17,
+  "lat": 36.5611,
+  "lng": 136.6565
+ },
+ {
+  "name_ko": "나나오",
+  "name_ja": "七尾",
+  "name_en": "Nanao",
+  "prefecture_id": 17,
+  "lat": 37.0431,
+  "lng": 136.9674
+ },
+ {
+  "name_ko": "스즈",
+  "name_ja": "珠洲",
+  "name_en": "Suzu",
+  "prefecture_id": 17,
+  "lat": 37.4363,
+  "lng": 137.2605
+ },
+ {
+  "name_ko": "고마쓰",
+  "name_ja": "小松",
+  "name_en": "Komatsu",
+  "prefecture_id": 17,
+  "lat": 36.4083,
+  "lng": 136.4455
+ },
+ {
+  "name_ko": "노미",
+  "name_ja": "能美",
+  "name_en": "Nomi",
+  "prefecture_id": 17,
+  "lat": 36.447,
+  "lng": 136.5541
+ },
+ {
+  "name_ko": "하쿠산",
+  "name_ja": "白山",
+  "name_en": "Hakusan",
+  "prefecture_id": 17,
+  "lat": 36.5144,
+  "lng": 136.5656
+ },
+ {
+  "name_ko": "노노이치",
+  "name_ja": "野々市",
+  "name_en": "Nonoichi",
+  "prefecture_id": 17,
+  "lat": 36.5194,
+  "lng": 136.6098
+ },
+ {
+  "name_ko": "와지마",
+  "name_ja": "輪島",
+  "name_en": "Wajima",
+  "prefecture_id": 17,
+  "lat": 37.3906,
+  "lng": 136.8991
+ },
+ {
+  "name_ko": "아와라",
+  "name_ja": "あわら",
+  "name_en": "Awara",
+  "prefecture_id": 18,
+  "lat": 36.2113,
+  "lng": 136.229
+ },
+ {
+  "name_ko": "에치젠",
+  "name_ja": "越前",
+  "name_en": "Echizen",
+  "prefecture_id": 18,
+  "lat": 35.9035,
+  "lng": 136.1687
+ },
+ {
+  "name_ko": "사카이",
+  "name_ja": "坂井",
+  "name_en": "Sakai",
+  "prefecture_id": 18,
+  "lat": 36.1669,
+  "lng": 136.2314
+ },
+ {
+  "name_ko": "사바에",
+  "name_ja": "鯖江",
+  "name_en": "Sabae",
+  "prefecture_id": 18,
+  "lat": 35.9565,
+  "lng": 136.1843
+ },
+ {
+  "name_ko": "가쓰야마",
+  "name_ja": "勝山",
+  "name_en": "Katsuyama",
+  "prefecture_id": 18,
+  "lat": 36.0609,
+  "lng": 136.5006
+ },
+ {
+  "name_ko": "오바마",
+  "name_ja": "小浜",
+  "name_en": "Obama",
+  "prefecture_id": 18,
+  "lat": 35.4956,
+  "lng": 135.7466
+ },
+ {
+  "name_ko": "오노",
+  "name_ja": "大野",
+  "name_en": "Ōno-shi",
+  "prefecture_id": 18,
+  "lat": 35.9797,
+  "lng": 136.4875
+ },
+ {
+  "name_ko": "쓰루가",
+  "name_ja": "敦賀",
+  "name_en": "Tsuruga",
+  "prefecture_id": 18,
+  "lat": 35.6452,
+  "lng": 136.0555
+ },
+ {
+  "name_ko": "후쿠이",
+  "name_ja": "福井",
+  "name_en": "Fukui",
+  "prefecture_id": 18,
+  "lat": 36.0641,
+  "lng": 136.2196
+ },
+ {
+  "name_ko": "고슈",
+  "name_ja": "甲州",
+  "name_en": "Koshu",
+  "prefecture_id": 19,
+  "lat": 35.7043,
+  "lng": 138.7294
+ },
+ {
+  "name_ko": "가이",
+  "name_ja": "甲斐",
+  "name_en": "Kai",
+  "prefecture_id": 19,
+  "lat": 35.6608,
+  "lng": 138.5158
+ },
+ {
+  "name_ko": "고후",
+  "name_ja": "甲府",
+  "name_en": "Kofu",
+  "prefecture_id": 19,
+  "lat": 35.6621,
+  "lng": 138.5682
+ },
+ {
+  "name_ko": "야마나",
+  "name_ja": "山梨",
+  "name_en": "Yamanashi",
+  "prefecture_id": 19,
+  "lat": 35.6934,
+  "lng": 138.6869
+ },
+ {
+  "name_ko": "우에노하라",
+  "name_ja": "上野原",
+  "name_en": "Uenohara",
+  "prefecture_id": 19,
+  "lat": 35.6302,
+  "lng": 139.1086
+ },
+ {
+  "name_ko": "오쓰키",
+  "name_ja": "大月",
+  "name_en": "Ōtsuki-shi",
+  "prefecture_id": 19,
+  "lat": 35.6106,
+  "lng": 138.94
+ },
+ {
+  "name_ko": "주오",
+  "name_ja": "中央",
+  "name_en": "Chūō-shi",
+  "prefecture_id": 19,
+  "lat": 35.5996,
+  "lng": 138.5172
+ },
+ {
+  "name_ko": "후에후키",
+  "name_ja": "笛吹",
+  "name_en": "Fuefuki",
+  "prefecture_id": 19,
+  "lat": 35.6473,
+  "lng": 138.6397
+ },
+ {
+  "name_ko": "쓰루",
+  "name_ja": "都留",
+  "name_en": "Tsuru",
+  "prefecture_id": 19,
+  "lat": 35.5515,
+  "lng": 138.9054
+ },
+ {
+  "name_ko": "미나미알프스",
+  "name_ja": "南アルプス",
+  "name_en": "Minami-Alps",
+  "prefecture_id": 19,
+  "lat": 35.6083,
+  "lng": 138.465
+ },
+ {
+  "name_ko": "니라사키",
+  "name_ja": "韮崎",
+  "name_en": "Nirasaki",
+  "prefecture_id": 19,
+  "lat": 35.7089,
+  "lng": 138.4461
+ },
+ {
+  "name_ko": "후지요시다",
+  "name_ja": "富士吉田",
+  "name_en": "Fujiyoshida",
+  "prefecture_id": 19,
+  "lat": 35.4875,
+  "lng": 138.8077
+ },
+ {
+  "name_ko": "호쿠토",
+  "name_ja": "北杜",
+  "name_en": "Hokuto",
+  "prefecture_id": 19,
+  "lat": 35.7765,
+  "lng": 138.4236
+ },
+ {
+  "name_ko": "아즈미노",
+  "name_ja": "安曇野",
+  "name_en": "Azumino",
+  "prefecture_id": 20,
+  "lat": 36.3039,
+  "lng": 137.9056
+ },
+ {
+  "name_ko": "이나",
+  "name_ja": "伊那",
+  "name_en": "Ina",
+  "prefecture_id": 20,
+  "lat": 35.8275,
+  "lng": 137.954
+ },
+ {
+  "name_ko": "시오지리",
+  "name_ja": "塩尻",
+  "name_en": "Shiojiri",
+  "prefecture_id": 20,
+  "lat": 36.115,
+  "lng": 137.9534
+ },
+ {
+  "name_ko": "오카야",
+  "name_ja": "岡谷",
+  "name_en": "Okaya",
+  "prefecture_id": 20,
+  "lat": 36.0671,
+  "lng": 138.0493
+ },
+ {
+  "name_ko": "지노",
+  "name_ja": "茅野",
+  "name_en": "Chino",
+  "prefecture_id": 20,
+  "lat": 35.9955,
+  "lng": 138.1588
+ },
+ {
+  "name_ko": "고마가네",
+  "name_ja": "駒ヶ根",
+  "name_en": "Komagane",
+  "prefecture_id": 20,
+  "lat": 35.7288,
+  "lng": 137.9339
+ },
+ {
+  "name_ko": "사쿠",
+  "name_ja": "佐久",
+  "name_en": "Saku",
+  "prefecture_id": 20,
+  "lat": 36.2488,
+  "lng": 138.4769
+ },
+ {
+  "name_ko": "고모로",
+  "name_ja": "小諸",
+  "name_en": "Komoro",
+  "prefecture_id": 20,
+  "lat": 36.3392,
+  "lng": 138.435
+ },
+ {
+  "name_ko": "마쓰모토",
+  "name_ja": "松本",
+  "name_en": "Matsumoto",
+  "prefecture_id": 20,
+  "lat": 36.238,
+  "lng": 137.972
+ },
+ {
+  "name_ko": "우에다",
+  "name_ja": "上田",
+  "name_en": "Ueda",
+  "prefecture_id": 20,
+  "lat": 36.4019,
+  "lng": 138.2491
+ },
+ {
+  "name_ko": "스와",
+  "name_ja": "諏訪",
+  "name_en": "Suwa",
+  "prefecture_id": 20,
+  "lat": 36.0391,
+  "lng": 138.114
+ },
+ {
+  "name_ko": "스자카",
+  "name_ja": "須坂",
+  "name_en": "Suzaka",
+  "prefecture_id": 20,
+  "lat": 36.6511,
+  "lng": 138.3073
+ },
+ {
+  "name_ko": "지쿠마",
+  "name_ja": "千曲",
+  "name_en": "Chikuma",
+  "prefecture_id": 20,
+  "lat": 36.5307,
+  "lng": 138.1149
+ },
+ {
+  "name_ko": "오마치",
+  "name_ja": "大町",
+  "name_en": "Ōmachi-shi",
+  "prefecture_id": 20,
+  "lat": 36.503,
+  "lng": 137.8511
+ },
+ {
+  "name_ko": "나카노",
+  "name_ja": "中野",
+  "name_en": "Nakano",
+  "prefecture_id": 20,
+  "lat": 36.7694,
+  "lng": 138.3472
+ },
+ {
+  "name_ko": "나가노",
+  "name_ja": "長野",
+  "name_en": "Nagano",
+  "prefecture_id": 20,
+  "lat": 36.6487,
+  "lng": 138.1947
+ },
+ {
+  "name_ko": "도미",
+  "name_ja": "東御",
+  "name_en": "Tōmi-shi",
+  "prefecture_id": 20,
+  "lat": 36.3594,
+  "lng": 138.3304
+ },
+ {
+  "name_ko": "이야마",
+  "name_ja": "飯山",
+  "name_en": "Iiyama",
+  "prefecture_id": 20,
+  "lat": 36.8516,
+  "lng": 138.3655
+ },
+ {
+  "name_ko": "이다",
+  "name_ja": "飯田",
+  "name_en": "Iida",
+  "prefecture_id": 20,
+  "lat": 35.5148,
+  "lng": 137.8218
+ },
+ {
+  "name_ko": "하시마",
+  "name_ja": "羽島",
+  "name_en": "Hashima",
+  "prefecture_id": 21,
+  "lat": 35.3199,
+  "lng": 136.7033
+ },
+ {
+  "name_ko": "게로",
+  "name_ja": "下呂",
+  "name_en": "Gero",
+  "prefecture_id": 21,
+  "lat": 35.8059,
+  "lng": 137.2441
+ },
+ {
+  "name_ko": "가니",
+  "name_ja": "可児",
+  "name_en": "Kani",
+  "prefecture_id": 21,
+  "lat": 35.4261,
+  "lng": 137.0613
+ },
+ {
+  "name_ko": "가이즈",
+  "name_ja": "海津",
+  "name_en": "Kaizu",
+  "prefecture_id": 21,
+  "lat": 35.2206,
+  "lng": 136.6365
+ },
+ {
+  "name_ko": "가카미가하라",
+  "name_ja": "各務原",
+  "name_en": "Kakamigahara",
+  "prefecture_id": 21,
+  "lat": 35.4028,
+  "lng": 136.8783
+ },
+ {
+  "name_ko": "세키",
+  "name_ja": "関",
+  "name_en": "Seki",
+  "prefecture_id": 21,
+  "lat": 35.4958,
+  "lng": 136.9179
+ },
+ {
+  "name_ko": "기후",
+  "name_ja": "岐阜",
+  "name_en": "Gifu",
+  "prefecture_id": 21,
+  "lat": 35.4263,
+  "lng": 136.7594
+ },
+ {
+  "name_ko": "구조",
+  "name_ja": "郡上",
+  "name_en": "Gujō-shi",
+  "prefecture_id": 21,
+  "lat": 35.7486,
+  "lng": 136.9643
+ },
+ {
+  "name_ko": "에나",
+  "name_ja": "恵那",
+  "name_en": "Ena",
+  "prefecture_id": 21,
+  "lat": 35.4492,
+  "lng": 137.4128
+ },
+ {
+  "name_ko": "다카야마",
+  "name_ja": "高山",
+  "name_en": "Takayama",
+  "prefecture_id": 21,
+  "lat": 36.146,
+  "lng": 137.2522
+ },
+ {
+  "name_ko": "야마가타",
+  "name_ja": "山県",
+  "name_en": "Yamagata",
+  "prefecture_id": 21,
+  "lat": 35.5061,
+  "lng": 136.7814
+ },
+ {
+  "name_ko": "미즈호",
+  "name_ja": "瑞穂",
+  "name_en": "Mizuho",
+  "prefecture_id": 21,
+  "lat": 35.3918,
+  "lng": 136.6909
+ },
+ {
+  "name_ko": "미즈나미",
+  "name_ja": "瑞浪",
+  "name_en": "Mizunami",
+  "prefecture_id": 21,
+  "lat": 35.3894,
+  "lng": 137.2736
+ },
+ {
+  "name_ko": "다지미",
+  "name_ja": "多治見",
+  "name_en": "Tajimi",
+  "prefecture_id": 21,
+  "lat": 35.3339,
+  "lng": 137.1125
+ },
+ {
+  "name_ko": "오가키",
+  "name_ja": "大垣",
+  "name_en": "Ōgaki-shi",
+  "prefecture_id": 21,
+  "lat": 35.3647,
+  "lng": 136.6019
+ },
+ {
+  "name_ko": "나카쓰가와",
+  "name_ja": "中津川",
+  "name_en": "Nakatsugawa",
+  "prefecture_id": 21,
+  "lat": 35.5666,
+  "lng": 137.4743
+ },
+ {
+  "name_ko": "도키",
+  "name_ja": "土岐",
+  "name_en": "Toki",
+  "prefecture_id": 21,
+  "lat": 35.3525,
+  "lng": 137.1832
+ },
+ {
+  "name_ko": "히다",
+  "name_ja": "飛騨",
+  "name_en": "Hida",
+  "prefecture_id": 21,
+  "lat": 36.2381,
+  "lng": 137.1862
+ },
+ {
+  "name_ko": "미노",
+  "name_ja": "美濃",
+  "name_en": "Mino",
+  "prefecture_id": 21,
+  "lat": 35.5448,
+  "lng": 136.9076
+ },
+ {
+  "name_ko": "미노카모",
+  "name_ja": "美濃加茂",
+  "name_en": "Minokamo",
+  "prefecture_id": 21,
+  "lat": 35.4839,
+  "lng": 137.0267
+ },
+ {
+  "name_ko": "모토스",
+  "name_ja": "本巣",
+  "name_en": "Motosu",
+  "prefecture_id": 21,
+  "lat": 35.483,
+  "lng": 136.6786
+ },
+ {
+  "name_ko": "이토",
+  "name_ja": "伊東",
+  "name_en": "Ito",
+  "prefecture_id": 22,
+  "lat": 34.9657,
+  "lng": 139.1019
+ },
+ {
+  "name_ko": "이즈",
+  "name_ja": "伊豆",
+  "name_en": "Izu",
+  "prefecture_id": 22,
+  "lat": 34.9765,
+  "lng": 138.9468
+ },
+ {
+  "name_ko": "이즈노쿠니",
+  "name_ja": "伊豆の国",
+  "name_en": "Izunokuni",
+  "prefecture_id": 22,
+  "lat": 35.0277,
+  "lng": 138.9289
+ },
+ {
+  "name_ko": "시모다",
+  "name_ja": "下田",
+  "name_en": "Shimoda",
+  "prefecture_id": 22,
+  "lat": 34.6795,
+  "lng": 138.9453
+ },
+ {
+  "name_ko": "가케가와",
+  "name_ja": "掛川",
+  "name_en": "Kakegawa",
+  "prefecture_id": 22,
+  "lat": 34.7687,
+  "lng": 137.9984
+ },
+ {
+  "name_ko": "기쿠가와",
+  "name_ja": "菊川",
+  "name_en": "Kikugawa",
+  "prefecture_id": 22,
+  "lat": 34.7578,
+  "lng": 138.0848
+ },
+ {
+  "name_ko": "고사이",
+  "name_ja": "湖西",
+  "name_en": "Kosai",
+  "prefecture_id": 22,
+  "lat": 34.7184,
+  "lng": 137.5316
+ },
+ {
+  "name_ko": "오마에자키",
+  "name_ja": "御前崎",
+  "name_en": "Omaezaki",
+  "prefecture_id": 22,
+  "lat": 34.6379,
+  "lng": 138.1281
+ },
+ {
+  "name_ko": "고텐바",
+  "name_ja": "御殿場",
+  "name_en": "Gotemba",
+  "prefecture_id": 22,
+  "lat": 35.3087,
+  "lng": 138.9346
+ },
+ {
+  "name_ko": "미시마",
+  "name_ja": "三島",
+  "name_en": "Mishima",
+  "prefecture_id": 22,
+  "lat": 35.1394,
+  "lng": 138.9489
+ },
+ {
+  "name_ko": "누마즈",
+  "name_ja": "沼津",
+  "name_en": "Numazu",
+  "prefecture_id": 22,
+  "lat": 35.0956,
+  "lng": 138.8634
+ },
+ {
+  "name_ko": "야이즈",
+  "name_ja": "焼津",
+  "name_en": "Yaizu",
+  "prefecture_id": 22,
+  "lat": 34.8669,
+  "lng": 138.3233
+ },
+ {
+  "name_ko": "스소노",
+  "name_ja": "裾野",
+  "name_en": "Susono",
+  "prefecture_id": 22,
+  "lat": 35.1739,
+  "lng": 138.9068
+ },
+ {
+  "name_ko": "시즈오카",
+  "name_ja": "静岡",
+  "name_en": "Shizuoka",
+  "prefecture_id": 22,
+  "lat": 34.9756,
+  "lng": 138.3825
+ },
+ {
+  "name_ko": "후쿠로이",
+  "name_ja": "袋井",
+  "name_en": "Fukuroi",
+  "prefecture_id": 22,
+  "lat": 34.7502,
+  "lng": 137.9247
+ },
+ {
+  "name_ko": "시마다",
+  "name_ja": "島田",
+  "name_en": "Shimada",
+  "prefecture_id": 22,
+  "lat": 34.8363,
+  "lng": 138.1761
+ },
+ {
+  "name_ko": "후지에다",
+  "name_ja": "藤枝",
+  "name_en": "Fujieda",
+  "prefecture_id": 22,
+  "lat": 34.8674,
+  "lng": 138.2577
+ },
+ {
+  "name_ko": "아타미",
+  "name_ja": "熱海",
+  "name_en": "Atami",
+  "prefecture_id": 22,
+  "lat": 35.0963,
+  "lng": 139.0717
+ },
+ {
+  "name_ko": "이와타",
+  "name_ja": "磐田",
+  "name_en": "Iwata",
+  "prefecture_id": 22,
+  "lat": 34.7179,
+  "lng": 137.8515
+ },
+ {
+  "name_ko": "하마마쓰",
+  "name_ja": "浜松",
+  "name_en": "Hamamatsu",
+  "prefecture_id": 22,
+  "lat": 34.7109,
+  "lng": 137.7262
+ },
+ {
+  "name_ko": "후지",
+  "name_ja": "富士",
+  "name_en": "Fuji",
+  "prefecture_id": 22,
+  "lat": 35.1613,
+  "lng": 138.6763
+ },
+ {
+  "name_ko": "후지노미야",
+  "name_ja": "富士宮",
+  "name_en": "Fujinomiya",
+  "prefecture_id": 22,
+  "lat": 35.2221,
+  "lng": 138.6216
+ },
+ {
+  "name_ko": "마키노하라",
+  "name_ja": "牧之原",
+  "name_en": "Makinohara",
+  "prefecture_id": 22,
+  "lat": 34.74,
+  "lng": 138.2246
+ },
+ {
+  "name_ko": "아마",
+  "name_ja": "あま",
+  "name_en": "Ama",
+  "prefecture_id": 23,
+  "lat": 35.2004,
+  "lng": 136.7832
+ },
+ {
+  "name_ko": "미요",
+  "name_ja": "みよし",
+  "name_en": "Miyoshi",
+  "prefecture_id": 23,
+  "lat": 35.0894,
+  "lng": 137.0748
+ },
+ {
+  "name_ko": "아이사이",
+  "name_ja": "愛西",
+  "name_en": "Aisai",
+  "prefecture_id": 23,
+  "lat": 35.1723,
+  "lng": 136.6948
+ },
+ {
+  "name_ko": "안조",
+  "name_ja": "安城",
+  "name_en": "Anjō",
+  "prefecture_id": 23,
+  "lat": 34.9587,
+  "lng": 137.0803
+ },
+ {
+  "name_ko": "이치노미야",
+  "name_ja": "一宮",
+  "name_en": "Ichinomiya",
+  "prefecture_id": 23,
+  "lat": 35.3039,
+  "lng": 136.8031
+ },
+ {
+  "name_ko": "이나자와",
+  "name_ja": "稲沢",
+  "name_en": "Inazawa",
+  "prefecture_id": 23,
+  "lat": 35.2481,
+  "lng": 136.7802
+ },
+ {
+  "name_ko": "오카자키",
+  "name_ja": "岡崎",
+  "name_en": "Okazaki",
+  "prefecture_id": 23,
+  "lat": 34.9547,
+  "lng": 137.173
+ },
+ {
+  "name_ko": "가마고리",
+  "name_ja": "蒲郡",
+  "name_en": "Gamagōri-shi",
+  "prefecture_id": 23,
+  "lat": 34.8275,
+  "lng": 137.2275
+ },
+ {
+  "name_ko": "가리야",
+  "name_ja": "刈谷",
+  "name_en": "Kariya",
+  "prefecture_id": 23,
+  "lat": 34.9893,
+  "lng": 137.0021
+ },
+ {
+  "name_ko": "이와쿠라",
+  "name_ja": "岩倉",
+  "name_en": "Iwakura",
+  "prefecture_id": 23,
+  "lat": 35.2794,
+  "lng": 136.8714
+ },
+ {
+  "name_ko": "이누야마",
+  "name_ja": "犬山",
+  "name_en": "Inuyama",
+  "prefecture_id": 23,
+  "lat": 35.3786,
+  "lng": 136.9445
+ },
+ {
+  "name_ko": "고난",
+  "name_ja": "江南",
+  "name_en": "Kōnan-shi",
+  "prefecture_id": 23,
+  "lat": 35.3321,
+  "lng": 136.8707
+ },
+ {
+  "name_ko": "다카하마",
+  "name_ja": "高浜",
+  "name_en": "Takahama",
+  "prefecture_id": 23,
+  "lat": 34.9276,
+  "lng": 136.9877
+ },
+ {
+  "name_ko": "가스가이",
+  "name_ja": "春日井",
+  "name_en": "Kasugai",
+  "prefecture_id": 23,
+  "lat": 35.2475,
+  "lng": 136.9722
+ },
+ {
+  "name_ko": "고마키",
+  "name_ja": "小牧",
+  "name_en": "Komaki",
+  "prefecture_id": 23,
+  "lat": 35.2903,
+  "lng": 136.911
+ },
+ {
+  "name_ko": "도코나메",
+  "name_ja": "常滑",
+  "name_en": "Tokoname",
+  "prefecture_id": 23,
+  "lat": 34.8961,
+  "lng": 136.8543
+ },
+ {
+  "name_ko": "신시로",
+  "name_ja": "新城",
+  "name_en": "Shinshiro",
+  "prefecture_id": 23,
+  "lat": 34.8989,
+  "lng": 137.4977
+ },
+ {
+  "name_ko": "세토",
+  "name_ja": "瀬戸",
+  "name_en": "Seto",
+  "prefecture_id": 23,
+  "lat": 35.224,
+  "lng": 137.084
+ },
+ {
+  "name_ko": "기요스",
+  "name_ja": "清須",
+  "name_en": "Kiyosu",
+  "prefecture_id": 23,
+  "lat": 35.1998,
+  "lng": 136.8529
+ },
+ {
+  "name_ko": "니시오",
+  "name_ja": "西尾",
+  "name_en": "Nishio",
+  "prefecture_id": 23,
+  "lat": 34.8618,
+  "lng": 137.0618
+ },
+ {
+  "name_ko": "오부",
+  "name_ja": "大府",
+  "name_en": "Ōbu-shi",
+  "prefecture_id": 23,
+  "lat": 35.0192,
+  "lng": 136.9542
+ },
+ {
+  "name_ko": "지타",
+  "name_ja": "知多",
+  "name_en": "Chita",
+  "prefecture_id": 23,
+  "lat": 34.9966,
+  "lng": 136.8647
+ },
+ {
+  "name_ko": "지류",
+  "name_ja": "知立",
+  "name_en": "Chiryū-shi",
+  "prefecture_id": 23,
+  "lat": 35.0013,
+  "lng": 137.0508
+ },
+ {
+  "name_ko": "나가쿠테",
+  "name_ja": "長久手",
+  "name_en": "Nagakute",
+  "prefecture_id": 23,
+  "lat": 35.1841,
+  "lng": 137.0487
+ },
+ {
+  "name_ko": "쓰시마",
+  "name_ja": "津島",
+  "name_en": "Tsushima",
+  "prefecture_id": 23,
+  "lat": 35.1771,
+  "lng": 136.7413
+ },
+ {
+  "name_ko": "다하라",
+  "name_ja": "田原",
+  "name_en": "Tahara",
+  "prefecture_id": 23,
+  "lat": 34.6688,
+  "lng": 137.2642
+ },
+ {
+  "name_ko": "도카이",
+  "name_ja": "東海",
+  "name_en": "Tōkai-shi",
+  "prefecture_id": 23,
+  "lat": 35.0231,
+  "lng": 136.9022
+ },
+ {
+  "name_ko": "닛신",
+  "name_ja": "日進",
+  "name_en": "Nisshin",
+  "prefecture_id": 23,
+  "lat": 35.132,
+  "lng": 137.0394
+ },
+ {
+  "name_ko": "한다",
+  "name_ja": "半田",
+  "name_en": "Handa",
+  "prefecture_id": 23,
+  "lat": 34.8919,
+  "lng": 136.9381
+ },
+ {
+  "name_ko": "오와리아사히",
+  "name_ja": "尾張旭",
+  "name_en": "Owariasahi",
+  "prefecture_id": 23,
+  "lat": 35.2165,
+  "lng": 137.0354
+ },
+ {
+  "name_ko": "헤키난",
+  "name_ja": "碧南",
+  "name_en": "Hekinan",
+  "prefecture_id": 23,
+  "lat": 34.8847,
+  "lng": 136.9934
+ },
+ {
+  "name_ko": "도요하",
+  "name_ja": "豊橋",
+  "name_en": "Toyohashi",
+  "prefecture_id": 23,
+  "lat": 34.7692,
+  "lng": 137.3915
+ },
+ {
+  "name_ko": "도요카와",
+  "name_ja": "豊川",
+  "name_en": "Toyokawa",
+  "prefecture_id": 23,
+  "lat": 34.8268,
+  "lng": 137.3759
+ },
+ {
+  "name_ko": "도요타",
+  "name_ja": "豊田",
+  "name_en": "Toyota",
+  "prefecture_id": 23,
+  "lat": 35.0824,
+  "lng": 137.1563
+ },
+ {
+  "name_ko": "도요아케",
+  "name_ja": "豊明",
+  "name_en": "Toyoake",
+  "prefecture_id": 23,
+  "lat": 35.0536,
+  "lng": 137.0128
+ },
+ {
+  "name_ko": "기타나고야",
+  "name_ja": "北名古屋",
+  "name_en": "Kitanagoya",
+  "prefecture_id": 23,
+  "lat": 35.2457,
+  "lng": 136.866
+ },
+ {
+  "name_ko": "나고야",
+  "name_ja": "名古屋",
+  "name_en": "Nagoya",
+  "prefecture_id": 23,
+  "lat": 35.1815,
+  "lng": 136.9064
+ },
+ {
+  "name_ko": "야토미",
+  "name_ja": "弥富",
+  "name_en": "Yatomi",
+  "prefecture_id": 23,
+  "lat": 35.11,
+  "lng": 136.7247
+ },
+ {
+  "name_ko": "이나베",
+  "name_ja": "いなべ",
+  "name_en": "Inabe",
+  "prefecture_id": 24,
+  "lat": 35.1582,
+  "lng": 136.5171
+ },
+ {
+  "name_ko": "이가",
+  "name_ja": "伊賀",
+  "name_en": "Iga",
+  "prefecture_id": 24,
+  "lat": 34.7499,
+  "lng": 136.1423
+ },
+ {
+  "name_ko": "이세",
+  "name_ja": "伊勢",
+  "name_en": "Ise",
+  "prefecture_id": 24,
+  "lat": 34.4875,
+  "lng": 136.7093
+ },
+ {
+  "name_ko": "가메야마",
+  "name_ja": "亀山",
+  "name_en": "Kameyama",
+  "prefecture_id": 24,
+  "lat": 34.8557,
+  "lng": 136.4516
+ },
+ {
+  "name_ko": "구마노",
+  "name_ja": "熊野",
+  "name_en": "Kumano",
+  "prefecture_id": 24,
+  "lat": 33.8888,
+  "lng": 136.1003
+ },
+ {
+  "name_ko": "구와나",
+  "name_ja": "桑名",
+  "name_en": "Kuwana",
+  "prefecture_id": 24,
+  "lat": 35.0622,
+  "lng": 136.6837
+ },
+ {
+  "name_ko": "욧카이치",
+  "name_ja": "四日市",
+  "name_en": "Yokkaichi",
+  "prefecture_id": 24,
+  "lat": 34.965,
+  "lng": 136.6244
+ },
+ {
+  "name_ko": "시마",
+  "name_ja": "志摩",
+  "name_en": "Shima",
+  "prefecture_id": 24,
+  "lat": 34.3282,
+  "lng": 136.8297
+ },
+ {
+  "name_ko": "마쓰사카",
+  "name_ja": "松阪",
+  "name_en": "Matsusaka",
+  "prefecture_id": 24,
+  "lat": 34.5779,
+  "lng": 136.5276
+ },
+ {
+  "name_ko": "도바",
+  "name_ja": "鳥羽",
+  "name_en": "Toba",
+  "prefecture_id": 24,
+  "lat": 34.4813,
+  "lng": 136.8434
+ },
+ {
+  "name_ko": "쓰시",
+  "name_ja": "津",
+  "name_en": "Tsu",
+  "prefecture_id": 24,
+  "lat": 34.7184,
+  "lng": 136.5058
+ },
+ {
+  "name_ko": "오와세",
+  "name_ja": "尾鷲",
+  "name_en": "Owase",
+  "prefecture_id": 24,
+  "lat": 34.0708,
+  "lng": 136.191
+ },
+ {
+  "name_ko": "나바리",
+  "name_ja": "名張",
+  "name_en": "Nabari",
+  "prefecture_id": 24,
+  "lat": 34.6276,
+  "lng": 136.1084
+ },
+ {
+  "name_ko": "스즈카",
+  "name_ja": "鈴鹿",
+  "name_en": "Suzuka",
+  "prefecture_id": 24,
+  "lat": 34.882,
+  "lng": 136.5842
+ },
+ {
+  "name_ko": "오미하치만",
+  "name_ja": "近江八幡",
+  "name_en": "Ōmihachiman-shi",
+  "prefecture_id": 25,
+  "lat": 35.1283,
+  "lng": 136.0981
+ },
+ {
+  "name_ko": "릿토",
+  "name_ja": "栗東",
+  "name_en": "Rittō-shi",
+  "prefecture_id": 25,
+  "lat": 35.0216,
+  "lng": 135.998
+ },
+ {
+  "name_ko": "고난",
+  "name_ja": "湖南",
+  "name_en": "Konan",
+  "prefecture_id": 25,
+  "lat": 35.0041,
+  "lng": 136.0847
+ },
+ {
+  "name_ko": "고카",
+  "name_ja": "甲賀",
+  "name_en": "Kōka-shi",
+  "prefecture_id": 25,
+  "lat": 34.9661,
+  "lng": 136.1663
+ },
+ {
+  "name_ko": "다카시마",
+  "name_ja": "高島",
+  "name_en": "Takashima",
+  "prefecture_id": 25,
+  "lat": 35.353,
+  "lng": 136.0357
+ },
+ {
+  "name_ko": "모리야마",
+  "name_ja": "守山",
+  "name_en": "Moriyama",
+  "prefecture_id": 25,
+  "lat": 35.0589,
+  "lng": 135.9942
+ },
+ {
+  "name_ko": "구사쓰",
+  "name_ja": "草津",
+  "name_en": "Kusatsu",
+  "prefecture_id": 25,
+  "lat": 35.0132,
+  "lng": 135.9599
+ },
+ {
+  "name_ko": "오쓰",
+  "name_ja": "大津",
+  "name_en": "Otsu",
+  "prefecture_id": 25,
+  "lat": 35.0178,
+  "lng": 135.8548
+ },
+ {
+  "name_ko": "나가하마",
+  "name_ja": "長浜",
+  "name_en": "Nagahama",
+  "prefecture_id": 25,
+  "lat": 35.3808,
+  "lng": 136.2783
+ },
+ {
+  "name_ko": "히가시오미",
+  "name_ja": "東近江",
+  "name_en": "Higashiōmi-shi",
+  "prefecture_id": 25,
+  "lat": 35.1126,
+  "lng": 136.2075
+ },
+ {
+  "name_ko": "히코네",
+  "name_ja": "彦根",
+  "name_en": "Hikone",
+  "prefecture_id": 25,
+  "lat": 35.2744,
+  "lng": 136.2597
+ },
+ {
+  "name_ko": "마이바라",
+  "name_ja": "米原",
+  "name_en": "Maihara",
+  "prefecture_id": 25,
+  "lat": 35.3151,
+  "lng": 136.2916
+ },
+ {
+  "name_ko": "야스",
+  "name_ja": "野洲",
+  "name_en": "Yasu",
+  "prefecture_id": 25,
+  "lat": 35.0675,
+  "lng": 136.0258
+ },
+ {
+  "name_ko": "아야베",
+  "name_ja": "綾部",
+  "name_en": "Ayabe",
+  "prefecture_id": 26,
+  "lat": 35.2989,
+  "lng": 135.2588
+ },
+ {
+  "name_ko": "우지",
+  "name_ja": "宇治",
+  "name_en": "Uji",
+  "prefecture_id": 26,
+  "lat": 34.8844,
+  "lng": 135.7998
+ },
+ {
+  "name_ko": "가메오카",
+  "name_ja": "亀岡",
+  "name_en": "Kameoka",
+  "prefecture_id": 26,
+  "lat": 35.0135,
+  "lng": 135.5735
+ },
+ {
+  "name_ko": "미야즈",
+  "name_ja": "宮津",
+  "name_en": "Miyazu",
+  "prefecture_id": 26,
+  "lat": 35.5356,
+  "lng": 135.1955
+ },
+ {
+  "name_ko": "교탄고",
+  "name_ja": "京丹後",
+  "name_en": "Kyōtango-shi",
+  "prefecture_id": 26,
+  "lat": 35.6241,
+  "lng": 135.0609
+ },
+ {
+  "name_ko": "교타나베",
+  "name_ja": "京田辺",
+  "name_en": "Kyōtanabe-shi",
+  "prefecture_id": 26,
+  "lat": 34.8144,
+  "lng": 135.7677
+ },
+ {
+  "name_ko": "교토",
+  "name_ja": "京都",
+  "name_en": "Kyoto",
+  "prefecture_id": 26,
+  "lat": 35.0116,
+  "lng": 135.7681
+ },
+ {
+  "name_ko": "무코",
+  "name_ja": "向日",
+  "name_en": "Mukō-shi",
+  "prefecture_id": 26,
+  "lat": 34.9487,
+  "lng": 135.6983
+ },
+ {
+  "name_ko": "조요",
+  "name_ja": "城陽",
+  "name_en": "Jōyō-shi",
+  "prefecture_id": 26,
+  "lat": 34.8529,
+  "lng": 135.78
+ },
+ {
+  "name_ko": "나가오카쿄",
+  "name_ja": "長岡京",
+  "name_en": "Nagaokakyō-shi",
+  "prefecture_id": 26,
+  "lat": 34.9268,
+  "lng": 135.6958
+ },
+ {
+  "name_ko": "난탄",
+  "name_ja": "南丹",
+  "name_en": "Nantan",
+  "prefecture_id": 26,
+  "lat": 35.1074,
+  "lng": 135.4703
+ },
+ {
+  "name_ko": "야와타",
+  "name_ja": "八幡",
+  "name_en": "Yawata",
+  "prefecture_id": 26,
+  "lat": 34.8756,
+  "lng": 135.7076
+ },
+ {
+  "name_ko": "마이즈루",
+  "name_ja": "舞鶴",
+  "name_en": "Maizuru",
+  "prefecture_id": 26,
+  "lat": 35.4748,
+  "lng": 135.386
+ },
+ {
+  "name_ko": "후쿠치야마",
+  "name_ja": "福知山",
+  "name_en": "Fukuchiyama",
+  "prefecture_id": 26,
+  "lat": 35.2967,
+  "lng": 135.1266
+ },
+ {
+  "name_ko": "기즈가와",
+  "name_ja": "木津川",
+  "name_en": "Kizugawa",
+  "prefecture_id": 26,
+  "lat": 34.7371,
+  "lng": 135.8201
+ },
+ {
+  "name_ko": "이바라키",
+  "name_ja": "茨木",
+  "name_en": "Ibaraki",
+  "prefecture_id": 27,
+  "lat": 34.8164,
+  "lng": 135.5686
+ },
+ {
+  "name_ko": "하비키노",
+  "name_ja": "羽曳野",
+  "name_en": "Habikino",
+  "prefecture_id": 27,
+  "lat": 34.5579,
+  "lng": 135.6063
+ },
+ {
+  "name_ko": "가와치나가노",
+  "name_ja": "河内長野",
+  "name_en": "Kawachinagano",
+  "prefecture_id": 27,
+  "lat": 34.4581,
+  "lng": 135.5641
+ },
+ {
+  "name_ko": "가이즈카",
+  "name_ja": "貝塚",
+  "name_en": "Kaizuka",
+  "prefecture_id": 27,
+  "lat": 34.4376,
+  "lng": 135.3585
+ },
+ {
+  "name_ko": "기시와다",
+  "name_ja": "岸和田",
+  "name_en": "Kishiwada",
+  "prefecture_id": 27,
+  "lat": 34.4605,
+  "lng": 135.3709
+ },
+ {
+  "name_ko": "가타노",
+  "name_ja": "交野",
+  "name_en": "Katano",
+  "prefecture_id": 27,
+  "lat": 34.7879,
+  "lng": 135.6799
+ },
+ {
+  "name_ko": "다카이",
+  "name_ja": "高石",
+  "name_en": "Takaishi",
+  "prefecture_id": 27,
+  "lat": 34.5207,
+  "lng": 135.4424
+ },
+ {
+  "name_ko": "다카쓰키",
+  "name_ja": "高槻",
+  "name_en": "Takatsuki",
+  "prefecture_id": 27,
+  "lat": 34.8483,
+  "lng": 135.6168
+ },
+ {
+  "name_ko": "한난",
+  "name_ja": "阪南",
+  "name_en": "Hannan",
+  "prefecture_id": 27,
+  "lat": 34.3596,
+  "lng": 135.2397
+ },
+ {
+  "name_ko": "사카이",
+  "name_ja": "堺",
+  "name_en": "Sakai",
+  "prefecture_id": 27,
+  "lat": 34.5733,
+  "lng": 135.483
+ },
+ {
+  "name_ko": "시조나와테",
+  "name_ja": "四條畷",
+  "name_en": "Shijōnawate-shi",
+  "prefecture_id": 27,
+  "lat": 34.7399,
+  "lng": 135.6395
+ },
+ {
+  "name_ko": "모리구치",
+  "name_ja": "守口",
+  "name_en": "Moriguchi",
+  "prefecture_id": 27,
+  "lat": 34.7358,
+  "lng": 135.5617
+ },
+ {
+  "name_ko": "마쓰바라",
+  "name_ja": "松原",
+  "name_en": "Matsubara",
+  "prefecture_id": 27,
+  "lat": 34.5779,
+  "lng": 135.5519
+ },
+ {
+  "name_ko": "네야가와",
+  "name_ja": "寝屋川",
+  "name_en": "Neyagawa",
+  "prefecture_id": 27,
+  "lat": 34.7661,
+  "lng": 135.6281
+ },
+ {
+  "name_ko": "스이타",
+  "name_ja": "吹田",
+  "name_en": "Suita",
+  "prefecture_id": 27,
+  "lat": 34.7595,
+  "lng": 135.5168
+ },
+ {
+  "name_ko": "셋쓰",
+  "name_ja": "摂津",
+  "name_en": "Settsu",
+  "prefecture_id": 27,
+  "lat": 34.7773,
+  "lng": 135.5618
+ },
+ {
+  "name_ko": "이즈미사노",
+  "name_ja": "泉佐野",
+  "name_en": "Izumisano",
+  "prefecture_id": 27,
+  "lat": 34.4069,
+  "lng": 135.3275
+ },
+ {
+  "name_ko": "이즈미오쓰",
+  "name_ja": "泉大津",
+  "name_en": "Izumiotsu",
+  "prefecture_id": 27,
+  "lat": 34.5043,
+  "lng": 135.4104
+ },
+ {
+  "name_ko": "센난",
+  "name_ja": "泉南",
+  "name_en": "Sennan",
+  "prefecture_id": 27,
+  "lat": 34.3659,
+  "lng": 135.2734
+ },
+ {
+  "name_ko": "오사카",
+  "name_ja": "大阪",
+  "name_en": "Osaka",
+  "prefecture_id": 27,
+  "lat": 34.6938,
+  "lng": 135.5021
+ },
+ {
+  "name_ko": "오사카사야마",
+  "name_ja": "大阪狭山",
+  "name_en": "Osakasayama",
+  "prefecture_id": 27,
+  "lat": 34.5036,
+  "lng": 135.5557
+ },
+ {
+  "name_ko": "다이토",
+  "name_ja": "大東",
+  "name_en": "Daitō-shi",
+  "prefecture_id": 27,
+  "lat": 34.712,
+  "lng": 135.6234
+ },
+ {
+  "name_ko": "이케다",
+  "name_ja": "池田",
+  "name_en": "Ikeda",
+  "prefecture_id": 27,
+  "lat": 34.8217,
+  "lng": 135.4285
+ },
+ {
+  "name_ko": "히가시오사카",
+  "name_ja": "東大阪",
+  "name_en": "Higashiōsaka-shi",
+  "prefecture_id": 27,
+  "lat": 34.6794,
+  "lng": 135.6009
+ },
+ {
+  "name_ko": "후지이데라",
+  "name_ja": "藤井寺",
+  "name_en": "Fujiidera",
+  "prefecture_id": 27,
+  "lat": 34.5742,
+  "lng": 135.5975
+ },
+ {
+  "name_ko": "가시와라",
+  "name_ja": "柏原",
+  "name_en": "Kashiwara",
+  "prefecture_id": 27,
+  "lat": 34.5793,
+  "lng": 135.6286
+ },
+ {
+  "name_ko": "야오",
+  "name_ja": "八尾",
+  "name_en": "Yao",
+  "prefecture_id": 27,
+  "lat": 34.6269,
+  "lng": 135.6008
+ },
+ {
+  "name_ko": "돈다바야",
+  "name_ja": "富田林",
+  "name_en": "Tondabayashi",
+  "prefecture_id": 27,
+  "lat": 34.4996,
+  "lng": 135.5973
+ },
+ {
+  "name_ko": "도요나카",
+  "name_ja": "豊中",
+  "name_en": "Toyonaka",
+  "prefecture_id": 27,
+  "lat": 34.7815,
+  "lng": 135.4696
+ },
+ {
+  "name_ko": "히라카타",
+  "name_ja": "枚方",
+  "name_en": "Hirakata",
+  "prefecture_id": 27,
+  "lat": 34.8144,
+  "lng": 135.6506
+ },
+ {
+  "name_ko": "미노",
+  "name_ja": "箕面",
+  "name_en": "Minoh",
+  "prefecture_id": 27,
+  "lat": 34.8269,
+  "lng": 135.4704
+ },
+ {
+  "name_ko": "가도마",
+  "name_ja": "門真",
+  "name_en": "Kadoma",
+  "prefecture_id": 27,
+  "lat": 34.7322,
+  "lng": 135.5994
+ },
+ {
+  "name_ko": "이즈미",
+  "name_ja": "和泉",
+  "name_en": "Izumi",
+  "prefecture_id": 27,
+  "lat": 34.4832,
+  "lng": 135.4232
+ },
+ {
+  "name_ko": "다쓰노",
+  "name_ja": "たつの",
+  "name_en": "Tatsuno",
+  "prefecture_id": 28,
+  "lat": 34.8579,
+  "lng": 134.5454
+ },
+ {
+  "name_ko": "아시야",
+  "name_ja": "芦屋",
+  "name_en": "Ashiya",
+  "prefecture_id": 28,
+  "lat": 34.7486,
+  "lng": 135.2975
+ },
+ {
+  "name_ko": "이타미",
+  "name_ja": "伊丹",
+  "name_en": "Itami",
+  "prefecture_id": 28,
+  "lat": 34.7843,
+  "lng": 135.4009
+ },
+ {
+  "name_ko": "가코가와",
+  "name_ja": "加古川",
+  "name_en": "Kakogawa",
+  "prefecture_id": 28,
+  "lat": 34.7569,
+  "lng": 134.8413
+ },
+ {
+  "name_ko": "가사이",
+  "name_ja": "加西",
+  "name_en": "Kasai",
+  "prefecture_id": 28,
+  "lat": 34.9278,
+  "lng": 134.8419
+ },
+ {
+  "name_ko": "가토",
+  "name_ja": "加東",
+  "name_en": "Katō-shi",
+  "prefecture_id": 28,
+  "lat": 34.9186,
+  "lng": 134.9734
+ },
+ {
+  "name_ko": "다카사고",
+  "name_ja": "高砂",
+  "name_en": "Takasago",
+  "prefecture_id": 28,
+  "lat": 34.7659,
+  "lng": 134.7906
+ },
+ {
+  "name_ko": "산다",
+  "name_ja": "三田",
+  "name_en": "Sanda",
+  "prefecture_id": 28,
+  "lat": 34.89,
+  "lng": 135.2254
+ },
+ {
+  "name_ko": "미키",
+  "name_ja": "三木",
+  "name_en": "Miki",
+  "prefecture_id": 28,
+  "lat": 34.7969,
+  "lng": 134.9902
+ },
+ {
+  "name_ko": "시소",
+  "name_ja": "宍粟",
+  "name_en": "Shisō-shi",
+  "prefecture_id": 28,
+  "lat": 35.0044,
+  "lng": 134.5494
+ },
+ {
+  "name_ko": "스모토",
+  "name_ja": "洲本",
+  "name_en": "Sumoto",
+  "prefecture_id": 28,
+  "lat": 34.3425,
+  "lng": 134.8956
+ },
+ {
+  "name_ko": "오노",
+  "name_ja": "小野",
+  "name_en": "Ono",
+  "prefecture_id": 28,
+  "lat": 34.8579,
+  "lng": 134.9398
+ },
+ {
+  "name_ko": "고베",
+  "name_ja": "神戸",
+  "name_en": "Kobe",
+  "prefecture_id": 28,
+  "lat": 34.6902,
+  "lng": 135.1954
+ },
+ {
+  "name_ko": "니시노미야",
+  "name_ja": "西宮",
+  "name_en": "Nishinomiya",
+  "prefecture_id": 28,
+  "lat": 34.7376,
+  "lng": 135.3417
+ },
+ {
+  "name_ko": "니시와키",
+  "name_ja": "西脇",
+  "name_en": "Nishiwaki",
+  "prefecture_id": 28,
+  "lat": 34.9829,
+  "lng": 134.9795
+ },
+ {
+  "name_ko": "아코",
+  "name_ja": "赤穂",
+  "name_en": "Akō-shi",
+  "prefecture_id": 28,
+  "lat": 34.755,
+  "lng": 134.3903
+ },
+ {
+  "name_ko": "가와니",
+  "name_ja": "川西",
+  "name_en": "Kawanishi",
+  "prefecture_id": 28,
+  "lat": 34.8794,
+  "lng": 135.4092
+ },
+ {
+  "name_ko": "아이오이",
+  "name_ja": "相生",
+  "name_en": "Aioi",
+  "prefecture_id": 28,
+  "lat": 34.8036,
+  "lng": 134.4681
+ },
+ {
+  "name_ko": "단바",
+  "name_ja": "丹波",
+  "name_en": "Tamba",
+  "prefecture_id": 28,
+  "lat": 35.1771,
+  "lng": 135.0359
+ },
+ {
+  "name_ko": "단바사사야마",
+  "name_ja": "丹波篠山",
+  "name_en": "Tamba-Sasayama",
+  "prefecture_id": 28,
+  "lat": 35.0757,
+  "lng": 135.2192
+ },
+ {
+  "name_ko": "아와지",
+  "name_ja": "淡路",
+  "name_en": "Awaji",
+  "prefecture_id": 28,
+  "lat": 34.4397,
+  "lng": 134.9149
+ },
+ {
+  "name_ko": "아사고",
+  "name_ja": "朝来",
+  "name_en": "Asago",
+  "prefecture_id": 28,
+  "lat": 35.3398,
+  "lng": 134.8531
+ },
+ {
+  "name_ko": "미나미아와지",
+  "name_ja": "南あわじ",
+  "name_en": "Minami-Awaji",
+  "prefecture_id": 28,
+  "lat": 34.2944,
+  "lng": 134.7798
+ },
+ {
+  "name_ko": "아마가사키",
+  "name_ja": "尼崎",
+  "name_en": "Amagasaki",
+  "prefecture_id": 28,
+  "lat": 34.7338,
+  "lng": 135.4063
+ },
+ {
+  "name_ko": "히메지",
+  "name_ja": "姫路",
+  "name_en": "Himeji",
+  "prefecture_id": 28,
+  "lat": 34.8152,
+  "lng": 134.6854
+ },
+ {
+  "name_ko": "다카라즈카",
+  "name_ja": "宝塚",
+  "name_en": "Takarazuka",
+  "prefecture_id": 28,
+  "lat": 34.8,
+  "lng": 135.3603
+ },
+ {
+  "name_ko": "도요오카",
+  "name_ja": "豊岡",
+  "name_en": "Toyooka",
+  "prefecture_id": 28,
+  "lat": 35.5445,
+  "lng": 134.8202
+ },
+ {
+  "name_ko": "아카",
+  "name_ja": "明石",
+  "name_en": "Akashi",
+  "prefecture_id": 28,
+  "lat": 34.6431,
+  "lng": 134.9972
+ },
+ {
+  "name_ko": "야부",
+  "name_ja": "養父",
+  "name_en": "Yabu",
+  "prefecture_id": 28,
+  "lat": 35.4046,
+  "lng": 134.7676
+ },
+ {
+  "name_ko": "우다",
+  "name_ja": "宇陀",
+  "name_en": "Uda",
+  "prefecture_id": 29,
+  "lat": 34.5203,
+  "lng": 135.9978
+ },
+ {
+  "name_ko": "가시하라",
+  "name_ja": "橿原",
+  "name_en": "Kashihara",
+  "prefecture_id": 29,
+  "lat": 34.5094,
+  "lng": 135.7925
+ },
+ {
+  "name_ko": "가쓰라기",
+  "name_ja": "葛城",
+  "name_en": "Katsuragi",
+  "prefecture_id": 29,
+  "lat": 34.4892,
+  "lng": 135.7264
+ },
+ {
+  "name_ko": "고조",
+  "name_ja": "五條",
+  "name_en": "Gojō",
+  "prefecture_id": 29,
+  "lat": 34.3563,
+  "lng": 135.6956
+ },
+ {
+  "name_ko": "고세",
+  "name_ja": "御所",
+  "name_en": "Gose",
+  "prefecture_id": 29,
+  "lat": 34.4633,
+  "lng": 135.7402
+ },
+ {
+  "name_ko": "가시바",
+  "name_ja": "香芝",
+  "name_en": "Kashiba",
+  "prefecture_id": 29,
+  "lat": 34.5413,
+  "lng": 135.699
+ },
+ {
+  "name_ko": "사쿠라이",
+  "name_ja": "桜井",
+  "name_en": "Sakurai",
+  "prefecture_id": 29,
+  "lat": 34.5187,
+  "lng": 135.8432
+ },
+ {
+  "name_ko": "이코마",
+  "name_ja": "生駒",
+  "name_en": "Ikoma",
+  "prefecture_id": 29,
+  "lat": 34.6919,
+  "lng": 135.7005
+ },
+ {
+  "name_ko": "야마토코리야마",
+  "name_ja": "大和郡山",
+  "name_en": "Yamatokōriyama",
+  "prefecture_id": 29,
+  "lat": 34.6493,
+  "lng": 135.7827
+ },
+ {
+  "name_ko": "야마토타카다",
+  "name_ja": "大和高田",
+  "name_en": "Yamatotakada",
+  "prefecture_id": 29,
+  "lat": 34.5151,
+  "lng": 135.7365
+ },
+ {
+  "name_ko": "덴리",
+  "name_ja": "天理",
+  "name_en": "Tenri",
+  "prefecture_id": 29,
+  "lat": 34.5967,
+  "lng": 135.8372
+ },
+ {
+  "name_ko": "나라",
+  "name_ja": "奈良",
+  "name_en": "Nara",
+  "prefecture_id": 29,
+  "lat": 34.685,
+  "lng": 135.8048
+ },
+ {
+  "name_ko": "가이난",
+  "name_ja": "海南",
+  "name_en": "Kainan",
+  "prefecture_id": 30,
+  "lat": 34.1575,
+  "lng": 135.2397
+ },
+ {
+  "name_ko": "이와데",
+  "name_ja": "岩出",
+  "name_en": "Iwade",
+  "prefecture_id": 30,
+  "lat": 34.2563,
+  "lng": 135.3113
+ },
+ {
+  "name_ko": "기노카와",
+  "name_ja": "紀の川",
+  "name_en": "Kinokawa",
+  "prefecture_id": 30,
+  "lat": 34.2697,
+  "lng": 135.3628
+ },
+ {
+  "name_ko": "하시모토",
+  "name_ja": "橋本",
+  "name_en": "Hashimoto",
+  "prefecture_id": 30,
+  "lat": 34.3146,
+  "lng": 135.6052
+ },
+ {
+  "name_ko": "고보",
+  "name_ja": "御坊",
+  "name_en": "Gobō-shi",
+  "prefecture_id": 30,
+  "lat": 33.8914,
+  "lng": 135.1523
+ },
+ {
+  "name_ko": "신구",
+  "name_ja": "新宮",
+  "name_en": "Shingu",
+  "prefecture_id": 30,
+  "lat": 33.7242,
+  "lng": 135.9926
+ },
+ {
+  "name_ko": "다나베",
+  "name_ja": "田辺",
+  "name_en": "Tanabe",
+  "prefecture_id": 30,
+  "lat": 33.728,
+  "lng": 135.3777
+ },
+ {
+  "name_ko": "아리다",
+  "name_ja": "有田",
+  "name_en": "Arida",
+  "prefecture_id": 30,
+  "lat": 34.083,
+  "lng": 135.1277
+ },
+ {
+  "name_ko": "와카야마",
+  "name_ja": "和歌山",
+  "name_en": "Wakayama",
+  "prefecture_id": 30,
+  "lat": 34.2304,
+  "lng": 135.1707
+ },
+ {
+  "name_ko": "사카이미나토",
+  "name_ja": "境港",
+  "name_en": "Sakaiminato",
+  "prefecture_id": 31,
+  "lat": 35.5396,
+  "lng": 133.2316
+ },
+ {
+  "name_ko": "구라요",
+  "name_ja": "倉吉",
+  "name_en": "Kurayoshi",
+  "prefecture_id": 31,
+  "lat": 35.4301,
+  "lng": 133.8255
+ },
+ {
+  "name_ko": "돗토리",
+  "name_ja": "鳥取",
+  "name_en": "Tottori",
+  "prefecture_id": 31,
+  "lat": 35.4944,
+  "lng": 134.2216
+ },
+ {
+  "name_ko": "요나고",
+  "name_ja": "米子",
+  "name_en": "Yonago",
+  "prefecture_id": 31,
+  "lat": 35.4282,
+  "lng": 133.3309
+ },
+ {
+  "name_ko": "야스기",
+  "name_ja": "安来",
+  "name_en": "Yasugi",
+  "prefecture_id": 32,
+  "lat": 35.4314,
+  "lng": 133.2509
+ },
+ {
+  "name_ko": "운난",
+  "name_ja": "雲南",
+  "name_en": "Unnan",
+  "prefecture_id": 32,
+  "lat": 35.3077,
+  "lng": 132.9003
+ },
+ {
+  "name_ko": "마스다",
+  "name_ja": "益田",
+  "name_en": "Masuda",
+  "prefecture_id": 32,
+  "lat": 34.6748,
+  "lng": 131.8428
+ },
+ {
+  "name_ko": "고쓰",
+  "name_ja": "江津",
+  "name_en": "Gōtsu-shi",
+  "prefecture_id": 32,
+  "lat": 35.0118,
+  "lng": 132.2177
+ },
+ {
+  "name_ko": "이즈모",
+  "name_ja": "出雲",
+  "name_en": "Izumo",
+  "prefecture_id": 32,
+  "lat": 35.4016,
+  "lng": 132.6854
+ },
+ {
+  "name_ko": "마쓰에",
+  "name_ja": "松江",
+  "name_en": "Matsue",
+  "prefecture_id": 32,
+  "lat": 35.4681,
+  "lng": 133.0485
+ },
+ {
+  "name_ko": "오다",
+  "name_ja": "大田",
+  "name_en": "Ōda-shi",
+  "prefecture_id": 32,
+  "lat": 35.1921,
+  "lng": 132.4994
+ },
+ {
+  "name_ko": "하마다",
+  "name_ja": "浜田",
+  "name_en": "Hamada",
+  "prefecture_id": 32,
+  "lat": 34.8992,
+  "lng": 132.0798
+ },
+ {
+  "name_ko": "이바라",
+  "name_ja": "井原",
+  "name_en": "Ibara",
+  "prefecture_id": 33,
+  "lat": 34.5977,
+  "lng": 133.4638
+ },
+ {
+  "name_ko": "오카야마",
+  "name_ja": "岡山",
+  "name_en": "Okayama",
+  "prefecture_id": 33,
+  "lat": 34.6551,
+  "lng": 133.9196
+ },
+ {
+  "name_ko": "가사오카",
+  "name_ja": "笠岡",
+  "name_en": "Kasaoka",
+  "prefecture_id": 33,
+  "lat": 34.5071,
+  "lng": 133.5074
+ },
+ {
+  "name_ko": "다마노",
+  "name_ja": "玉野",
+  "name_en": "Tamano",
+  "prefecture_id": 33,
+  "lat": 34.4919,
+  "lng": 133.946
+ },
+ {
+  "name_ko": "다카하",
+  "name_ja": "高梁",
+  "name_en": "Takahashi",
+  "prefecture_id": 33,
+  "lat": 34.791,
+  "lng": 133.6168
+ },
+ {
+  "name_ko": "니미",
+  "name_ja": "新見",
+  "name_en": "Niimi",
+  "prefecture_id": 33,
+  "lat": 35.0157,
+  "lng": 133.449
+ },
+ {
+  "name_ko": "마니와",
+  "name_ja": "真庭",
+  "name_en": "Maniwa",
+  "prefecture_id": 33,
+  "lat": 35.0756,
+  "lng": 133.7527
+ },
+ {
+  "name_ko": "세토우치",
+  "name_ja": "瀬戸内",
+  "name_en": "Setouchi",
+  "prefecture_id": 33,
+  "lat": 34.6649,
+  "lng": 134.0928
+ },
+ {
+  "name_ko": "아카이와",
+  "name_ja": "赤磐",
+  "name_en": "Akaiwa",
+  "prefecture_id": 33,
+  "lat": 34.7554,
+  "lng": 134.0188
+ },
+ {
+  "name_ko": "아사쿠치",
+  "name_ja": "浅口",
+  "name_en": "Asakuchi",
+  "prefecture_id": 33,
+  "lat": 34.5279,
+  "lng": 133.5849
+ },
+ {
+  "name_ko": "구라시키",
+  "name_ja": "倉敷",
+  "name_en": "Kurashiki",
+  "prefecture_id": 33,
+  "lat": 34.5851,
+  "lng": 133.7721
+ },
+ {
+  "name_ko": "소자",
+  "name_ja": "総社",
+  "name_en": "Sōja-shi",
+  "prefecture_id": 33,
+  "lat": 34.6728,
+  "lng": 133.7465
+ },
+ {
+  "name_ko": "쓰야마",
+  "name_ja": "津山",
+  "name_en": "Tsuyama",
+  "prefecture_id": 33,
+  "lat": 35.0691,
+  "lng": 134.0045
+ },
+ {
+  "name_ko": "비젠",
+  "name_ja": "備前",
+  "name_en": "Bizen",
+  "prefecture_id": 33,
+  "lat": 34.7452,
+  "lng": 134.1888
+ },
+ {
+  "name_ko": "미마사카",
+  "name_ja": "美作",
+  "name_en": "Mimasaka",
+  "prefecture_id": 33,
+  "lat": 35.0086,
+  "lng": 134.1486
+ },
+ {
+  "name_ko": "아키타카타",
+  "name_ja": "安芸高田",
+  "name_en": "Akitakata",
+  "prefecture_id": 34,
+  "lat": 34.6662,
+  "lng": 132.7043
+ },
+ {
+  "name_ko": "구레",
+  "name_ja": "呉",
+  "name_en": "Kure",
+  "prefecture_id": 34,
+  "lat": 34.2492,
+  "lng": 132.5657
+ },
+ {
+  "name_ko": "히로시마",
+  "name_ja": "広島",
+  "name_en": "Hiroshima",
+  "prefecture_id": 34,
+  "lat": 34.3852,
+  "lng": 132.4553
+ },
+ {
+  "name_ko": "에타지마",
+  "name_ja": "江田島",
+  "name_en": "Etajima",
+  "prefecture_id": 34,
+  "lat": 34.175,
+  "lng": 132.4622
+ },
+ {
+  "name_ko": "미하라",
+  "name_ja": "三原",
+  "name_en": "Mihara",
+  "prefecture_id": 34,
+  "lat": 34.3974,
+  "lng": 133.0787
+ },
+ {
+  "name_ko": "미요",
+  "name_ja": "三次",
+  "name_en": "Miyoshi",
+  "prefecture_id": 34,
+  "lat": 34.8057,
+  "lng": 132.8518
+ },
+ {
+  "name_ko": "쇼바라",
+  "name_ja": "庄原",
+  "name_en": "Shōbara-shi",
+  "prefecture_id": 34,
+  "lat": 34.8578,
+  "lng": 133.0173
+ },
+ {
+  "name_ko": "오타케",
+  "name_ja": "大竹",
+  "name_en": "Ōtake-shi",
+  "prefecture_id": 34,
+  "lat": 34.2379,
+  "lng": 132.2223
+ },
+ {
+  "name_ko": "다케하라",
+  "name_ja": "竹原",
+  "name_en": "Takehara",
+  "prefecture_id": 34,
+  "lat": 34.3417,
+  "lng": 132.9069
+ },
+ {
+  "name_ko": "히가시히로시마",
+  "name_ja": "東広島",
+  "name_en": "Higashihiroshima",
+  "prefecture_id": 34,
+  "lat": 34.4264,
+  "lng": 132.7433
+ },
+ {
+  "name_ko": "하쓰카이치",
+  "name_ja": "廿日市",
+  "name_en": "Hatsukaichi",
+  "prefecture_id": 34,
+  "lat": 34.3482,
+  "lng": 132.3316
+ },
+ {
+  "name_ko": "오노미치",
+  "name_ja": "尾道",
+  "name_en": "Onomichi",
+  "prefecture_id": 34,
+  "lat": 34.4091,
+  "lng": 133.2054
+ },
+ {
+  "name_ko": "후추",
+  "name_ja": "府中",
+  "name_en": "Fuchū-shi",
+  "prefecture_id": 34,
+  "lat": 34.5683,
+  "lng": 133.2364
+ },
+ {
+  "name_ko": "후쿠야마",
+  "name_ja": "福山",
+  "name_en": "Fukuyama",
+  "prefecture_id": 34,
+  "lat": 34.5233,
+  "lng": 133.3378
+ },
+ {
+  "name_ko": "우베",
+  "name_ja": "宇部",
+  "name_en": "Ube",
+  "prefecture_id": 35,
+  "lat": 33.9516,
+  "lng": 131.2467
+ },
+ {
+  "name_ko": "시모노세키",
+  "name_ja": "下関",
+  "name_en": "Shimonoseki",
+  "prefecture_id": 35,
+  "lat": 33.9579,
+  "lng": 130.9413
+ },
+ {
+  "name_ko": "구다마쓰",
+  "name_ja": "下松",
+  "name_en": "Kudamatsu",
+  "prefecture_id": 35,
+  "lat": 34.015,
+  "lng": 131.8703
+ },
+ {
+  "name_ko": "이와쿠니",
+  "name_ja": "岩国",
+  "name_en": "Iwakuni",
+  "prefecture_id": 35,
+  "lat": 34.1666,
+  "lng": 132.2188
+ },
+ {
+  "name_ko": "히카리",
+  "name_ja": "光",
+  "name_en": "Hikari",
+  "prefecture_id": 35,
+  "lat": 33.9619,
+  "lng": 131.9422
+ },
+ {
+  "name_ko": "야마구치",
+  "name_ja": "山口",
+  "name_en": "Yamaguchi",
+  "prefecture_id": 35,
+  "lat": 34.178,
+  "lng": 131.4738
+ },
+ {
+  "name_ko": "산요오노다",
+  "name_ja": "山陽小野田",
+  "name_en": "Sanʼyō-Onoda",
+  "prefecture_id": 35,
+  "lat": 34.0032,
+  "lng": 131.1818
+ },
+ {
+  "name_ko": "슈난",
+  "name_ja": "周南",
+  "name_en": "Shūnan-shi",
+  "prefecture_id": 35,
+  "lat": 34.0551,
+  "lng": 131.8062
+ },
+ {
+  "name_ko": "나가토",
+  "name_ja": "長門",
+  "name_en": "Nagato",
+  "prefecture_id": 35,
+  "lat": 34.3705,
+  "lng": 131.1826
+ },
+ {
+  "name_ko": "하기",
+  "name_ja": "萩",
+  "name_en": "Hagi",
+  "prefecture_id": 35,
+  "lat": 34.4081,
+  "lng": 131.3992
+ },
+ {
+  "name_ko": "미네",
+  "name_ja": "美祢",
+  "name_en": "Mine",
+  "prefecture_id": 35,
+  "lat": 34.1667,
+  "lng": 131.2057
+ },
+ {
+  "name_ko": "호후",
+  "name_ja": "防府",
+  "name_en": "Hōfu-shi",
+  "prefecture_id": 35,
+  "lat": 34.0513,
+  "lng": 131.5626
+ },
+ {
+  "name_ko": "야나이",
+  "name_ja": "柳井",
+  "name_en": "Yanai",
+  "prefecture_id": 35,
+  "lat": 33.9639,
+  "lng": 132.1016
+ },
+ {
+  "name_ko": "아난",
+  "name_ja": "阿南",
+  "name_en": "Anan",
+  "prefecture_id": 36,
+  "lat": 33.9218,
+  "lng": 134.6595
+ },
+ {
+  "name_ko": "아와",
+  "name_ja": "阿波",
+  "name_en": "Awa",
+  "prefecture_id": 36,
+  "lat": 34.1021,
+  "lng": 134.2974
+ },
+ {
+  "name_ko": "요시노가와",
+  "name_ja": "吉野川",
+  "name_en": "Yoshinogawa",
+  "prefecture_id": 36,
+  "lat": 34.0663,
+  "lng": 134.3586
+ },
+ {
+  "name_ko": "미요",
+  "name_ja": "三好",
+  "name_en": "Miyoshi",
+  "prefecture_id": 36,
+  "lat": 34.026,
+  "lng": 133.8072
+ },
+ {
+  "name_ko": "고마쓰시마",
+  "name_ja": "小松島",
+  "name_en": "Komatsushima",
+  "prefecture_id": 36,
+  "lat": 34.0049,
+  "lng": 134.5906
+ },
+ {
+  "name_ko": "도쿠시마",
+  "name_ja": "徳島",
+  "name_en": "Tokushima",
+  "prefecture_id": 36,
+  "lat": 34.0703,
+  "lng": 134.5549
+ },
+ {
+  "name_ko": "미마",
+  "name_ja": "美馬",
+  "name_en": "Mima",
+  "prefecture_id": 36,
+  "lat": 34.0533,
+  "lng": 134.1698
+ },
+ {
+  "name_ko": "나루토",
+  "name_ja": "鳴門",
+  "name_en": "Naruto",
+  "prefecture_id": 36,
+  "lat": 34.1726,
+  "lng": 134.6088
+ },
+ {
+  "name_ko": "사누키",
+  "name_ja": "さぬき",
+  "name_en": "Sanuki",
+  "prefecture_id": 37,
+  "lat": 34.3253,
+  "lng": 134.1721
+ },
+ {
+  "name_ko": "간온지",
+  "name_ja": "観音寺",
+  "name_en": "Kan'onji",
+  "prefecture_id": 37,
+  "lat": 34.1283,
+  "lng": 133.6628
+ },
+ {
+  "name_ko": "마루가메",
+  "name_ja": "丸亀",
+  "name_en": "Marugame",
+  "prefecture_id": 37,
+  "lat": 34.2894,
+  "lng": 133.7976
+ },
+ {
+  "name_ko": "다카마쓰",
+  "name_ja": "高松",
+  "name_en": "Takamatsu",
+  "prefecture_id": 37,
+  "lat": 34.3428,
+  "lng": 134.0466
+ },
+ {
+  "name_ko": "사카이데",
+  "name_ja": "坂出",
+  "name_en": "Sakaide",
+  "prefecture_id": 37,
+  "lat": 34.3167,
+  "lng": 133.8603
+ },
+ {
+  "name_ko": "미토요",
+  "name_ja": "三豊",
+  "name_en": "Mitoyo",
+  "prefecture_id": 37,
+  "lat": 34.1826,
+  "lng": 133.7151
+ },
+ {
+  "name_ko": "젠쓰지",
+  "name_ja": "善通寺",
+  "name_en": "Zentsūji-shi",
+  "prefecture_id": 37,
+  "lat": 34.2285,
+  "lng": 133.7871
+ },
+ {
+  "name_ko": "히가시카가와",
+  "name_ja": "東かがわ",
+  "name_en": "Higashikagawa",
+  "prefecture_id": 37,
+  "lat": 34.2438,
+  "lng": 134.3589
+ },
+ {
+  "name_ko": "이요",
+  "name_ja": "伊予",
+  "name_en": "Iyo",
+  "prefecture_id": 38,
+  "lat": 33.7574,
+  "lng": 132.7037
+ },
+ {
+  "name_ko": "우와지마",
+  "name_ja": "宇和島",
+  "name_en": "Uwajima",
+  "prefecture_id": 38,
+  "lat": 33.2233,
+  "lng": 132.5606
+ },
+ {
+  "name_ko": "이마바리",
+  "name_ja": "今治",
+  "name_en": "Imabari",
+  "prefecture_id": 38,
+  "lat": 34.0662,
+  "lng": 132.9978
+ },
+ {
+  "name_ko": "시코쿠추오",
+  "name_ja": "四国中央",
+  "name_en": "Shikokuchūō-shi",
+  "prefecture_id": 38,
+  "lat": 33.9807,
+  "lng": 133.5492
+ },
+ {
+  "name_ko": "마쓰야마",
+  "name_ja": "松山",
+  "name_en": "Matsuyama",
+  "prefecture_id": 38,
+  "lat": 33.8392,
+  "lng": 132.7657
+ },
+ {
+  "name_ko": "니이하마",
+  "name_ja": "新居浜",
+  "name_en": "Niihama",
+  "prefecture_id": 38,
+  "lat": 33.9603,
+  "lng": 133.2834
+ },
+ {
+  "name_ko": "사이조",
+  "name_ja": "西条",
+  "name_en": "Saijo",
+  "prefecture_id": 38,
+  "lat": 33.9196,
+  "lng": 133.1812
+ },
+ {
+  "name_ko": "세이요",
+  "name_ja": "西予",
+  "name_en": "Seiyo",
+  "prefecture_id": 38,
+  "lat": 33.3626,
+  "lng": 132.5109
+ },
+ {
+  "name_ko": "오즈",
+  "name_ja": "大洲",
+  "name_en": "Ōzu-shi",
+  "prefecture_id": 38,
+  "lat": 33.5063,
+  "lng": 132.5445
+ },
+ {
+  "name_ko": "도온",
+  "name_ja": "東温",
+  "name_en": "Tōon-shi",
+  "prefecture_id": 38,
+  "lat": 33.791,
+  "lng": 132.8722
+ },
+ {
+  "name_ko": "야와타하마",
+  "name_ja": "八幡浜",
+  "name_en": "Yawatahama",
+  "prefecture_id": 38,
+  "lat": 33.4629,
+  "lng": 132.4234
+ },
+ {
+  "name_ko": "아키",
+  "name_ja": "安芸",
+  "name_en": "Aki",
+  "prefecture_id": 39,
+  "lat": 33.5908,
+  "lng": 133.9511
+ },
+ {
+  "name_ko": "고난",
+  "name_ja": "香南",
+  "name_en": "Kōnan-shi",
+  "prefecture_id": 39,
+  "lat": 33.5642,
+  "lng": 133.7005
+ },
+ {
+  "name_ko": "가미",
+  "name_ja": "香美",
+  "name_en": "Kami",
+  "prefecture_id": 39,
+  "lat": 33.7081,
+  "lng": 133.8533
+ },
+ {
+  "name_ko": "고치",
+  "name_ja": "高知",
+  "name_en": "Kōchi-shi",
+  "prefecture_id": 39,
+  "lat": 33.5588,
+  "lng": 133.5312
+ },
+ {
+  "name_ko": "시만토",
+  "name_ja": "四万十",
+  "name_en": "Shimanto",
+  "prefecture_id": 39,
+  "lat": 32.9913,
+  "lng": 132.9337
+ },
+ {
+  "name_ko": "무로토",
+  "name_ja": "室戸",
+  "name_en": "Muroto",
+  "prefecture_id": 39,
+  "lat": 33.2899,
+  "lng": 134.152
+ },
+ {
+  "name_ko": "스쿠모",
+  "name_ja": "宿毛",
+  "name_en": "Sukumo",
+  "prefecture_id": 39,
+  "lat": 32.939,
+  "lng": 132.7262
+ },
+ {
+  "name_ko": "스사키",
+  "name_ja": "須崎",
+  "name_en": "Susaki",
+  "prefecture_id": 39,
+  "lat": 33.4007,
+  "lng": 133.2829
+ },
+ {
+  "name_ko": "도사",
+  "name_ja": "土佐",
+  "name_en": "Tosa",
+  "prefecture_id": 39,
+  "lat": 33.4961,
+  "lng": 133.4254
+ },
+ {
+  "name_ko": "도사시미즈",
+  "name_ja": "土佐清水",
+  "name_en": "Tosashimizu",
+  "prefecture_id": 39,
+  "lat": 32.7815,
+  "lng": 132.9549
+ },
+ {
+  "name_ko": "난코쿠",
+  "name_ja": "南国",
+  "name_en": "Nankoku",
+  "prefecture_id": 39,
+  "lat": 33.5757,
+  "lng": 133.6415
+ },
+ {
+  "name_ko": "우키하",
+  "name_ja": "うきは",
+  "name_en": "Ukiha",
+  "prefecture_id": 40,
+  "lat": 33.3474,
+  "lng": 130.755
+ },
+ {
+  "name_ko": "미야마",
+  "name_ja": "みやま",
+  "name_en": "Miyama",
+  "prefecture_id": 40,
+  "lat": 33.1524,
+  "lng": 130.4748
+ },
+ {
+  "name_ko": "가마",
+  "name_ja": "嘉麻",
+  "name_en": "Kama",
+  "prefecture_id": 40,
+  "lat": 33.5984,
+  "lng": 130.7194
+ },
+ {
+  "name_ko": "구루메",
+  "name_ja": "久留米",
+  "name_en": "Kurume",
+  "prefecture_id": 40,
+  "lat": 33.3192,
+  "lng": 130.5083
+ },
+ {
+  "name_ko": "미야와카",
+  "name_ja": "宮若",
+  "name_en": "Miyawaka",
+  "prefecture_id": 40,
+  "lat": 33.7237,
+  "lng": 130.6674
+ },
+ {
+  "name_ko": "고가",
+  "name_ja": "古賀",
+  "name_en": "Koga",
+  "prefecture_id": 40,
+  "lat": 33.7287,
+  "lng": 130.47
+ },
+ {
+  "name_ko": "유쿠하",
+  "name_ja": "行橋",
+  "name_en": "Yukuhashi",
+  "prefecture_id": 40,
+  "lat": 33.7287,
+  "lng": 130.9829
+ },
+ {
+  "name_ko": "이토시마",
+  "name_ja": "糸島",
+  "name_en": "Itoshima",
+  "prefecture_id": 40,
+  "lat": 33.5573,
+  "lng": 130.1955
+ },
+ {
+  "name_ko": "무나카타",
+  "name_ja": "宗像",
+  "name_en": "Munakata",
+  "prefecture_id": 40,
+  "lat": 33.8055,
+  "lng": 130.5408
+ },
+ {
+  "name_ko": "가스가",
+  "name_ja": "春日",
+  "name_en": "Kasuga",
+  "prefecture_id": 40,
+  "lat": 33.5327,
+  "lng": 130.4702
+ },
+ {
+  "name_ko": "오고리",
+  "name_ja": "小郡",
+  "name_en": "Ogori",
+  "prefecture_id": 40,
+  "lat": 33.3964,
+  "lng": 130.5556
+ },
+ {
+  "name_ko": "다자이후",
+  "name_ja": "太宰府",
+  "name_en": "Dazaifu",
+  "prefecture_id": 40,
+  "lat": 33.5129,
+  "lng": 130.5238
+ },
+ {
+  "name_ko": "오카와",
+  "name_ja": "大川",
+  "name_en": "Ōkawa-shi",
+  "prefecture_id": 40,
+  "lat": 33.2066,
+  "lng": 130.3839
+ },
+ {
+  "name_ko": "오무타",
+  "name_ja": "大牟田",
+  "name_en": "Ōmuta-shi",
+  "prefecture_id": 40,
+  "lat": 33.0303,
+  "lng": 130.446
+ },
+ {
+  "name_ko": "오노조",
+  "name_ja": "大野城",
+  "name_en": "Ōnojō-shi",
+  "prefecture_id": 40,
+  "lat": 33.5363,
+  "lng": 130.4787
+ },
+ {
+  "name_ko": "지쿠고",
+  "name_ja": "筑後",
+  "name_en": "Chikugo",
+  "prefecture_id": 40,
+  "lat": 33.2122,
+  "lng": 130.5021
+ },
+ {
+  "name_ko": "지쿠시노",
+  "name_ja": "筑紫野",
+  "name_en": "Chikushino",
+  "prefecture_id": 40,
+  "lat": 33.4874,
+  "lng": 130.5258
+ },
+ {
+  "name_ko": "나카마",
+  "name_ja": "中間",
+  "name_en": "Nakama",
+  "prefecture_id": 40,
+  "lat": 33.8208,
+  "lng": 130.7086
+ },
+ {
+  "name_ko": "아사쿠라",
+  "name_ja": "朝倉",
+  "name_en": "Asakura",
+  "prefecture_id": 40,
+  "lat": 33.4234,
+  "lng": 130.6655
+ },
+ {
+  "name_ko": "노가타",
+  "name_ja": "直方",
+  "name_en": "Nōgata-shi",
+  "prefecture_id": 40,
+  "lat": 33.7441,
+  "lng": 130.7297
+ },
+ {
+  "name_ko": "다가와",
+  "name_ja": "田川",
+  "name_en": "Tagawa",
+  "prefecture_id": 40,
+  "lat": 33.6389,
+  "lng": 130.8061
+ },
+ {
+  "name_ko": "나카가와",
+  "name_ja": "那珂川",
+  "name_en": "Nakagawa",
+  "prefecture_id": 40,
+  "lat": 33.4996,
+  "lng": 130.4222
+ },
+ {
+  "name_ko": "야메",
+  "name_ja": "八女",
+  "name_en": "Yame",
+  "prefecture_id": 40,
+  "lat": 33.212,
+  "lng": 130.5579
+ },
+ {
+  "name_ko": "이즈카",
+  "name_ja": "飯塚",
+  "name_en": "Iizuka",
+  "prefecture_id": 40,
+  "lat": 33.6466,
+  "lng": 130.6911
+ },
+ {
+  "name_ko": "후쿠오카",
+  "name_ja": "福岡",
+  "name_en": "Fukuoka",
+  "prefecture_id": 40,
+  "lat": 33.5901,
+  "lng": 130.4017
+ },
+ {
+  "name_ko": "후쿠쓰",
+  "name_ja": "福津",
+  "name_en": "Fukutsu",
+  "prefecture_id": 40,
+  "lat": 33.7668,
+  "lng": 130.4911
+ },
+ {
+  "name_ko": "부젠",
+  "name_ja": "豊前",
+  "name_en": "Buzen",
+  "prefecture_id": 40,
+  "lat": 33.6115,
+  "lng": 131.1302
+ },
+ {
+  "name_ko": "기타큐슈",
+  "name_ja": "北九州",
+  "name_en": "Kitakyūshū",
+  "prefecture_id": 40,
+  "lat": 33.8834,
+  "lng": 130.8752
+ },
+ {
+  "name_ko": "야나가와",
+  "name_ja": "柳川",
+  "name_en": "Yanagawa",
+  "prefecture_id": 40,
+  "lat": 33.1631,
+  "lng": 130.4058
+ },
+ {
+  "name_ko": "이마리",
+  "name_ja": "伊万里",
+  "name_en": "Imari",
+  "prefecture_id": 41,
+  "lat": 33.2647,
+  "lng": 129.8808
+ },
+ {
+  "name_ko": "우레시노",
+  "name_ja": "嬉野",
+  "name_en": "Ureshino",
+  "prefecture_id": 41,
+  "lat": 33.1281,
+  "lng": 130.0601
+ },
+ {
+  "name_ko": "사가",
+  "name_ja": "佐賀",
+  "name_en": "Saga",
+  "prefecture_id": 41,
+  "lat": 33.2635,
+  "lng": 130.3008
+ },
+ {
+  "name_ko": "가시마",
+  "name_ja": "鹿島",
+  "name_en": "Kashima",
+  "prefecture_id": 41,
+  "lat": 33.1038,
+  "lng": 130.0986
+ },
+ {
+  "name_ko": "오기",
+  "name_ja": "小城",
+  "name_en": "Ogi",
+  "prefecture_id": 41,
+  "lat": 33.2737,
+  "lng": 130.2168
+ },
+ {
+  "name_ko": "간자키",
+  "name_ja": "神埼",
+  "name_en": "Kanzaki",
+  "prefecture_id": 41,
+  "lat": 33.3119,
+  "lng": 130.3715
+ },
+ {
+  "name_ko": "다쿠",
+  "name_ja": "多久",
+  "name_en": "Taku",
+  "prefecture_id": 41,
+  "lat": 33.2886,
+  "lng": 130.1102
+ },
+ {
+  "name_ko": "도스",
+  "name_ja": "鳥栖",
+  "name_en": "Tosu",
+  "prefecture_id": 41,
+  "lat": 33.3778,
+  "lng": 130.5061
+ },
+ {
+  "name_ko": "가라쓰",
+  "name_ja": "唐津",
+  "name_en": "Karatsu",
+  "prefecture_id": 41,
+  "lat": 33.4501,
+  "lng": 129.9683
+ },
+ {
+  "name_ko": "다케오",
+  "name_ja": "武雄",
+  "name_en": "Takeo",
+  "prefecture_id": 41,
+  "lat": 33.2042,
+  "lng": 129.9978
+ },
+ {
+  "name_ko": "이키",
+  "name_ja": "壱岐",
+  "name_en": "Iki",
+  "prefecture_id": 42,
+  "lat": 33.7499,
+  "lng": 129.6913
+ },
+ {
+  "name_ko": "운젠",
+  "name_ja": "雲仙",
+  "name_en": "Unzen",
+  "prefecture_id": 42,
+  "lat": 32.8352,
+  "lng": 130.1875
+ },
+ {
+  "name_ko": "고토",
+  "name_ja": "五島",
+  "name_en": "Goto",
+  "prefecture_id": 42,
+  "lat": 32.6956,
+  "lng": 128.8408
+ },
+ {
+  "name_ko": "사세보",
+  "name_ja": "佐世保",
+  "name_en": "Sasebo",
+  "prefecture_id": 42,
+  "lat": 33.18,
+  "lng": 129.715
+ },
+ {
+  "name_ko": "마쓰우라",
+  "name_ja": "松浦",
+  "name_en": "Matsuura",
+  "prefecture_id": 42,
+  "lat": 33.3533,
+  "lng": 129.735
+ },
+ {
+  "name_ko": "사이카이",
+  "name_ja": "西海",
+  "name_en": "Saikai",
+  "prefecture_id": 42,
+  "lat": 32.9331,
+  "lng": 129.643
+ },
+ {
+  "name_ko": "쓰시마",
+  "name_ja": "対馬",
+  "name_en": "Tsushima",
+  "prefecture_id": 42,
+  "lat": 34.2028,
+  "lng": 129.2875
+ },
+ {
+  "name_ko": "오무라",
+  "name_ja": "大村",
+  "name_en": "Ōmura-shi",
+  "prefecture_id": 42,
+  "lat": 32.9,
+  "lng": 129.9583
+ },
+ {
+  "name_ko": "나가사키",
+  "name_ja": "長崎",
+  "name_en": "Nagasaki",
+  "prefecture_id": 42,
+  "lat": 32.7495,
+  "lng": 129.8796
+ },
+ {
+  "name_ko": "시마바라",
+  "name_ja": "島原",
+  "name_en": "Shimabara",
+  "prefecture_id": 42,
+  "lat": 32.7881,
+  "lng": 130.3702
+ },
+ {
+  "name_ko": "미나미시마바라",
+  "name_ja": "南島原",
+  "name_en": "Minamishimabara",
+  "prefecture_id": 42,
+  "lat": 32.6598,
+  "lng": 130.2978
+ },
+ {
+  "name_ko": "히라도",
+  "name_ja": "平戸",
+  "name_en": "Hirado",
+  "prefecture_id": 42,
+  "lat": 33.3681,
+  "lng": 129.5537
+ },
+ {
+  "name_ko": "이사하야",
+  "name_ja": "諫早",
+  "name_en": "Isahaya",
+  "prefecture_id": 42,
+  "lat": 32.8434,
+  "lng": 130.0531
+ },
+ {
+  "name_ko": "아소",
+  "name_ja": "阿蘇",
+  "name_en": "Aso",
+  "prefecture_id": 43,
+  "lat": 32.9521,
+  "lng": 131.1213
+ },
+ {
+  "name_ko": "우키",
+  "name_ja": "宇城",
+  "name_en": "Uki",
+  "prefecture_id": 43,
+  "lat": 32.6478,
+  "lng": 130.6843
+ },
+ {
+  "name_ko": "우토",
+  "name_ja": "宇土",
+  "name_en": "Uto",
+  "prefecture_id": 43,
+  "lat": 32.688,
+  "lng": 130.6598
+ },
+ {
+  "name_ko": "기쿠치",
+  "name_ja": "菊池",
+  "name_en": "Kikuchi",
+  "prefecture_id": 43,
+  "lat": 32.9794,
+  "lng": 130.8133
+ },
+ {
+  "name_ko": "다마나",
+  "name_ja": "玉名",
+  "name_en": "Tamana",
+  "prefecture_id": 43,
+  "lat": 32.9353,
+  "lng": 130.5628
+ },
+ {
+  "name_ko": "구마모토",
+  "name_ja": "熊本",
+  "name_en": "Kumamoto",
+  "prefecture_id": 43,
+  "lat": 32.803,
+  "lng": 130.7079
+ },
+ {
+  "name_ko": "아라오",
+  "name_ja": "荒尾",
+  "name_en": "Arao",
+  "prefecture_id": 43,
+  "lat": 32.9867,
+  "lng": 130.4332
+ },
+ {
+  "name_ko": "고시",
+  "name_ja": "合志",
+  "name_en": "Kōshi-shi",
+  "prefecture_id": 43,
+  "lat": 32.886,
+  "lng": 130.7897
+ },
+ {
+  "name_ko": "야마가",
+  "name_ja": "山鹿",
+  "name_en": "Yamaga",
+  "prefecture_id": 43,
+  "lat": 33.0175,
+  "lng": 130.6912
+ },
+ {
+  "name_ko": "가미아마쿠사",
+  "name_ja": "上天草",
+  "name_en": "Kamiamakusa",
+  "prefecture_id": 43,
+  "lat": 32.5874,
+  "lng": 130.4304
+ },
+ {
+  "name_ko": "히토요",
+  "name_ja": "人吉",
+  "name_en": "Hitoyoshi",
+  "prefecture_id": 43,
+  "lat": 32.21,
+  "lng": 130.7625
+ },
+ {
+  "name_ko": "미나마타",
+  "name_ja": "水俣",
+  "name_en": "Minamata",
+  "prefecture_id": 43,
+  "lat": 32.2119,
+  "lng": 130.4087
+ },
+ {
+  "name_ko": "아마쿠사",
+  "name_ja": "天草",
+  "name_en": "Amakusa",
+  "prefecture_id": 43,
+  "lat": 32.4587,
+  "lng": 130.193
+ },
+ {
+  "name_ko": "야쓰시로",
+  "name_ja": "八代",
+  "name_en": "Yatsushiro",
+  "prefecture_id": 43,
+  "lat": 32.5076,
+  "lng": 130.6017
+ },
+ {
+  "name_ko": "우사",
+  "name_ja": "宇佐",
+  "name_en": "Usa",
+  "prefecture_id": 44,
+  "lat": 33.532,
+  "lng": 131.3495
+ },
+ {
+  "name_ko": "우스키",
+  "name_ja": "臼杵",
+  "name_en": "Usuki",
+  "prefecture_id": 44,
+  "lat": 33.1261,
+  "lng": 131.8053
+ },
+ {
+  "name_ko": "기쓰키",
+  "name_ja": "杵築",
+  "name_en": "Kitsuki",
+  "prefecture_id": 44,
+  "lat": 33.417,
+  "lng": 131.6161
+ },
+ {
+  "name_ko": "구니사키",
+  "name_ja": "国東",
+  "name_en": "Kunisaki",
+  "prefecture_id": 44,
+  "lat": 33.5633,
+  "lng": 131.7322
+ },
+ {
+  "name_ko": "사이키",
+  "name_ja": "佐伯",
+  "name_en": "Saiki",
+  "prefecture_id": 44,
+  "lat": 32.9597,
+  "lng": 131.9
+ },
+ {
+  "name_ko": "오이타",
+  "name_ja": "大分",
+  "name_en": "Ōita-shi",
+  "prefecture_id": 44,
+  "lat": 33.2396,
+  "lng": 131.6094
+ },
+ {
+  "name_ko": "다케타",
+  "name_ja": "竹田",
+  "name_en": "Taketa",
+  "prefecture_id": 44,
+  "lat": 32.9736,
+  "lng": 131.3978
+ },
+ {
+  "name_ko": "나카쓰",
+  "name_ja": "中津",
+  "name_en": "Nakatsu",
+  "prefecture_id": 44,
+  "lat": 33.5983,
+  "lng": 131.1883
+ },
+ {
+  "name_ko": "쓰쿠미",
+  "name_ja": "津久見",
+  "name_en": "Tsukumi",
+  "prefecture_id": 44,
+  "lat": 33.0722,
+  "lng": 131.8613
+ },
+ {
+  "name_ko": "히타",
+  "name_ja": "日田",
+  "name_en": "Hita",
+  "prefecture_id": 44,
+  "lat": 33.3213,
+  "lng": 130.9411
+ },
+ {
+  "name_ko": "벳푸",
+  "name_ja": "別府",
+  "name_en": "Beppu",
+  "prefecture_id": 44,
+  "lat": 33.2846,
+  "lng": 131.4913
+ },
+ {
+  "name_ko": "분고타카다",
+  "name_ja": "豊後高田",
+  "name_en": "Bungotakada",
+  "prefecture_id": 44,
+  "lat": 33.5562,
+  "lng": 131.447
+ },
+ {
+  "name_ko": "분고오노",
+  "name_ja": "豊後大野",
+  "name_en": "Bungo-ōno-shi",
+  "prefecture_id": 44,
+  "lat": 32.9775,
+  "lng": 131.5842
+ },
+ {
+  "name_ko": "유후",
+  "name_ja": "由布",
+  "name_en": "Yufu",
+  "prefecture_id": 44,
+  "lat": 33.1801,
+  "lng": 131.4268
+ },
+ {
+  "name_ko": "에비노",
+  "name_ja": "えびの",
+  "name_en": "Ebino",
+  "prefecture_id": 45,
+  "lat": 32.0454,
+  "lng": 130.8108
+ },
+ {
+  "name_ko": "노베오카",
+  "name_ja": "延岡",
+  "name_en": "Nobeoka",
+  "prefecture_id": 45,
+  "lat": 32.5823,
+  "lng": 131.6649
+ },
+ {
+  "name_ko": "미야자키",
+  "name_ja": "宮崎",
+  "name_en": "Miyazaki",
+  "prefecture_id": 45,
+  "lat": 31.9077,
+  "lng": 131.4202
+ },
+ {
+  "name_ko": "구시마",
+  "name_ja": "串間",
+  "name_en": "Kushima",
+  "prefecture_id": 45,
+  "lat": 31.4858,
+  "lng": 131.2647
+ },
+ {
+  "name_ko": "고바야",
+  "name_ja": "小林",
+  "name_en": "Kobayashi",
+  "prefecture_id": 45,
+  "lat": 31.9967,
+  "lng": 130.9726
+ },
+ {
+  "name_ko": "사이토",
+  "name_ja": "西都",
+  "name_en": "Saito",
+  "prefecture_id": 45,
+  "lat": 32.1085,
+  "lng": 131.4014
+ },
+ {
+  "name_ko": "미야코노조",
+  "name_ja": "都城",
+  "name_en": "Miyakonojō",
+  "prefecture_id": 45,
+  "lat": 31.7195,
+  "lng": 131.0617
+ },
+ {
+  "name_ko": "휴가",
+  "name_ja": "日向",
+  "name_en": "Hyūga-shi",
+  "prefecture_id": 45,
+  "lat": 32.4229,
+  "lng": 131.6239
+ },
+ {
+  "name_ko": "니치난",
+  "name_ja": "日南",
+  "name_en": "Nichinan",
+  "prefecture_id": 45,
+  "lat": 31.6375,
+  "lng": 131.3342
+ },
+ {
+  "name_ko": "이치키쿠시키노",
+  "name_ja": "いちき串木野",
+  "name_en": "Ichikikushikino",
+  "prefecture_id": 46,
+  "lat": 31.7146,
+  "lng": 130.2719
+ },
+ {
+  "name_ko": "아쿠네",
+  "name_ja": "阿久根",
+  "name_en": "Akune",
+  "prefecture_id": 46,
+  "lat": 32.0253,
+  "lng": 130.1978
+ },
+ {
+  "name_ko": "아이라",
+  "name_ja": "姶良",
+  "name_en": "Aira",
+  "prefecture_id": 46,
+  "lat": 31.7282,
+  "lng": 130.6278
+ },
+ {
+  "name_ko": "이사",
+  "name_ja": "伊佐",
+  "name_en": "Isa",
+  "prefecture_id": 46,
+  "lat": 32.057,
+  "lng": 130.6129
+ },
+ {
+  "name_ko": "아마미",
+  "name_ja": "奄美",
+  "name_en": "Amami",
+  "prefecture_id": 46,
+  "lat": 28.3772,
+  "lng": 129.4938
+ },
+ {
+  "name_ko": "사쓰마센다이",
+  "name_ja": "薩摩川内",
+  "name_en": "Satsumasendai",
+  "prefecture_id": 46,
+  "lat": 31.8135,
+  "lng": 130.304
+ },
+ {
+  "name_ko": "시부",
+  "name_ja": "志布志",
+  "name_en": "Shibushi",
+  "prefecture_id": 46,
+  "lat": 31.4772,
+  "lng": 131.0999
+ },
+ {
+  "name_ko": "이부스키",
+  "name_ja": "指宿",
+  "name_en": "Ibusuki",
+  "prefecture_id": 46,
+  "lat": 31.2528,
+  "lng": 130.6331
+ },
+ {
+  "name_ko": "가노야",
+  "name_ja": "鹿屋",
+  "name_en": "Kanoya",
+  "prefecture_id": 46,
+  "lat": 31.3782,
+  "lng": 130.8522
+ },
+ {
+  "name_ko": "가고시마",
+  "name_ja": "鹿児島",
+  "name_en": "Kagoshima",
+  "prefecture_id": 46,
+  "lat": 31.5968,
+  "lng": 130.5571
+ },
+ {
+  "name_ko": "이즈미",
+  "name_ja": "出水",
+  "name_en": "Izumi",
+  "prefecture_id": 46,
+  "lat": 32.0904,
+  "lng": 130.3527
+ },
+ {
+  "name_ko": "다루미즈",
+  "name_ja": "垂水",
+  "name_en": "Tarumizu",
+  "prefecture_id": 46,
+  "lat": 31.4928,
+  "lng": 130.7009
+ },
+ {
+  "name_ko": "니시노오모테",
+  "name_ja": "西之表",
+  "name_en": "Nishinoomote",
+  "prefecture_id": 46,
+  "lat": 30.7324,
+  "lng": 130.997
+ },
+ {
+  "name_ko": "소오",
+  "name_ja": "曽於",
+  "name_en": "Sō",
+  "prefecture_id": 46,
+  "lat": 31.6536,
+  "lng": 131.0194
+ },
+ {
+  "name_ko": "미나미사쓰마",
+  "name_ja": "南さつま",
+  "name_en": "Minamisatsuma",
+  "prefecture_id": 46,
+  "lat": 31.4166,
+  "lng": 130.3234
+ },
+ {
+  "name_ko": "미나미큐슈",
+  "name_ja": "南九州",
+  "name_en": "Minamikyushu",
+  "prefecture_id": 46,
+  "lat": 31.3783,
+  "lng": 130.4417
+ },
+ {
+  "name_ko": "히오키",
+  "name_ja": "日置",
+  "name_en": "Hioki",
+  "prefecture_id": 46,
+  "lat": 31.6337,
+  "lng": 130.4024
+ },
+ {
+  "name_ko": "마쿠라자키",
+  "name_ja": "枕崎",
+  "name_en": "Makurazaki",
+  "prefecture_id": 46,
+  "lat": 31.2914,
+  "lng": 130.3069
+ },
+ {
+  "name_ko": "기리시마",
+  "name_ja": "霧島",
+  "name_en": "Kirishima",
+  "prefecture_id": 46,
+  "lat": 31.741,
+  "lng": 130.7632
+ },
+ {
+  "name_ko": "우루마",
+  "name_ja": "うるま",
+  "name_en": "Uruma",
+  "prefecture_id": 47,
+  "lat": 26.3792,
+  "lng": 127.8574
+ },
+ {
+  "name_ko": "우라소에",
+  "name_ja": "浦添",
+  "name_en": "Urasoe",
+  "prefecture_id": 47,
+  "lat": 26.2457,
+  "lng": 127.7219
+ },
+ {
+  "name_ko": "오키나와",
+  "name_ja": "沖縄",
+  "name_en": "Okinawa",
+  "prefecture_id": 47,
+  "lat": 26.3343,
+  "lng": 127.8057
+ },
+ {
+  "name_ko": "기노완",
+  "name_ja": "宜野湾",
+  "name_en": "Ginowan",
+  "prefecture_id": 47,
+  "lat": 26.2815,
+  "lng": 127.7785
+ },
+ {
+  "name_ko": "미야코지마",
+  "name_ja": "宮古島",
+  "name_en": "Miyakojima",
+  "prefecture_id": 47,
+  "lat": 24.7901,
+  "lng": 125.2949
+ },
+ {
+  "name_ko": "이토만",
+  "name_ja": "糸満",
+  "name_en": "Itoman",
+  "prefecture_id": 47,
+  "lat": 26.1235,
+  "lng": 127.6658
+ },
+ {
+  "name_ko": "이시가키",
+  "name_ja": "石垣",
+  "name_en": "Ishigaki",
+  "prefecture_id": 47,
+  "lat": 24.3445,
+  "lng": 124.1852
+ },
+ {
+  "name_ko": "나하",
+  "name_ja": "那覇",
+  "name_en": "Naha",
+  "prefecture_id": 47,
+  "lat": 26.2122,
+  "lng": 127.6792
+ },
+ {
+  "name_ko": "난조",
+  "name_ja": "南城",
+  "name_en": "Nanjō-shi",
+  "prefecture_id": 47,
+  "lat": 26.1633,
+  "lng": 127.7706
+ },
+ {
+  "name_ko": "도미구스쿠",
+  "name_ja": "豊見城",
+  "name_en": "Tomigusuku",
+  "prefecture_id": 47,
+  "lat": 26.1772,
+  "lng": 127.6813
+ },
+ {
+  "name_ko": "나고",
+  "name_ja": "名護",
+  "name_en": "Nago",
+  "prefecture_id": 47,
+  "lat": 26.5916,
+  "lng": 127.9776
+ }
+]

@@ -30,7 +30,7 @@ type PrefSeed = {
 type CitySeed = {
   name_ko: string;
   name_ja: string;
-  name_en: string;
+  name_en: string | null;
   prefecture_id: number;
   lat: number;
   lng: number;
@@ -53,15 +53,22 @@ async function main() {
   if (pErr) throw pErr;
   console.log(`prefectures: ${prefectures.length} upserted`);
 
-  const cities = readJson<CitySeed[]>("data/cities-seed.json").map((c) => ({
-    ...c,
-    is_custom: false,
-  }));
+  // 대표 도시 48개는 upsert(이름·좌표 갱신), 전체 시 792개는 없는 것만 추가
+  const cities = readJson<CitySeed[]>("data/cities-seed.json").map((c) => ({ ...c, is_custom: false }));
   const { error: cErr } = await supabase
     .from("cities")
     .upsert(cities, { onConflict: "prefecture_id,name_ja", ignoreDuplicates: false });
   if (cErr) throw cErr;
-  console.log(`cities: ${cities.length} upserted`);
+  console.log(`cities (seed): ${cities.length} upserted`);
+
+  const all = readJson<CitySeed[]>("data/cities-all.json").map((c) => ({ ...c, is_custom: false }));
+  for (let i = 0; i < all.length; i += 200) {
+    const { error } = await supabase
+      .from("cities")
+      .upsert(all.slice(i, i + 200), { onConflict: "prefecture_id,name_ja", ignoreDuplicates: true });
+    if (error) throw error;
+  }
+  console.log(`cities (all 市): ${all.length} processed`);
 
   const { count } = await supabase.from("cities").select("*", { count: "exact", head: true });
   console.log(`cities in db: ${count}`);

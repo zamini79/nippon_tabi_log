@@ -34,7 +34,8 @@ lib/
 data/
   japan-prefectures.geojson # 47현 경계 (경도/위도, 단순화 완료, 350KB). 저장소에 커밋.
   prefectures.json          # 47현 이름·지방
-  cities-seed.json          # 주요 도시 48개 시드
+  cities-seed.json          # 주요 도시 48개 시드 (관광지 포함, 이름 갱신용 upsert)
+  cities-all.json           # 일본 전체 시(市) 792개 (Wikidata 2026-09-18, ko/ja/en 이름·좌표·현). 없는 것만 추가
 supabase/schema.sql
 scripts/seed.ts             # prefectures/cities upsert (service role)
 ```
@@ -43,7 +44,7 @@ scripts/seed.ts             # prefectures/cities upsert (service role)
 - `trips` (여행) — status `done | planned`, 기간, 메모, 대표사진
 - `visits` (여행 × 도시) — **같은 도시를 여러 번 간 기록은 visits 행 수로 표현**. 도시 방문 횟수 = done 여행의 visits 수
 - `photos` — trip 필수, visit 선택(없으면 여행 전체 사진)
-- `cities` — 시드 48개 + 사용자가 추가하는 `is_custom` 도시. 현(prefecture_id)에 속함
+- `cities` — 시드 48개 + 전체 시 792개(2026-09-18 추가, 합쳐서 796) + 사용자가 추가하는 `is_custom` 도시. 현(prefecture_id)에 속함. 이름은 접미 없이(札幌/삿포로) 저장
 - 현 방문 횟수 = 그 현의 도시를 포함한 **distinct 여행 수** (한 여행에서 오사카·미노오를 가도 오사카부는 1회). 뷰 `v_prefecture_stats`, `v_city_stats` 사용
 - 색 단계: 0 미방문 / 1회 / 2회 / 3회+ / 계획(planned만 있음). 도시 점 크기도 같은 3단계
 

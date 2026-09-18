@@ -6,12 +6,12 @@ import { useActionState, useEffect, useMemo, useState } from "react";
 import { saveTrip, type SaveTripState } from "@/app/trips/actions";
 import { useLang } from "@/lib/lang";
 import { t } from "@/lib/names";
-import type { CityWithPrefecture, CountStat, Prefecture, TripStatus, TripWithCities } from "@/lib/types";
+import type { CityWithPrefecture, CountStat, Prefecture, SlimCity, TripStatus, TripWithCities } from "@/lib/types";
 import { CitySearch } from "./CitySearch";
 
 type Props = {
   trip?: TripWithCities | null;
-  cities: CityWithPrefecture[];
+  cities: SlimCity[];
   prefectures: Prefecture[];
   cityStats: Record<string, CountStat>;
   prefStats: Record<number, CountStat>;
@@ -22,8 +22,15 @@ type Props = {
   compact?: boolean;
 };
 
-export function TripForm({ trip, cities, prefectures, cityStats, prefStats, defaultCityIds = [], defaultStatus = "done", cancelHref, onCancel, compact }: Props) {
+export function TripForm({ trip, cities: slimCities, prefectures, cityStats, prefStats, defaultCityIds = [], defaultStatus = "done", cancelHref, onCancel, compact }: Props) {
   const lang = useLang();
+  const cities = useMemo<CityWithPrefecture[]>(() => {
+    const byId = new Map(prefectures.map((p) => [p.id, p]));
+    return slimCities.flatMap((c) => {
+      const prefecture = byId.get(c.prefecture_id);
+      return prefecture ? [{ ...c, prefecture }] : [];
+    });
+  }, [slimCities, prefectures]);
   const router = useRouter();
   const [state, formAction, pending] = useActionState<SaveTripState, FormData>(saveTrip, null);
 
