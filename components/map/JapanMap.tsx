@@ -192,6 +192,8 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
             })}
           </g>
         ) : null}
+        {/* 마우스를 올린 현의 테두리: 이웃 현·시 경계가 위를 덮어 가려지지 않도록 맨 위에 따로 그린다 */}
+        {hovered ? <path d={hovered.d} fill="none" stroke="var(--ink)" strokeWidth={1.4} strokeLinejoin="round" vectorEffect="non-scaling-stroke" pointerEvents="none" /> : null}
         {insetInView ? <OkinawaInset inset={inset} label={okinawaLabel} k={k} /> : null}
         {mode === "prefectures" && (
           <g>
