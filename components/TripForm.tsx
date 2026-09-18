@@ -43,9 +43,20 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
   const [status, setStatus] = useState<TripStatus>(trip?.status ?? defaultStatus);
   const initialCityIds = useMemo(() => trip?.visits.map((v) => v.city.id) ?? defaultCityIds, [trip, defaultCityIds]);
   const [cityIds, setCityIds] = useState<string[]>(initialCityIds);
-  // 출발일을 고르면 귀국일 달력이 같은 달에서 열리도록, 귀국일이 비어 있거나 출발일보다 이르면 출발일로 맞춘다
+  // 귀국일 자동 지정 규칙: 출발일 입력이 *끝난 뒤*(blur) 또는 귀국일 달력을 여는 순간에만
+  // 귀국일이 비어 있거나 출발일보다 이르면 출발일 + 1일로 맞춘다.
+  // (달력에서 월을 넘길 때마다 input 이벤트가 오므로 onChange 에서 바로 맞추면 중간 값이 들어간다)
   const [startDate, setStartDate] = useState(trip?.start_date ?? "");
   const [endDate, setEndDate] = useState(trip?.end_date ?? "");
+  const plusOneDay = (ymd: string) => {
+    const [y, m, d] = ymd.split("-").map(Number);
+    const t = new Date(Date.UTC(y, m - 1, d + 1));
+    return `${t.getUTCFullYear()}-${String(t.getUTCMonth() + 1).padStart(2, "0")}-${String(t.getUTCDate()).padStart(2, "0")}`;
+  };
+  const syncEndToStart = () => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(startDate)) return;
+    if (!endDate || endDate < startDate) setEndDate(plusOneDay(startDate));
+  };
 
   const cityById = useMemo(() => new Map(cities.map((c) => [c.id, c])), [cities]);
   const prefById = useMemo(() => new Map(prefectures.map((p) => [p.id, p])), [prefectures]);
@@ -125,11 +136,8 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
             name="start_date"
             type="date"
             value={startDate}
-            onChange={(e) => {
-              const v = e.target.value;
-              setStartDate(v);
-              if (v && (!endDate || endDate < v)) setEndDate(v);
-            }}
+            onChange={(e) => setStartDate(e.target.value)}
+            onBlur={syncEndToStart}
             className={inputCls}
           />
         </div>
@@ -142,6 +150,8 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
             value={endDate}
             min={startDate || undefined}
             onChange={(e) => setEndDate(e.target.value)}
+            onPointerDown={syncEndToStart}
+            onFocus={syncEndToStart}
             className={inputCls}
           />
         </div>
