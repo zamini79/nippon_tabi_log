@@ -88,8 +88,8 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
   const router = useRouter();
   const [hover, setHover] = useState<{ id: number; x: number; y: number } | null>(null);
   const zoom = useMapZoom(width, height, MAX_SCALE);
-  // 확대 배율의 역수: 점·글자·테두리는 화면 크기를 유지하고, 라벨 겹침 판정 거리도 화면 기준으로
-  const k = 1 / zoom.scale;
+  // 화면 1px 당 viewBox 단위: 점·글자·테두리는 배율·화면 크기와 무관하게 같은 픽셀 크기, 라벨 겹침 판정 거리도 화면 기준
+  const k = zoom.screenK;
 
   const onMove = (id: number) => (e: MouseEvent<Element>) => {
     const box = e.currentTarget.closest("[data-map-root]")?.getBoundingClientRect();

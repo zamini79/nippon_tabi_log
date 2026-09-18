@@ -26,6 +26,8 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
   const swallowClick = useRef(false);
   const [dragging, setDragging] = useState(false);
   const anim = useRef<number | null>(null);
+  /** svg 가 실제로 그려지는 크기 (모바일에서는 viewBox 보다 작게 축소된다) */
+  const [rendered, setRendered] = useState<{ w: number; h: number } | null>(null);
 
   const setVb = useCallback((next: Box) => {
     vbRef.current = next;
@@ -115,6 +117,19 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
 
   useEffect(() => () => { if (anim.current) cancelAnimationFrame(anim.current); }, []);
 
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const update = () => {
+      const r = el.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0) setRendered({ w: r.width, h: r.height });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   // wheel 은 passive 리스너로는 preventDefault 가 안 되므로 직접 등록
   useEffect(() => {
     const el = svgRef.current;
@@ -152,6 +167,12 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
 
   const scale = width / vb.w;
   const zoomed = scale > 1.0001;
+  /**
+   * 화면 1px 에 해당하는 viewBox 단위. 점 반지름·글자 크기·선 두께에 곱하면 배율·화면 크기와 무관하게 같은 픽셀 크기로 보인다.
+   * 데스크톱처럼 지도가 viewBox 보다 크게 그려질 때는 1/scale 로 두어(더 작아지지 않게) 기존 크기를 유지한다.
+   */
+  const unitsPerPx = rendered ? vb.w / Math.min(rendered.w, (rendered.h * width) / height) : vb.w / width;
+  const screenK = Math.max(vb.w / width, unitsPerPx);
 
   const pinchGeom = () => {
     const [a, b] = [...pointers.current.values()];
@@ -248,6 +269,7 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
     box: vb,
     scale,
     maxScale,
+    screenK,
     zoomed,
     fitTo,
     svgRef,

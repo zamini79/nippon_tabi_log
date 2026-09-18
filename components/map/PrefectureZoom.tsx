@@ -67,7 +67,7 @@ export function PrefectureZoom({ width, height, target, neighbors, cities, pickM
   const shaped = cities.filter((c) => c.d && (c.visit_count > 0 || c.planned));
   const targetFill = shaped.length ? "var(--land)" : target.level === "plan" ? "var(--plan-bg)" : FILL[target.level];
   const zoom = useMapZoom(width, height);
-  const k = 1 / zoom.scale;
+  const k = zoom.screenK; // 화면 1px 당 viewBox 단위 (모바일 축소 시에도 글자·점이 같은 픽셀 크기)
   const handlePick = (e: React.MouseEvent<SVGSVGElement>) => {
     if (!pickMode || !onPick) return;
     const p = zoom.toViewBox(e.clientX, e.clientY);
