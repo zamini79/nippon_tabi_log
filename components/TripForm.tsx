@@ -43,6 +43,9 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
   const [status, setStatus] = useState<TripStatus>(trip?.status ?? defaultStatus);
   const initialCityIds = useMemo(() => trip?.visits.map((v) => v.city.id) ?? defaultCityIds, [trip, defaultCityIds]);
   const [cityIds, setCityIds] = useState<string[]>(initialCityIds);
+  // 출발일을 고르면 귀국일 달력이 같은 달에서 열리도록, 귀국일이 비어 있거나 출발일보다 이르면 출발일로 맞춘다
+  const [startDate, setStartDate] = useState(trip?.start_date ?? "");
+  const [endDate, setEndDate] = useState(trip?.end_date ?? "");
 
   const cityById = useMemo(() => new Map(cities.map((c) => [c.id, c])), [cities]);
   const prefById = useMemo(() => new Map(prefectures.map((p) => [p.id, p])), [prefectures]);
@@ -117,11 +120,30 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="trip-start" className={lblCls}>출발</label>
-          <input id="trip-start" name="start_date" type="date" defaultValue={trip?.start_date ?? ""} className={inputCls} />
+          <input
+            id="trip-start"
+            name="start_date"
+            type="date"
+            value={startDate}
+            onChange={(e) => {
+              const v = e.target.value;
+              setStartDate(v);
+              if (v && (!endDate || endDate < v)) setEndDate(v);
+            }}
+            className={inputCls}
+          />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="trip-end" className={lblCls}>귀국</label>
-          <input id="trip-end" name="end_date" type="date" defaultValue={trip?.end_date ?? ""} className={inputCls} />
+          <input
+            id="trip-end"
+            name="end_date"
+            type="date"
+            value={endDate}
+            min={startDate || undefined}
+            onChange={(e) => setEndDate(e.target.value)}
+            className={inputCls}
+          />
         </div>
       </div>
 
