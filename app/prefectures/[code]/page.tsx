@@ -96,7 +96,7 @@ export default async function PrefecturePage({ params, searchParams }: Props) {
   return (
     <>
       <AppHeader subtitle={subtitle} />
-      <main className="flex flex-col gap-4 px-5 py-5 md:px-12 md:pb-9">
+      <main className="flex flex-col gap-4 px-5 py-5 md:px-12 md:pb-6">
         <Breadcrumb prefecture={prefecture} />
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-8">

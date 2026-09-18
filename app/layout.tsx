@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Gowun_Batang, IBM_Plex_Sans_KR, Noto_Serif_JP } from "next/font/google";
 import { cookies } from "next/headers";
 import { MobileTabBar } from "@/components/MobileTabBar";
-import { SideNav } from "@/components/SideNav";
+import { SideNav, type SideNavSummary } from "@/components/SideNav";
+import { getCityStats, getPrefectureStats, getTrips } from "@/lib/data";
 import { LangProvider } from "@/lib/lang";
 import { LANG_COOKIE, parseLang } from "@/lib/lang-cookie";
 import "./globals.css";
@@ -48,8 +49,22 @@ export const viewport: Viewport = {
   themeColor: "#F4EFE6",
 };
 
+/** 사이드바 요약(다녀온 도시·현·여행 수). 조회 실패 시 표시만 생략 */
+async function loadSummary(): Promise<SideNavSummary | null> {
+  try {
+    const [cityStats, prefStats, trips] = await Promise.all([getCityStats(), getPrefectureStats(), getTrips()]);
+    return {
+      cities: cityStats.filter((s) => s.visit_count > 0).length,
+      prefectures: prefStats.filter((s) => s.visit_count > 0).length,
+      trips: trips.filter((t) => t.status === "done").length,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export default async function RootLayout({ children, modal }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
-  const cookieStore = await cookies();
+  const [cookieStore, summary] = await Promise.all([cookies(), loadSummary()]);
   const lang = parseLang(cookieStore.get(LANG_COOKIE)?.value);
   return (
     <html lang={lang} data-lang={lang} className={`${display.variable} ${body.variable} ${ja.variable}`}>
@@ -57,7 +72,7 @@ export default async function RootLayout({ children, modal }: Readonly<{ childre
         <LangProvider initial={lang}>
           {/* 데스크톱: 왼쪽 메뉴 1 : 본문 9 (본문 안에서 지도 6 : 세부 3). 모바일은 헤더 + 하단 탭 */}
           <div className="md:grid md:grid-cols-[minmax(132px,1fr)_9fr]">
-            <SideNav />
+            <SideNav summary={summary} />
             <div className="min-w-0 pb-[92px] md:pb-0">{children}</div>
           </div>
           {modal}

@@ -93,7 +93,8 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
 
   return (
     <div data-map-root className={`relative ${className ?? ""}`}>
-      <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full" role="img" aria-label="일본 지도">
+      {/* 데스크톱에서는 지도가 한 화면 안에 들어오도록 세로를 뷰포트 기준으로 제한 (비율 유지, 가운데 정렬) */}
+      <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full lg:max-h-[calc(100dvh-140px)]" role="img" aria-label="일본 지도">
         <g>
           {prefectures.map((p) => {
             // 현 별 보기: 항상 단계 색. 도시 지도: '다녀온 곳' 필터면 방문 현 색칠, '계획' 필터면 계획 현 점선

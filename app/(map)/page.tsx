@@ -90,7 +90,7 @@ export default async function HomePage() {
   return (
     <>
       <AppHeader subtitle={subtitle} />
-      <main className="grid gap-6 px-5 py-6 md:px-12 md:py-7 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-8">
+      <main className="grid gap-6 px-5 py-6 md:px-12 md:py-5 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-8">
         <MapCard
           width={map.width}
           height={map.height}

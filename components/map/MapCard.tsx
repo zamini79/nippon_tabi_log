@@ -22,7 +22,7 @@ const FILTERS: { key: MapFilter; label: string }[] = [
 export function MapCard(props: Props) {
   const [filter, setFilter] = useState<MapFilter>("all");
   return (
-    <section className="relative flex flex-col rounded-[18px] border border-line bg-card p-3 md:rounded-[20px] md:p-6">
+    <section className="relative flex flex-col rounded-[18px] border border-line bg-card p-3 md:rounded-[20px] md:p-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex gap-1.5" role="group" aria-label="표시 필터">
           {FILTERS.map((f) => (
@@ -62,7 +62,7 @@ export function MapCard(props: Props) {
           )}
         </ul>
       </div>
-      <JapanMap {...props} mode="cities" filter={filter} className="mt-2" />
+      <JapanMap {...props} mode="cities" filter={filter} className="mt-1" />
     </section>
   );
 }
