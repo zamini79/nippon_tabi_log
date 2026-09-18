@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, type MouseEvent, type ReactNode } from "react";
 import { useLang } from "@/lib/lang";
 import { t, tShort } from "@/lib/names";
-import type { Level } from "@/lib/types";
+import { levelOf, type Level } from "@/lib/types";
 import { OkinawaInset } from "./OkinawaInset";
 import { MapZoomControls } from "./MapZoomControls";
 import { useMapZoom } from "./useMapZoom";
@@ -28,8 +28,11 @@ export type MapPrefecture = {
 
 export type MapCity = {
   id: string;
+  prefecture_id: number;
   x: number;
   y: number;
+  /** 시·정·촌 경계 path (방문·계획 도시만, 없으면 점만) */
+  d?: string;
   name_ko: string;
   name_ja: string;
   visit_count: number;
@@ -60,6 +63,8 @@ const MAX_SCALE = 40;
 const DETAIL_SCALE = 6;
 /** 이 배율부터 화면 중심의 현을 '보고 있는 현'으로 판단 */
 const FOCUS_SCALE = 2.5;
+/** 이 배율부터 현 전체가 아니라 다녀온 시(市) 경계만 색칠 */
+const CITY_FILL_SCALE = 3;
 
 /** 라벨 겹침 방지: 중요도(방문 횟수) 순으로 배치하고, 이미 놓인 라벨과 가까우면 생략 */
 function pickLabels<T extends { x: number; y: number; weight: number }>(items: T[], dx = 64, dy = 14): Set<T> {
@@ -123,6 +128,10 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
     if (filter === "planned") return c.planned;
     return c.visit_count > 0 || c.planned || (detail && inView(c));
   });
+  // 확대하면 현 전체 대신 다녀온(계획한) 시 경계를 색칠한다. 경계가 있는 시를 가진 현만 현 색을 뺀다
+  const cityFill = zoom.scale >= CITY_FILL_SCALE;
+  const shapedCities = cityFill ? visibleCities.filter((c) => c.d && (c.visit_count > 0 || c.planned)) : [];
+  const prefsWithShapes = new Set(shapedCities.map((c) => c.prefecture_id));
   const cityLabelItems = visibleCities.map((c) => ({ x: c.x, y: c.y, weight: c.visit_count + (c.planned ? 0.5 : 0), id: c.id }));
   const cityLabels = new Set(Array.from(pickLabels(cityLabelItems, 64 * k, 14 * k)).map((i) => i.id));
   const prefLabelItems = prefectures.filter((p) => p.level !== 0).map((p) => ({ x: p.labelX, y: p.labelY, weight: p.visit_count, id: p.id }));
@@ -143,7 +152,8 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
           {visiblePrefectures.map((p) => {
             // 현 별 보기: 항상 단계 색. 도시 지도: '다녀온 곳' 필터면 방문 현 색칠, '계획' 필터면 계획 현 점선
             let cls = "pf";
-            if (mode === "prefectures") cls = p.level === "plan" ? "pf pp" : `pf p${p.level}`;
+            if (prefsWithShapes.has(p.id)) cls = "pf";
+            else if (mode === "prefectures") cls = p.level === "plan" ? "pf pp" : `pf p${p.level}`;
             else if (filter === "done" && p.visit_count > 0) cls = `pf p${p.level === "plan" ? 0 : p.level}`;
             else if (filter === "planned" && p.planned) cls = "pf pp";
             return (
@@ -164,6 +174,24 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
             );
           })}
         </g>
+        {shapedCities.length ? (
+          <g>
+            {shapedCities.map((c) => {
+              const lv = levelOf(c.visit_count, c.planned ? 1 : 0);
+              return (
+                <path
+                  key={`shape-${c.id}`}
+                  d={c.d}
+                  className={lv === "plan" ? "pf pp" : `pf p${lv}`}
+                  vectorEffect="non-scaling-stroke"
+                  onClick={() => router.push(`/cities/${c.id}`)}
+                  style={{ cursor: "pointer" }}
+                  aria-label={t(c, lang)}
+                />
+              );
+            })}
+          </g>
+        ) : null}
         {insetInView ? <OkinawaInset inset={inset} label={okinawaLabel} k={k} /> : null}
         {mode === "prefectures" && (
           <g>

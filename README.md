@@ -3,6 +3,9 @@
 개인용 일본 여행 기록 웹앱. 다녀온 도시·현을 실제 지도 위에 채워가고, 여행별 사진과 계획을 기록한다.
 사양·규칙은 `CLAUDE.md`, 스키마는 `supabase/schema.sql` 참조.
 
+## 데이터 출처
+- `data/municipalities.topo.json`: 「国土数値情報（行政区域データ）」（国土交通省）을 スマートニュース メディア研究所가 간략화(1%)·정령지정도시 병합한 [japan-topography](https://github.com/smartnews-smri/japan-topography)(N03-21, 2021-01-01) 파일. 국토교통성 출처 표기가 필요하다.
+
 ## 시작하기
 
 ```bash

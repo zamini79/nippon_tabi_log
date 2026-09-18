@@ -45,10 +45,13 @@ export default async function HomePage() {
   const mapCities: MapCity[] = cities.map((c) => {
     const [x, y] = map.project(c.lng, c.lat, c.prefecture_id);
     const s = cityStatById.get(c.id);
+    const active = (s?.visit_count ?? 0) > 0 || (s?.planned_count ?? 0) > 0;
     return {
       id: c.id,
+      prefecture_id: c.prefecture_id,
       x,
       y,
+      d: active ? (map.shapeFor(c.prefecture_id, c.name_ja) ?? undefined) : undefined,
       name_ko: c.name_ko,
       name_ja: c.name_ja,
       visit_count: s?.visit_count ?? 0,

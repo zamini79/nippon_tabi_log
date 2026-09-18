@@ -63,6 +63,7 @@ export function MapCard(props: Props) {
         </ul>
       </div>
       <JapanMap {...props} mode="cities" filter={filter} className="mt-1" />
+      <p className="mt-1 text-right text-[10px] text-sand">시·구·정·촌 경계: 国土数値情報（行政区域データ）（国土交通省）을 가공</p>
     </section>
   );
 }

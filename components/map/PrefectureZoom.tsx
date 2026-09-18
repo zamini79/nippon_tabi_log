@@ -30,6 +30,8 @@ export type ZoomCityView = {
   /** 지도 범위 밖이라 가장자리로 끌어온 개략 위치 */
   approximate?: boolean;
   is_custom?: boolean;
+  /** 시·정·촌 경계 path (방문·계획 도시만) */
+  d?: string;
 };
 
 type Props = {
@@ -61,7 +63,9 @@ function radius(c: ZoomCityView) {
 /** 현 확대 지도. 이웃 현은 옅게, 대상 현은 방문 단계 색, 도시 점 + 이름. */
 export function PrefectureZoom({ width, height, target, neighbors, cities, pickMode, picked, onPick }: Props) {
   const lang = useLang();
-  const targetFill = target.level === "plan" ? "var(--plan-bg)" : FILL[target.level];
+  // 경계가 있는 방문·계획 도시가 하나라도 있으면 현 전체 대신 그 시들만 색칠
+  const shaped = cities.filter((c) => c.d && (c.visit_count > 0 || c.planned));
+  const targetFill = shaped.length ? "var(--land)" : target.level === "plan" ? "var(--plan-bg)" : FILL[target.level];
   const zoom = useMapZoom(width, height);
   const k = 1 / zoom.scale;
   const handlePick = (e: React.MouseEvent<SVGSVGElement>) => {
@@ -93,9 +97,31 @@ export function PrefectureZoom({ width, height, target, neighbors, cities, pickM
           className="zt"
           vectorEffect="non-scaling-stroke"
           fill={targetFill}
-          strokeDasharray={target.level === "plan" ? "4 3" : undefined}
-          stroke={target.level === "plan" ? "var(--plan)" : "var(--ink)"}
+          strokeDasharray={target.level === "plan" && !shaped.length ? "4 3" : undefined}
+          stroke={target.level === "plan" && !shaped.length ? "var(--plan)" : "var(--ink)"}
         />
+        {shaped.length ? (
+          <g style={pickMode ? { pointerEvents: "none" } : undefined}>
+            {shaped.map((c) => {
+              const planned = c.visit_count === 0 && c.planned;
+              const lv = (c.visit_count >= 3 ? 3 : c.visit_count === 2 ? 2 : 1) as 1 | 2 | 3;
+              return (
+                <Link key={`shape-${c.id}`} href={`/cities/${c.id}`} aria-label={t(c, lang)}>
+                  <path
+                    d={c.d}
+                    fill={planned ? "var(--plan-bg)" : FILL[lv]}
+                    stroke={planned ? "var(--plan)" : "var(--card)"}
+                    strokeWidth={planned ? 1.4 : 0.9}
+                    strokeDasharray={planned ? "3 2" : undefined}
+                    strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke"
+                    className="hover:brightness-95"
+                  />
+                </Link>
+              );
+            })}
+          </g>
+        ) : null}
         <g>
           {neighbors
             .filter((n) => Number.isFinite(n.labelX) && Number.isFinite(n.labelY))

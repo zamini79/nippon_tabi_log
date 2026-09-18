@@ -64,6 +64,7 @@ export default async function PrefecturePage({ params, searchParams }: Props) {
       planned: (s?.planned_count ?? 0) > 0,
       approximate: zoom.isApproximate(c.lng, c.lat),
       is_custom: c.is_custom,
+      d: (s?.visit_count ?? 0) > 0 || (s?.planned_count ?? 0) > 0 ? (zoom.shapeFor(c.prefecture_id, c.name_ja) ?? undefined) : undefined,
     };
   });
 
@@ -132,7 +133,7 @@ export default async function PrefecturePage({ params, searchParams }: Props) {
               />
             </div>
             <div className="absolute bottom-5 right-6 hidden rounded-lg bg-bg px-3 py-2 text-xs text-muted md:block">
-              이웃 현을 누르면 이동 · 도시 점을 누르면 기록으로
+              이웃 현을 누르면 이동 · 도시 점을 누르면 기록으로 · 시·구·정·촌 경계: 国土数値情報（行政区域データ）（国土交通省）을 가공
             </div>
           </section>
 

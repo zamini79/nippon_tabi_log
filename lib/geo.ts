@@ -1,8 +1,10 @@
 import "server-only";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { geoContains, geoMercator, geoPath, type GeoProjection } from "d3-geo";
-import type { Feature, FeatureCollection, MultiPolygon } from "geojson";
+import { geoContains, geoMercator, geoPath, type GeoPath, type GeoProjection } from "d3-geo";
+import type { Feature, FeatureCollection, Geometry, MultiPolygon, Polygon as GeoPolygon } from "geojson";
+import { feature as topoFeature, merge as topoMerge } from "topojson-client";
+import type { GeometryCollection, MultiPolygon as TopoMultiPolygon, Polygon as TopoPolygon, Topology } from "topojson-specification";
 
 /**
  * 투영·경로 생성. 서버에서 1회 계산해 모듈 캐시에 둔다.
@@ -39,6 +41,74 @@ function loadFeatures(): PrefFeature[] {
     return { ...f, geometry: { ...f.geometry, coordinates } };
   });
   return featureCache;
+}
+
+/* ---------- 시·구·정·촌 경계 (국토수치정보 N03 → smartnews-smri/japan-topography 간략화 1% TopoJSON) ---------- */
+
+type MuniProps = { N03_001: string; N03_002: string | null; N03_003: string | null; N03_004: string | null; N03_007: string };
+type MuniFeature = Feature<GeoPolygon | MultiPolygon, MuniProps>;
+type Shape = Feature<Geometry>;
+
+/** 접미(市·町·村·区)를 뗀 이름. DB 의 name_ja 는 접미 없이 저장된다 */
+function stemName(name: string): string {
+  return name.replace(/(市|町|村|区)$/u, "");
+}
+function muniRank(p: MuniProps): number {
+  if (p.N03_003 && !p.N03_004) return 3; // 정령지정도시(구 병합)
+  const n = p.N03_004 ?? "";
+  return n.endsWith("市") ? 3 : n.endsWith("区") ? 2 : 1; // 같은 이름이면 市 > 区 > 町村
+}
+
+let muniCache: Map<string, Shape> | null = null;
+
+/** key `${prefectureId}|${stem}` → 경계. 도쿄 23구는 하나로 병합해 `13|東京` 으로도 넣는다 */
+function loadMunicipalities(): Map<string, Shape> {
+  if (muniCache) return muniCache;
+  const file = path.join(process.cwd(), "data", "municipalities.topo.json");
+  const topo = JSON.parse(readFileSync(file, "utf8")) as Topology;
+  const objectName = Object.keys(topo.objects)[0];
+  const collection = topo.objects[objectName] as GeometryCollection<MuniProps>;
+  const fc = topoFeature(topo, collection) as FeatureCollection<GeoPolygon | MultiPolygon, MuniProps>;
+  const prefIdByName = new Map(loadFeatures().map((f) => [f.properties.name_ja, f.properties.id]));
+
+  const map = new Map<string, Shape>();
+  const rank = new Map<string, number>();
+  fc.features.forEach((f: MuniFeature) => {
+    const pid = prefIdByName.get(f.properties.N03_001);
+    const name = f.properties.N03_003 ?? f.properties.N03_004;
+    if (!pid || !name) return;
+    const key = `${pid}|${stemName(name)}`;
+    const r = muniRank(f.properties);
+    if ((rank.get(key) ?? -1) >= r) return;
+    rank.set(key, r);
+    map.set(key, f as Shape);
+  });
+  // 도쿄 23구 → '東京' (DB 의 도쿄 도시). 구 사이 경계를 지우고 하나의 MultiPolygon 으로
+  const wards = collection.geometries.filter(
+    (g): g is TopoPolygon<MuniProps> | TopoMultiPolygon<MuniProps> =>
+      (g.type === "Polygon" || g.type === "MultiPolygon") && /^131(0[1-9]|1\d|2[0-3])$/.test((g.properties as MuniProps | undefined)?.N03_007 ?? ""),
+  );
+  if (wards.length) {
+    const tokyoId = prefIdByName.get("東京都");
+    if (tokyoId) map.set(`${tokyoId}|東京`, { type: "Feature", properties: {}, geometry: topoMerge(topo, wards) });
+  }
+  muniCache = map;
+  return map;
+}
+
+/** DB 도시(name_ja 접미 없음) 에 해당하는 시·정·촌 경계. 없으면 null (사용자 추가 도시, 섬·온천지 등) */
+export function municipalityFeature(prefectureId: number, nameJa: string): Shape | null {
+  return loadMunicipalities().get(`${prefectureId}|${stemName(nameJa)}`) ?? null;
+}
+
+/** 경계를 주어진 투영으로 그린 path d. within 이 있으면 그 상자 안에 완전히 들어올 때만 (인셋 밖으로 새지 않게) */
+function shapePath(pathGen: GeoPath, f: Shape | null, within?: { x: number; y: number; w: number; h: number }): string | null {
+  if (!f) return null;
+  if (within) {
+    const [[x0, y0], [x1, y1]] = pathGen.bounds(f);
+    if (x0 < within.x || y0 < within.y || x1 > within.x + within.w || y1 > within.y + within.h) return null;
+  }
+  return pathGen(f) || null;
 }
 
 export type Bbox = [minLng: number, minLat: number, maxLng: number, maxLat: number];
@@ -122,6 +192,8 @@ export type NationalMap = {
   project: Projector;
   /** 인셋 범위 밖이라 개략 위치로 끌어온 점인지 */
   isApproximate: (lng: number, lat: number, prefectureId: number) => boolean;
+  /** 도시(시·정·촌) 경계 path. 경계 데이터가 없거나 인셋 밖이면 null */
+  shapeFor: (prefectureId: number, nameJa: string) => string | null;
 };
 
 const nationalCache = new Map<string, NationalMap>();
@@ -178,7 +250,12 @@ export function getNationalMap(width = 700, height = 760): NationalMap {
     return Number.isFinite(p[0]) && clampInto(p, inset, 14).clamped;
   };
 
-  const result: NationalMap = { width, height, inset, prefectures, project, isApproximate };
+  const shapeFor = (prefectureId: number, nameJa: string) => {
+    const f = municipalityFeature(prefectureId, nameJa);
+    return prefectureId === OKINAWA_ID ? shapePath(okPath, f, inset) : shapePath(mainPath, f);
+  };
+
+  const result: NationalMap = { width, height, inset, prefectures, project, isApproximate, shapeFor };
   nationalCache.set(key, result);
   return result;
 }
@@ -194,6 +271,8 @@ export type ZoomMap = {
   isApproximate: (lng: number, lat: number) => boolean;
   /** geoMercator 의 scale/translate — 클라이언트에서 클릭 위치 → 경위도 역변환에 사용 */
   mercator: { scale: number; translate: [number, number] };
+  /** 도시(시·정·촌) 경계 path (이 확대 투영 기준) */
+  shapeFor: (prefectureId: number, nameJa: string) => string | null;
 };
 
 const zoomCache = new Map<string, ZoomMap>();
@@ -256,6 +335,7 @@ export function getPrefectureZoom(id: number, width = 790, height = 670): ZoomMa
     project,
     isApproximate,
     mercator: { scale: proj.scale(), translate: proj.translate() as [number, number] },
+    shapeFor: (prefectureId, nameJa) => shapePath(pathGen, municipalityFeature(prefectureId, nameJa)),
   };
   zoomCache.set(key, result);
   return result;

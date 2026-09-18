@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
-import { JapanMap, type MapPrefecture } from "@/components/map/JapanMap";
-import { getCities, getPrefectureStats, getPrefectures, getTripsWithCities } from "@/lib/data";
+import { JapanMap, type MapCity, type MapPrefecture } from "@/components/map/JapanMap";
+import { getCities, getCityStats, getPrefectureStats, getPrefectures, getTripsWithCities } from "@/lib/data";
 import { getNationalMap, OKINAWA_ID } from "@/lib/geo";
 import { newPrefectureIdsForTrip, pickNextGoal, summarizeRegions, toStatMap } from "@/lib/goal";
 import { daysUntil } from "@/lib/format";
@@ -13,11 +13,12 @@ export const metadata = { title: "47현 채우기" };
 
 /** 3 · 47현 채우기: 전국 choropleth + 지방별 진행 바·47현 칩 + 규칙 기반 다음 목표 */
 export default async function PrefecturesPage() {
-  const [prefectures, prefStats, trips, cities] = await Promise.all([
+  const [prefectures, prefStats, trips, cities, cityStats] = await Promise.all([
     getPrefectures(),
     getPrefectureStats(),
     getTripsWithCities(),
     getCities(),
+    getCityStats(),
   ]);
   const map = getNationalMap();
   const prefById = new Map(prefectures.map((p) => [p.id, p]));
@@ -34,6 +35,15 @@ export default async function PrefecturesPage() {
       visit_count: s?.visit_count ?? 0,
       level: levelOf(s?.visit_count ?? 0, s?.planned_count ?? 0),
     };
+  });
+
+  // 확대하면 현 대신 시 경계를 색칠하기 위한 방문·계획 도시 (경계가 있는 것만 의미 있음)
+  const cityStatById = new Map(cityStats.map((s) => [s.city_id, s]));
+  const mapCities: MapCity[] = cities.flatMap((c) => {
+    const s = cityStatById.get(c.id);
+    if (!s || (s.visit_count === 0 && s.planned_count === 0)) return [];
+    const [x, y] = map.project(c.lng, c.lat, c.prefecture_id);
+    return [{ id: c.id, prefecture_id: c.prefecture_id, x, y, d: map.shapeFor(c.prefecture_id, c.name_ja) ?? undefined, name_ko: c.name_ko, name_ja: c.name_ja, visit_count: s.visit_count, planned: s.planned_count > 0 }];
   });
 
   const visited = prefectures.filter((p) => (stats[p.id]?.visit_count ?? 0) > 0).length;
@@ -84,10 +94,11 @@ export default async function PrefecturesPage() {
             height={map.height}
             inset={map.inset}
             prefectures={mapPrefectures}
-            cities={[]}
+            cities={mapCities}
             mode="prefectures"
             okinawaLabel={okinawa ? <OkinawaLabel prefecture={okinawa} /> : null}
           />
+          <p className="text-right text-[10px] text-sand">시·구·정·촌 경계: 国土数値情報（行政区域データ）（国土交通省）을 가공</p>
         </section>
 
         <aside className="flex flex-col gap-4">
