@@ -32,11 +32,10 @@ lib/
   geo.ts                    # 투영·경로 생성 (서버에서 1회 계산해 캐시)
   names.ts                  # t(entity, lang) → 이름
 data/
-  japan-prefectures.geojson # 47현 경계 (경도/위도, 단순화 완료, 350KB). 저장소에 커밋.
   prefectures.json          # 47현 이름·지방
   cities-seed.json          # 주요 도시 48개 시드 (관광지 포함, 이름 갱신용 upsert)
   cities-all.json           # 일본 전체 시(市) 792개 (Wikidata 2026-09-18, ko/ja/en 이름·좌표·현). 없는 것만 추가
-  municipalities.topo.json  # 시·구·정·촌 경계 TopoJSON 1.5MB (국토수치정보 N03-21 → smartnews-smri/japan-topography 간략화 1%, 정령지정도시 구 병합). 서버 전용, 국토교통성 출처 표기 필수
+  municipalities.topo.json  # 시·구·정·촌 경계 TopoJSON 1.5MB (국토수치정보 N03-21 → smartnews-smri/japan-topography 간략화 1%, 정령지정도시 구 병합). 서버 전용, 국토교통성 출처 표기 필수. **47현 경계도 이 파일에서 시·구·정·촌을 병합해 만든다**(별도 현 GeoJSON 없음, 2026-09-19) — 그래서 현·시 경계 끝단이 정확히 맞는다
 supabase/schema.sql
 scripts/seed.ts             # prefectures/cities upsert (service role)
 ```
@@ -50,6 +49,7 @@ scripts/seed.ts             # prefectures/cities upsert (service role)
 - 색 단계: 0 미방문 / 1회 / 2회 / 3회+ / 계획(planned만 있음). 도시 점 크기도 같은 3단계
 
 ## 지도 구현 규칙
+- 경계 LOD(2026-09-19): 전국 지도는 토폴로지를 `topojson-simplify`(quantile 0.35)로 간략화한 현 경계(path 총 ≈350K자), 현 확대 화면·`/api/shapes/[code]`·시 경계는 원본(간략화 1%). 두 본은 같은 점을 공유하므로 3배 이상 확대 시 화면에 보이는 현들을 API 의 상세 `outline` 으로 바꿔 그리면(JapanMap `prefDetail`) 시 구분선·색칠과 어긋나지 않는다. 북방영토 6개 촌·소속미정지는 제외
 - 투영: `geoMercator`. 본토는 `fitExtent`로 컨테이너에 맞추고, 오키나와(id 47)는 별도 인셋 박스에 따로 투영 (좌하단, 점선 테두리). 오가사와라 등 lat<30.5 도서는 이미 데이터에서 제외됨
 - 전국 지도: 현 경계 `stroke #FFFDF9 0.9px`, 도시 점은 lat/lng를 같은 투영으로. 현 `<path>` hover 시 이름 툴팁, click → `/prefectures/[code]`
 - 현 확대: 해당 현 bbox + 여백으로 fitExtent, 이웃 현은 opacity .55, 그 안의 도시 점 + 이름. 브레드크럼 `전국 › 지방 › 현 (› 도시)`

@@ -4,11 +4,12 @@ import path from "node:path";
 import { geoContains, geoMercator, geoPath, type GeoPath, type GeoProjection } from "d3-geo";
 import type { Feature, FeatureCollection, Geometry, MultiPolygon, Polygon as GeoPolygon } from "geojson";
 import { feature as topoFeature, merge as topoMerge } from "topojson-client";
-import type { GeometryCollection, MultiPolygon as TopoMultiPolygon, Polygon as TopoPolygon, Topology } from "topojson-specification";
+import { presimplify, quantile, simplify } from "topojson-simplify";
+import type { GeometryCollection, MultiPolygon as TopoMultiPolygon, Objects, Polygon as TopoPolygon, Topology } from "topojson-specification";
 
 /**
  * 투영·경로 생성. 서버에서 1회 계산해 모듈 캐시에 둔다.
- * GeoJSON(350KB) 은 클라이언트 번들에 넣지 않고, 완성된 path 문자열만 넘긴다.
+ * 경계 데이터(TopoJSON 1.5MB) 는 클라이언트 번들에 넣지 않고, 완성된 path 문자열만 넘긴다.
  */
 
 export type PrefProps = {
@@ -27,25 +28,88 @@ export const OKINAWA_ID = 47;
 /** 이 위도보다 남쪽에만 있는 도서(오가사와라 등)는 본토 지도에서 제외 */
 const SOUTH_LIMIT = 30.5;
 
-let featureCache: PrefFeature[] | null = null;
+/* ---------- 경계 데이터: 시·구·정·촌 TopoJSON 하나에서 현 경계까지 만든다 (같은 데이터라 끝단이 정확히 맞는다) ---------- */
 
-function loadFeatures(): PrefFeature[] {
-  if (featureCache) return featureCache;
-  const file = path.join(process.cwd(), "data", "japan-prefectures.geojson");
-  const raw = JSON.parse(readFileSync(file, "utf8")) as FeatureCollection<MultiPolygon, PrefProps>;
-  featureCache = raw.features.map((f) => {
-    if (f.properties.id === OKINAWA_ID) return f;
-    const coordinates = f.geometry.coordinates.filter((poly) =>
-      poly[0].some(([, lat]) => lat >= SOUTH_LIMIT),
-    );
-    return { ...f, geometry: { ...f.geometry, coordinates } };
+type MuniProps = { N03_001: string; N03_002: string | null; N03_003: string | null; N03_004: string | null; N03_007: string };
+type MuniGeom = TopoPolygon<MuniProps> | TopoMultiPolygon<MuniProps>;
+type PrefRow = { id: number; name_ko: string; name_ko_short: string; name_ja: string; name_en: string; region: string; region_ko: string; region_ja: string };
+
+/** 전국 지도용 간략화 수준: 점의 상위 35% 만 남긴다 (현 경계 path 총 ≈350K 자, 기존 GeoJSON 과 비슷) */
+const SIMPLIFY_QUANTILE = 0.35;
+
+type TopoBundle = {
+  /** 원본(간략화 1%) — 현 확대 화면·시 경계·확대 시 상세 현 경계 */
+  raw: Topology;
+  /** 전국 지도용으로 더 간략화한 것. 원본과 점을 공유하므로 확대 시 상세본으로 바꿔도 어긋남 없이 겹친다 */
+  simplified: Topology;
+  objectName: string;
+  prefRows: PrefRow[];
+  prefIdByName: Map<string, number>;
+};
+
+let bundleCache: TopoBundle | null = null;
+
+function isMuniGeom(g: { type: string | null }): g is MuniGeom {
+  return g.type === "Polygon" || g.type === "MultiPolygon";
+}
+
+function loadTopology(): TopoBundle {
+  if (bundleCache) return bundleCache;
+  const raw = JSON.parse(readFileSync(path.join(process.cwd(), "data", "municipalities.topo.json"), "utf8")) as Topology;
+  const objectName = Object.keys(raw.objects)[0];
+  const collection = raw.objects[objectName] as GeometryCollection<MuniProps>;
+  // 제외: 북방영토 6개 촌(01695–01700), 소속 미정지
+  collection.geometries = collection.geometries.filter((g) => {
+    const p = g.properties as MuniProps | undefined;
+    if (!p?.N03_001) return false;
+    if (/^(0169[5-9]|01700)$/.test(p.N03_007 ?? "")) return false;
+    if ((p.N03_004 ?? "").endsWith("所属未定地")) return false;
+    return true;
   });
+  const prefRows = JSON.parse(readFileSync(path.join(process.cwd(), "data", "prefectures.json"), "utf8")) as PrefRow[];
+  const prefIdByName = new Map(prefRows.map((r) => [r.name_ja, r.id]));
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- topojson-simplify 의 타입 시그니처가 Objects<{}> 를 요구
+  const pre = presimplify(raw as Topology<Objects<{}>>);
+  const simplified = simplify(pre, quantile(pre, SIMPLIFY_QUANTILE)) as Topology;
+  bundleCache = { raw, simplified, objectName, prefRows, prefIdByName };
+  return bundleCache;
+}
+
+function muniGeometries(topo: Topology, objectName: string, nameJa: string): MuniGeom[] {
+  const collection = topo.objects[objectName] as GeometryCollection<MuniProps>;
+  return collection.geometries.filter((g): g is MuniGeom => isMuniGeom(g) && (g.properties as MuniProps | undefined)?.N03_001 === nameJa);
+}
+
+/** 한 토폴로지에서 47현 MultiPolygon 을 시·구·정·촌 병합으로 만든다 (오키나와 외에는 lat<30.5 도서 제외) */
+function buildPrefFeatures(topo: Topology): PrefFeature[] {
+  const { objectName, prefRows } = loadTopology();
+  return prefRows.map((r) => {
+    const merged = topoMerge(topo, muniGeometries(topo, objectName, r.name_ja));
+    const coordinates = r.id === OKINAWA_ID ? merged.coordinates : merged.coordinates.filter((poly) => poly[0].some(([, lat]) => lat >= SOUTH_LIMIT));
+    return {
+      type: "Feature",
+      properties: { id: r.id, code: String(r.id).padStart(2, "0"), name_ko: r.name_ko, name_ja: r.name_ja, name_en: r.name_en, region: r.region, region_ko: r.region_ko, region_ja: r.region_ja },
+      geometry: { type: "MultiPolygon", coordinates },
+    };
+  });
+}
+
+let featureCache: PrefFeature[] | null = null;
+let detailedCache: PrefFeature[] | null = null;
+
+/** 전국 지도용 현 경계 (간략화본) */
+function loadFeatures(): PrefFeature[] {
+  if (!featureCache) featureCache = buildPrefFeatures(loadTopology().simplified);
   return featureCache;
+}
+/** 상세 현 경계 (원본) — 현 확대 화면, 확대 시 교체용, 경계 안 판정 */
+function loadDetailedFeatures(): PrefFeature[] {
+  if (!detailedCache) detailedCache = buildPrefFeatures(loadTopology().raw);
+  return detailedCache;
 }
 
 /* ---------- 시·구·정·촌 경계 (국토수치정보 N03 → smartnews-smri/japan-topography 간략화 1% TopoJSON) ---------- */
 
-type MuniProps = { N03_001: string; N03_002: string | null; N03_003: string | null; N03_004: string | null; N03_007: string };
 type MuniFeature = Feature<GeoPolygon | MultiPolygon, MuniProps>;
 type Shape = Feature<Geometry>;
 
@@ -66,12 +130,9 @@ let muniByPref: Map<number, Shape[]> | null = null;
 /** key `${prefectureId}|${stem}` → 경계. 도쿄 23구는 하나로 병합해 `13|東京` 으로도 넣는다 */
 function loadMunicipalities(): Map<string, Shape> {
   if (muniCache) return muniCache;
-  const file = path.join(process.cwd(), "data", "municipalities.topo.json");
-  const topo = JSON.parse(readFileSync(file, "utf8")) as Topology;
-  const objectName = Object.keys(topo.objects)[0];
+  const { raw: topo, objectName, prefIdByName } = loadTopology();
   const collection = topo.objects[objectName] as GeometryCollection<MuniProps>;
   const fc = topoFeature(topo, collection) as FeatureCollection<GeoPolygon | MultiPolygon, MuniProps>;
-  const prefIdByName = new Map(loadFeatures().map((f) => [f.properties.name_ja, f.properties.id]));
 
   const map = new Map<string, Shape>();
   const rank = new Map<string, number>();
@@ -208,6 +269,8 @@ export type NationalMap = {
   shapeFor: (prefectureId: number, nameJa: string) => string | null;
   /** 한 현의 모든 시·정·촌 경계 path (확대 시 구분선용) */
   outlinesFor: (prefectureId: number) => string[];
+  /** 상세(원본) 현 경계 path — 확대 시 간략화본을 이것으로 바꿔 시 경계와 끝단을 맞춘다 */
+  detailedOutlineFor: (prefectureId: number) => string | null;
 };
 
 const nationalCache = new Map<string, NationalMap>();
@@ -274,7 +337,13 @@ export function getNationalMap(width = 700, height = 760): NationalMap {
       .map((f) => (prefectureId === OKINAWA_ID ? shapePath(okPath, f, inset) : shapePath(mainPath, f)))
       .filter((d): d is string => !!d);
 
-  const result: NationalMap = { width, height, inset, prefectures, project, isApproximate, shapeFor, outlinesFor };
+  const detailedOutlineFor = (prefectureId: number) => {
+    const f = loadDetailedFeatures().find((x) => x.properties.id === prefectureId);
+    if (!f) return null;
+    return prefectureId === OKINAWA_ID ? okPath(f) || null : mainPath(f) || null;
+  };
+
+  const result: NationalMap = { width, height, inset, prefectures, project, isApproximate, shapeFor, outlinesFor, detailedOutlineFor };
   nationalCache.set(key, result);
   return result;
 }
@@ -304,7 +373,7 @@ export function getPrefectureZoom(id: number, width = 790, height = 670): ZoomMa
   const hit = zoomCache.get(key);
   if (hit) return hit;
 
-  const features = loadFeatures();
+  const features = loadDetailedFeatures();
   const target = features.find((f) => f.properties.id === id);
   if (!target) throw new Error(`prefecture ${id} not found`);
 
@@ -314,7 +383,8 @@ export function getPrefectureZoom(id: number, width = 790, height = 670): ZoomMa
     [[pad, pad], [width - pad, height - pad]],
     focus,
   );
-  const pathGen = geoPath(proj);
+  // 확대 화면은 소수 2자리면 충분 (0.01 단위 = 8배 확대 시 0.1px). 경로 문자열이 15% 안팎 줄어든다
+  const pathGen = geoPath(proj).digits(2);
 
   const tb = bboxOf(focus);
   const grow = 0.6;
@@ -371,6 +441,6 @@ export function prefectureIdFromCode(code: string): number | null {
 
 /** 경위도가 해당 현 경계(원거리 도서 포함) 안에 있는지 */
 export function isInsidePrefecture(prefectureId: number, lng: number, lat: number): boolean {
-  const f = loadFeatures().find((x) => x.properties.id === prefectureId);
+  const f = loadDetailedFeatures().find((x) => x.properties.id === prefectureId);
   return f ? geoContains(f, [lng, lat]) : false;
 }

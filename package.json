@@ -21,6 +21,7 @@
     "server-only": "^0.0.1",
     "sharp": "^0.35.4",
     "topojson-client": "^3.1.0",
+    "topojson-simplify": "^3.0.3",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/topojson-client": "^3.1.5",
+    "@types/topojson-simplify": "^3.0.3",
     "@types/topojson-specification": "^1.0.5",
     "dotenv": "^17.4.2",
     "eslint": "^9",

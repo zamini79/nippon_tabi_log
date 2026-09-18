@@ -66,8 +66,9 @@ const FOCUS_SCALE = 2.5;
 /** 이 배율부터 현 전체가 아니라 다녀온 시(市) 경계만 색칠 (같은 배율부터 그 현의 모든 시 구분선도 그림) */
 const CITY_FILL_SCALE = 3;
 
-/** 현별 시·정·촌 구분선 path 캐시 (모듈 수준: 페이지 이동 후에도 재요청 없음) */
-const outlineCache = new Map<string, string[]>();
+/** 현별 상세 경계·시·정·촌 구분선 캐시 (모듈 수준: 페이지 이동 후에도 재요청 없음) */
+type PrefDetail = { outline: string | null; paths: string[] };
+const detailCache = new Map<string, PrefDetail>();
 
 /** 라벨 겹침 방지: 중요도(방문 횟수) 순으로 배치하고, 이미 놓인 라벨과 가까우면 생략 */
 function pickLabels<T extends { x: number; y: number; weight: number }>(items: T[], dx = 64, dy = 14): Set<T> {
@@ -136,30 +137,34 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
   const shapedCities = cityFill ? visibleCities.filter((c) => c.d && (c.visit_count > 0 || c.planned)) : [];
   const prefsWithShapes = new Set(shapedCities.map((c) => c.prefecture_id));
 
-  // 보고 있는 현의 시·정·촌 구분선: 확대했을 때만 서버에서 받아온다 (전 도시 경계를 처음부터 실어 보내지 않기 위해)
-  const outlineCode = cityFill && focused ? focused.code : null;
-  const [outlines, setOutlines] = useState<Record<string, string[]>>({});
+  // 확대하면 화면에 보이는 현들의 상세 경계 + 시·정·촌 구분선을 서버에서 받아 간략화본과 바꿔 그린다.
+  // (전국 지도는 간략화본으로 가볍게 싣고, 확대한 곳만 시 경계와 같은 데이터의 상세본으로 → 끝단이 정확히 맞는다)
+  const [prefDetail, setPrefDetail] = useState<Record<string, PrefDetail>>({});
+  const wantedCodes = cityFill ? visiblePrefectures.map((p) => p.code).filter((c) => !prefDetail[c]).join(",") : "";
   useEffect(() => {
-    if (!outlineCode || outlines[outlineCode]) return;
-    const cached = outlineCache.get(outlineCode);
-    if (cached) {
-      setOutlines((o) => ({ ...o, [outlineCode]: cached }));
-      return;
-    }
+    if (!wantedCodes) return;
     let cancelled = false;
-    fetch(`/api/shapes/${outlineCode}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j: { paths?: string[] } | null) => {
-        if (cancelled || !j?.paths) return;
-        outlineCache.set(outlineCode, j.paths);
-        setOutlines((o) => ({ ...o, [outlineCode]: j.paths! }));
-      })
-      .catch(() => {});
+    for (const code of wantedCodes.split(",")) {
+      const cached = detailCache.get(code);
+      if (cached) {
+        setPrefDetail((d) => (d[code] ? d : { ...d, [code]: cached }));
+        continue;
+      }
+      fetch(`/api/shapes/${code}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((j: PrefDetail | null) => {
+          if (cancelled || !j?.paths) return;
+          detailCache.set(code, j);
+          setPrefDetail((d) => ({ ...d, [code]: j }));
+        })
+        .catch(() => {});
+    }
     return () => {
       cancelled = true;
     };
-  }, [outlineCode, outlines]);
-  const outlinePaths = outlineCode ? outlines[outlineCode] ?? [] : [];
+  }, [wantedCodes]);
+  const detailFor = (code: string) => (cityFill ? prefDetail[code] : undefined);
+  const outlinePaths = cityFill ? visiblePrefectures.flatMap((p) => prefDetail[p.code]?.paths ?? []) : [];
   const cityLabelItems = visibleCities.map((c) => ({ x: c.x, y: c.y, weight: c.visit_count + (c.planned ? 0.5 : 0), id: c.id }));
   const cityLabels = new Set(Array.from(pickLabels(cityLabelItems, 64 * k, 14 * k)).map((i) => i.id));
   const prefLabelItems = prefectures.filter((p) => p.level !== 0).map((p) => ({ x: p.labelX, y: p.labelY, weight: p.visit_count, id: p.id }));
@@ -197,7 +202,7 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
                 onMouseLeave={() => setHover(null)}
                 aria-label={t(p, lang)}
               >
-                <path d={p.d} className={cls} vectorEffect="non-scaling-stroke" />
+                <path d={detailFor(p.code)?.outline ?? p.d} className={cls} vectorEffect="non-scaling-stroke" />
               </a>
             );
           })}
@@ -205,7 +210,7 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
         {outlinePaths.length ? (
           <g>
             {outlinePaths.map((d, i) => (
-              <path key={i} d={d} className="mb" vectorEffect="non-scaling-stroke" />
+              <path key={`${d.length}-${i}`} d={d} className="mb" vectorEffect="non-scaling-stroke" />
             ))}
           </g>
         ) : null}
@@ -228,7 +233,7 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
           </g>
         ) : null}
         {/* 마우스를 올린 현의 테두리: 이웃 현·시 경계가 위를 덮어 가려지지 않도록 맨 위에 따로 그린다 */}
-        {hovered ? <path d={hovered.d} fill="none" stroke="var(--ink)" strokeWidth={1.4} strokeLinejoin="round" vectorEffect="non-scaling-stroke" pointerEvents="none" /> : null}
+        {hovered ? <path d={detailFor(hovered.code)?.outline ?? hovered.d} fill="none" stroke="var(--ink)" strokeWidth={1.4} strokeLinejoin="round" vectorEffect="non-scaling-stroke" pointerEvents="none" /> : null}
         {insetInView ? <OkinawaInset inset={inset} label={okinawaLabel} k={k} /> : null}
         {mode === "prefectures" && (
           <g>
