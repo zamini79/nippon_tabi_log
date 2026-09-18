@@ -4,7 +4,7 @@ import { getNationalMap, OKINAWA_ID } from "@/lib/geo";
 import { levelOf } from "@/lib/types";
 
 export const runtime = "nodejs";
-export const alt = "나의 일본 여행 지도 — 지금까지 채운 도시와 현";
+export const alt = "日本タビログ — 지금까지 채운 도시와 현";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -70,10 +70,11 @@ export default async function OpenGraphImage() {
   const doneTrips = trips.filter((t) => t.status === "done").length;
   const pct = Math.round((visitedPrefs / 47) * 100);
 
-  const title = "나의 일본 여행 지도";
+  const title = "日本タビログ";
   const lines = [`${visitedCities}개 도시`, `${visitedPrefs} / 47현`, `${doneTrips}번의 여행`, `${pct}% 채웠어요`];
-  const chars = Array.from(new Set((title + lines.join("") + "0123456789/%").split(""))).join("");
-  const [display, body] = await Promise.all([loadFont("Gowun Batang", 700, chars), loadFont("IBM Plex Sans KR", 500, chars)]);
+  const bodyChars = Array.from(new Set((lines.join("") + "0123456789/%").split(""))).join("");
+  // 제목은 일본어(가타카나) → Noto Serif JP, 본문 수치는 한국어 → IBM Plex Sans KR
+  const [display, body] = await Promise.all([loadFont("Noto Serif JP", 700, title), loadFont("IBM Plex Sans KR", 500, bodyChars)]);
   const fonts = [
     ...(display ? [{ name: "display", data: display, weight: 700 as const, style: "normal" as const }] : []),
     ...(body ? [{ name: "body", data: body, weight: 500 as const, style: "normal" as const }] : []),

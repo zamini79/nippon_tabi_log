@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "나의 일본 여행 지도",
-    short_name: "일본 여행 지도",
+    name: "日本タビログ",
+    short_name: "日本タビログ",
     description: "다녀온 도시와 현을 지도에 채워가는 개인 여행 기록",
     start_url: "/",
     display: "standalone",

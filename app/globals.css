@@ -54,12 +54,22 @@
   }
 }
 
+/* 서비스명 日本タビログ — 한자·가타카나가 섞여 있으므로 Noto Serif JP 를 먼저 */
+.brand {
+  font-family: var(--font-ja), var(--font-display), Georgia, serif;
+}
+
 .serif {
   font-family: var(--font-display), var(--font-ja), "Nanum Myeongjo", Georgia, serif;
 }
 
 /* 일본어 표시 시 세리프 스택 앞에 Noto Serif JP */
-:root[data-lang="ja"] .serif {
+:root[data-lang="ja"] /* 서비스명 日本タビログ — 한자·가타카나가 섞여 있으므로 Noto Serif JP 를 먼저 */
+.brand {
+  font-family: var(--font-ja), var(--font-display), Georgia, serif;
+}
+
+.serif {
   font-family: var(--font-ja), var(--font-display), Georgia, serif;
 }
 
