@@ -91,6 +91,15 @@
   stroke-width: 1.4;
   stroke-dasharray: 3 2;
 }
+/* 시·정·촌 구분선 (확대 시) */
+.mb {
+  fill: none;
+  stroke: var(--sand);
+  stroke-width: 0.8;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
 .pf-link { cursor: pointer; outline: none; }
 .pf-link:hover .pf,
 .pf-link:focus-visible .pf {

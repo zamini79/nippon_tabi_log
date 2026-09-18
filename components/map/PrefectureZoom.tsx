@@ -40,6 +40,8 @@ type Props = {
   target: { d: string; level: Level; name_ko: string; name_ja: string };
   neighbors: ZoomNeighborView[];
   cities: ZoomCityView[];
+  /** 이 현의 모든 시·정·촌 경계 path (구분선) */
+  outlines?: string[];
   /** 도시 추가 모드: 지도를 누르면 viewBox 좌표를 돌려준다 */
   pickMode?: boolean;
   picked?: { x: number; y: number } | null;
@@ -61,7 +63,7 @@ function radius(c: ZoomCityView) {
 }
 
 /** 현 확대 지도. 이웃 현은 옅게, 대상 현은 방문 단계 색, 도시 점 + 이름. */
-export function PrefectureZoom({ width, height, target, neighbors, cities, pickMode, picked, onPick }: Props) {
+export function PrefectureZoom({ width, height, target, neighbors, cities, outlines = [], pickMode, picked, onPick }: Props) {
   const lang = useLang();
   // 경계가 있는 방문·계획 도시가 하나라도 있으면 현 전체 대신 그 시들만 색칠
   const shaped = cities.filter((c) => c.d && (c.visit_count > 0 || c.planned));
@@ -100,6 +102,13 @@ export function PrefectureZoom({ width, height, target, neighbors, cities, pickM
           strokeDasharray={target.level === "plan" && !shaped.length ? "4 3" : undefined}
           stroke={target.level === "plan" && !shaped.length ? "var(--plan)" : "var(--ink)"}
         />
+        {outlines.length ? (
+          <g pointerEvents="none">
+            {outlines.map((d, i) => (
+              <path key={i} d={d} className="mb" vectorEffect="non-scaling-stroke" />
+            ))}
+          </g>
+        ) : null}
         {shaped.length ? (
           <g style={pickMode ? { pointerEvents: "none" } : undefined}>
             {shaped.map((c) => {
@@ -111,7 +120,7 @@ export function PrefectureZoom({ width, height, target, neighbors, cities, pickM
                     d={c.d}
                     fill={planned ? "var(--plan-bg)" : FILL[lv]}
                     stroke={planned ? "var(--plan)" : "var(--card)"}
-                    strokeWidth={planned ? 1.4 : 0.9}
+                    strokeWidth={planned ? 1.6 : 1.8}
                     strokeDasharray={planned ? "3 2" : undefined}
                     strokeLinejoin="round"
                     vectorEffect="non-scaling-stroke"

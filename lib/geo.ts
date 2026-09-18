@@ -60,6 +60,8 @@ function muniRank(p: MuniProps): number {
 }
 
 let muniCache: Map<string, Shape> | null = null;
+/** 현별 전체 시·정·촌 목록 (이름 중복과 무관하게 모두, 구분선용) */
+let muniByPref: Map<number, Shape[]> | null = null;
 
 /** key `${prefectureId}|${stem}` → 경계. 도쿄 23구는 하나로 병합해 `13|東京` 으로도 넣는다 */
 function loadMunicipalities(): Map<string, Shape> {
@@ -73,10 +75,12 @@ function loadMunicipalities(): Map<string, Shape> {
 
   const map = new Map<string, Shape>();
   const rank = new Map<string, number>();
+  const byPref = new Map<number, Shape[]>();
   fc.features.forEach((f: MuniFeature) => {
     const pid = prefIdByName.get(f.properties.N03_001);
     const name = f.properties.N03_003 ?? f.properties.N03_004;
     if (!pid || !name) return;
+    byPref.set(pid, [...(byPref.get(pid) ?? []), f as Shape]);
     const key = `${pid}|${stemName(name)}`;
     const r = muniRank(f.properties);
     if ((rank.get(key) ?? -1) >= r) return;
@@ -93,7 +97,15 @@ function loadMunicipalities(): Map<string, Shape> {
     if (tokyoId) map.set(`${tokyoId}|東京`, { type: "Feature", properties: {}, geometry: topoMerge(topo, wards) });
   }
   muniCache = map;
+  muniByPref = byPref;
   return map;
+}
+
+/** 한 현의 모든 시·정·촌(·구) 경계 (도쿄는 23구가 각각) */
+export function municipalityShapesOf(prefectureId: number): Shape[] {
+  loadMunicipalities();
+  // 이름이 같은 시·정(府中市/府中町 등)도 모두 포함해야 하므로 이름 기준 map 이 아니라 전체 목록을 쓴다
+  return muniByPref?.get(prefectureId) ?? [];
 }
 
 /** DB 도시(name_ja 접미 없음) 에 해당하는 시·정·촌 경계. 없으면 null (사용자 추가 도시, 섬·온천지 등) */
@@ -194,6 +206,8 @@ export type NationalMap = {
   isApproximate: (lng: number, lat: number, prefectureId: number) => boolean;
   /** 도시(시·정·촌) 경계 path. 경계 데이터가 없거나 인셋 밖이면 null */
   shapeFor: (prefectureId: number, nameJa: string) => string | null;
+  /** 한 현의 모든 시·정·촌 경계 path (확대 시 구분선용) */
+  outlinesFor: (prefectureId: number) => string[];
 };
 
 const nationalCache = new Map<string, NationalMap>();
@@ -255,7 +269,12 @@ export function getNationalMap(width = 700, height = 760): NationalMap {
     return prefectureId === OKINAWA_ID ? shapePath(okPath, f, inset) : shapePath(mainPath, f);
   };
 
-  const result: NationalMap = { width, height, inset, prefectures, project, isApproximate, shapeFor };
+  const outlinesFor = (prefectureId: number) =>
+    municipalityShapesOf(prefectureId)
+      .map((f) => (prefectureId === OKINAWA_ID ? shapePath(okPath, f, inset) : shapePath(mainPath, f)))
+      .filter((d): d is string => !!d);
+
+  const result: NationalMap = { width, height, inset, prefectures, project, isApproximate, shapeFor, outlinesFor };
   nationalCache.set(key, result);
   return result;
 }
@@ -273,6 +292,8 @@ export type ZoomMap = {
   mercator: { scale: number; translate: [number, number] };
   /** 도시(시·정·촌) 경계 path (이 확대 투영 기준) */
   shapeFor: (prefectureId: number, nameJa: string) => string | null;
+  /** 한 현의 모든 시·정·촌 경계 path (구분선용) */
+  outlinesFor: (prefectureId: number) => string[];
 };
 
 const zoomCache = new Map<string, ZoomMap>();
@@ -336,6 +357,7 @@ export function getPrefectureZoom(id: number, width = 790, height = 670): ZoomMa
     isApproximate,
     mercator: { scale: proj.scale(), translate: proj.translate() as [number, number] },
     shapeFor: (prefectureId, nameJa) => shapePath(pathGen, municipalityFeature(prefectureId, nameJa)),
+    outlinesFor: (prefectureId) => municipalityShapesOf(prefectureId).map((f) => shapePath(pathGen, f)).filter((d): d is string => !!d),
   };
   zoomCache.set(key, result);
   return result;

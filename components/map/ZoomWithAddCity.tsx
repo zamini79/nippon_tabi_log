@@ -14,6 +14,7 @@ type Props = {
   target: { d: string; level: Level; name_ko: string; name_ja: string };
   neighbors: ZoomNeighborView[];
   cities: ZoomCityView[];
+  outlines?: string[];
   prefectureId: number;
   mercator: { scale: number; translate: [number, number] };
   startOpen?: boolean;

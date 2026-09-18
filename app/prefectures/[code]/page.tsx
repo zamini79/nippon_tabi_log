@@ -127,6 +127,7 @@ export default async function PrefecturePage({ params, searchParams }: Props) {
                 target={{ d: zoom.target.d, level, name_ko: prefecture.name_ko, name_ja: prefecture.name_ja }}
                 neighbors={neighbors}
                 cities={cityViews}
+                outlines={zoom.outlinesFor(id)}
                 prefectureId={id}
                 mercator={zoom.mercator}
                 startOpen={add === "1"}

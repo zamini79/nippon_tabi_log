@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { useLang } from "@/lib/lang";
 import { t, tShort } from "@/lib/names";
 import { levelOf, type Level } from "@/lib/types";
@@ -63,8 +63,11 @@ const MAX_SCALE = 40;
 const DETAIL_SCALE = 6;
 /** 이 배율부터 화면 중심의 현을 '보고 있는 현'으로 판단 */
 const FOCUS_SCALE = 2.5;
-/** 이 배율부터 현 전체가 아니라 다녀온 시(市) 경계만 색칠 */
+/** 이 배율부터 현 전체가 아니라 다녀온 시(市) 경계만 색칠 (같은 배율부터 그 현의 모든 시 구분선도 그림) */
 const CITY_FILL_SCALE = 3;
+
+/** 현별 시·정·촌 구분선 path 캐시 (모듈 수준: 페이지 이동 후에도 재요청 없음) */
+const outlineCache = new Map<string, string[]>();
 
 /** 라벨 겹침 방지: 중요도(방문 횟수) 순으로 배치하고, 이미 놓인 라벨과 가까우면 생략 */
 function pickLabels<T extends { x: number; y: number; weight: number }>(items: T[], dx = 64, dy = 14): Set<T> {
@@ -132,6 +135,31 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
   const cityFill = zoom.scale >= CITY_FILL_SCALE;
   const shapedCities = cityFill ? visibleCities.filter((c) => c.d && (c.visit_count > 0 || c.planned)) : [];
   const prefsWithShapes = new Set(shapedCities.map((c) => c.prefecture_id));
+
+  // 보고 있는 현의 시·정·촌 구분선: 확대했을 때만 서버에서 받아온다 (전 도시 경계를 처음부터 실어 보내지 않기 위해)
+  const outlineCode = cityFill && focused ? focused.code : null;
+  const [outlines, setOutlines] = useState<Record<string, string[]>>({});
+  useEffect(() => {
+    if (!outlineCode || outlines[outlineCode]) return;
+    const cached = outlineCache.get(outlineCode);
+    if (cached) {
+      setOutlines((o) => ({ ...o, [outlineCode]: cached }));
+      return;
+    }
+    let cancelled = false;
+    fetch(`/api/shapes/${outlineCode}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { paths?: string[] } | null) => {
+        if (cancelled || !j?.paths) return;
+        outlineCache.set(outlineCode, j.paths);
+        setOutlines((o) => ({ ...o, [outlineCode]: j.paths! }));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [outlineCode, outlines]);
+  const outlinePaths = outlineCode ? outlines[outlineCode] ?? [] : [];
   const cityLabelItems = visibleCities.map((c) => ({ x: c.x, y: c.y, weight: c.visit_count + (c.planned ? 0.5 : 0), id: c.id }));
   const cityLabels = new Set(Array.from(pickLabels(cityLabelItems, 64 * k, 14 * k)).map((i) => i.id));
   const prefLabelItems = prefectures.filter((p) => p.level !== 0).map((p) => ({ x: p.labelX, y: p.labelY, weight: p.visit_count, id: p.id }));
@@ -174,6 +202,13 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
             );
           })}
         </g>
+        {outlinePaths.length ? (
+          <g>
+            {outlinePaths.map((d, i) => (
+              <path key={i} d={d} className="mb" vectorEffect="non-scaling-stroke" />
+            ))}
+          </g>
+        ) : null}
         {shapedCities.length ? (
           <g>
             {shapedCities.map((c) => {
@@ -185,7 +220,7 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
                   className={lv === "plan" ? "pf pp" : `pf p${lv}`}
                   vectorEffect="non-scaling-stroke"
                   onClick={() => router.push(`/cities/${c.id}`)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", strokeWidth: lv === "plan" ? 1.6 : 1.8 }}
                   aria-label={t(c, lang)}
                 />
               );
