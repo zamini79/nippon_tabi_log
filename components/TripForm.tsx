@@ -123,10 +123,6 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
           <label htmlFor="trip-end" className={lblCls}>귀국</label>
           <input id="trip-end" name="end_date" type="date" defaultValue={trip?.end_date ?? ""} className={inputCls} />
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="trip-companions" className={lblCls}>인원 (본인 포함)</label>
-          <input id="trip-companions" name="companions" type="number" min={1} max={99} defaultValue={trip?.companions ?? ""} placeholder="예) 2" className={inputCls} />
-        </div>
       </div>
 
       <div className="flex flex-col gap-2.5">

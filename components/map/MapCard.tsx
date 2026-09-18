@@ -40,10 +40,26 @@ export function MapCard(props: Props) {
           ))}
         </div>
         <ul className="hidden items-center gap-4 text-xs text-muted sm:flex">
-          <li className="flex items-center gap-1.5"><span className="inline-block size-2.5 rounded-full bg-v3" />1회</li>
-          <li className="flex items-center gap-1.5"><span className="inline-block size-3.5 rounded-full bg-v3" />2회</li>
-          <li className="flex items-center gap-1.5"><span className="inline-block size-[18px] rounded-full bg-v3" />3회 이상</li>
-          <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full border-2 border-dashed border-plan" />계획</li>
+          {filter === "done" ? (
+            <>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-3.5 rounded-[4px] bg-v1" />현 1회</li>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-3.5 rounded-[4px] bg-v2" />2회</li>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-3.5 rounded-[4px] bg-v3" />3회+</li>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-2.5 rounded-full bg-v3" />도시</li>
+            </>
+          ) : filter === "planned" ? (
+            <>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-3.5 rounded-[4px] border-2 border-dashed border-plan bg-plan-bg" />계획한 현</li>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full border-2 border-dashed border-plan" />계획한 도시</li>
+            </>
+          ) : (
+            <>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-2.5 rounded-full bg-v3" />1회</li>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-3.5 rounded-full bg-v3" />2회</li>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-[18px] rounded-full bg-v3" />3회 이상</li>
+              <li className="flex items-center gap-1.5"><span className="inline-block size-3 rounded-full border-2 border-dashed border-plan" />계획</li>
+            </>
+          )}
         </ul>
       </div>
       <JapanMap {...props} mode="cities" filter={filter} className="mt-2" />

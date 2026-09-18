@@ -18,6 +18,8 @@ export type MapPrefecture = {
   name_ja: string;
   level: Level;
   visit_count: number;
+  /** 계획 여행이 하나라도 있는 현 */
+  planned?: boolean;
 };
 
 export type MapCity = {
@@ -94,12 +96,11 @@ export function JapanMap({ width, height, inset, prefectures, cities, mode, filt
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full" role="img" aria-label="일본 지도">
         <g>
           {prefectures.map((p) => {
-            const cls =
-              mode === "prefectures"
-                ? p.level === "plan"
-                  ? "pf pp"
-                  : `pf p${p.level}`
-                : "pf";
+            // 현 별 보기: 항상 단계 색. 도시 지도: '다녀온 곳' 필터면 방문 현 색칠, '계획' 필터면 계획 현 점선
+            let cls = "pf";
+            if (mode === "prefectures") cls = p.level === "plan" ? "pf pp" : `pf p${p.level}`;
+            else if (filter === "done" && p.visit_count > 0) cls = `pf p${p.level === "plan" ? 0 : p.level}`;
+            else if (filter === "planned" && p.planned) cls = "pf pp";
             return (
               <a
                 key={p.id}

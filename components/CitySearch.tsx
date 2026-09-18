@@ -18,6 +18,7 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
   const lang = useLang();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0); // 키보드로 고른 후보 인덱스
   const rootRef = useRef<HTMLDivElement>(null);
   // 모바일: 아래 공간이 부족하면(하단 탭바·키보드) 목록을 입력창 위로 펼친다
   const [above, setAbove] = useState(false);
@@ -56,8 +57,10 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
     if (selectedIds.includes(id)) return;
     onChange([...selectedIds, id]);
     setQuery("");
+    setActive(0);
     setOpen(true);
   };
+  useEffect(() => setActive(0), [q]);
   const remove = (id: string) => onChange(selectedIds.filter((x) => x !== id));
 
   return (
@@ -99,12 +102,27 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
           onFocus={() => setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 120)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              setOpen(true);
+              setActive((i) => Math.min(candidates.length - 1, i + 1));
+            } else if (e.key === "ArrowUp") {
+              e.preventDefault();
+              setActive((i) => Math.max(0, i - 1));
+            } else if (e.key === "Enter") {
               e.preventDefault(); // 검색창의 Enter 가 폼 제출로 새지 않도록
-              if (candidates[0]) add(candidates[0].id);
+              const pick = candidates[active] ?? candidates[0];
+              if (open && pick) add(pick.id);
+            } else if (e.key === "Escape") {
+              setOpen(false);
+            } else if (e.key === "Backspace" && !query && selectedIds.length) {
+              remove(selectedIds[selectedIds.length - 1]);
             }
-            if (e.key === "Backspace" && !query && selectedIds.length) remove(selectedIds[selectedIds.length - 1]);
           }}
+          role="combobox"
+          aria-expanded={open && candidates.length > 0}
+          aria-controls="city-search-listbox"
+          aria-activedescendant={open && candidates[active] ? `city-option-${candidates[active].id}` : undefined}
           placeholder={selectedIds.length ? "도시 더 추가…" : "도시 이름 검색…"}
           className="min-w-[160px] flex-1 touch-manipulation bg-transparent px-2 py-2 text-sm outline-none"
           aria-label="도시 검색"
@@ -117,13 +135,16 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
         </div>
       )}
       {open && candidates.length > 0 && (
-        <ul className={`${popCls} max-h-72 touch-manipulation overflow-auto rounded-xl border border-line bg-card p-1 shadow-lg`} role="listbox">
-          {candidates.map((c) => {
+        <ul id="city-search-listbox" className={`${popCls} max-h-72 touch-manipulation overflow-auto rounded-xl border border-line bg-card p-1 shadow-lg`} role="listbox">
+          {candidates.map((c, i) => {
             const label = labelFor(c.id);
+            const isActive = i === active;
             return (
-              <li key={c.id}>
+              <li key={c.id} id={`city-option-${c.id}`} role="option" aria-selected={isActive}>
                 <button
                   type="button"
+                  tabIndex={-1}
+                  onPointerEnter={() => setActive(i)}
                   // 터치에서는 click 합성이 더블탭 판정·blur 에 밀릴 수 있어 pointerdown 시점에 바로 선택한다
                   onPointerDown={(e) => {
                     e.preventDefault();
@@ -135,7 +156,7 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
                       add(c.id);
                     }
                   }}
-                  className="flex w-full touch-manipulation items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm hover:bg-bg"
+                  className={`flex w-full touch-manipulation items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm ${isActive ? "bg-bg ring-1 ring-inset ring-line" : "hover:bg-bg"}`}
                 >
                   <span>
                     <span className="font-medium">{t(c, lang)}</span>

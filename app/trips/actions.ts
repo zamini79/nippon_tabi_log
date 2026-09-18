@@ -25,18 +25,15 @@ export async function saveTrip(_prev: SaveTripState, formData: FormData): Promis
   const title = str(formData, "title");
   const start = str(formData, "start_date") || null;
   const end = str(formData, "end_date") || null;
-  const companionsRaw = str(formData, "companions");
-  const companions = companionsRaw ? Math.max(1, Math.min(99, Number(companionsRaw))) : null;
   const memo = str(formData, "memo") || null;
   const cityIds = Array.from(new Set(formData.getAll("city_ids").map(String).filter(isUuid)));
 
   if (!title) return { error: "여행 이름을 입력해 주세요." };
   if (start && end && end < start) return { error: "귀국일이 출발일보다 앞설 수 없어요." };
   if (cityIds.length === 0) return { error: "도시를 하나 이상 골라 주세요." };
-  if (companions !== null && Number.isNaN(companions)) return { error: "인원은 숫자로 입력해 주세요." };
 
   const admin = createAdminClient();
-  const row = { title, status, start_date: start, end_date: end, companions, memo };
+  const row = { title, status, start_date: start, end_date: end, memo };
 
   let tripId = id && isUuid(id) ? id : null;
   if (tripId) {

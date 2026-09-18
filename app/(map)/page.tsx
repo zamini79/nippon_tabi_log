@@ -38,6 +38,7 @@ export default async function HomePage() {
       name_ja: p?.name_ja ?? "",
       visit_count: s?.visit_count ?? 0,
       level: levelOf(s?.visit_count ?? 0, s?.planned_count ?? 0),
+      planned: (s?.planned_count ?? 0) > 0,
     };
   });
 
@@ -192,7 +193,6 @@ export default async function HomePage() {
                 </Link>
                 <div className="text-[13px] text-[#3F4A55]">
                   {formatRange(nextTrip.start_date, nextTrip.end_date)}
-                  {nextTrip.companions ? ` · ${nextTrip.companions}명` : ""}
                   {nextTrip.visits.length ? (
                     <>
                       {" · "}

@@ -122,7 +122,6 @@ function TripRow({ trip, photos }: { trip: TripWithCities; photos: PhotoView[] }
           <CityNames cities={cities} fallback="도시 없음" />
           {" · "}
           {formatRange(trip.start_date, trip.end_date)}
-          {trip.companions ? ` · ${trip.companions}명` : ""}
         </div>
       </div>
       <div className="col-span-2 flex items-center gap-1 sm:col-span-1">

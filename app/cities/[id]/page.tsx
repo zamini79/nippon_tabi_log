@@ -147,7 +147,6 @@ export default async function CityPage({ params }: Props) {
                     <div className="serif text-xl font-bold">{trip.title}</div>
                     <div className="text-[13px] text-muted">
                       {formatRange(trip.start_date, trip.end_date)}
-                      {trip.companions ? ` · ${trip.companions}명` : ""}
                     </div>
                   </div>
                   {tripPhotos.length ? <PhotoGrid photos={tripPhotos} visits={visits} /> : null}

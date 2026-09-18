@@ -96,7 +96,6 @@ function PlanRow({ trip, newPrefs, past }: { trip: Row; newPrefs: { id: number; 
         </Link>
         <div className="truncate text-xs text-muted">
           <CityNames cities={cities} fallback="도시 없음" /> · {formatRange(trip.start_date, trip.end_date)}
-          {trip.companions ? ` · ${trip.companions}명` : ""}
         </div>
         <div className="text-xs">
           {newPrefs.length ? (
