@@ -64,7 +64,7 @@ export default async function PrefecturesPage() {
   return (
     <>
       <AppHeader subtitle={doneTrips ? `${doneTrips}번의 여행` : "첫 여행을 기록해 보세요"} />
-      <main className="grid gap-6 px-5 py-6 md:px-12 md:py-7 lg:grid-cols-[minmax(0,840px)_1fr] lg:gap-8">
+      <main className="grid gap-6 px-5 py-6 md:px-12 md:py-7 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-8">
         <section className="flex flex-col gap-2.5 rounded-[20px] border border-line bg-card p-4 md:px-7 md:py-6">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <div className="flex flex-col gap-1">

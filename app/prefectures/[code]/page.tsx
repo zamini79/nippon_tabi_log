@@ -99,7 +99,7 @@ export default async function PrefecturePage({ params, searchParams }: Props) {
       <main className="flex flex-col gap-4 px-5 py-5 md:px-12 md:pb-9">
         <Breadcrumb prefecture={prefecture} />
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,840px)_1fr] lg:gap-8">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-8">
           <section className="relative flex flex-col rounded-[20px] border border-line bg-card p-4 md:px-6 md:py-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex gap-1.5">
