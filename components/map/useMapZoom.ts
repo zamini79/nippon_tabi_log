@@ -10,7 +10,8 @@ const DRAG_THRESHOLD = 4;
  * SVG viewBox 기반 확대·이동.
  * - 마우스 휠(트랙패드 핀치 포함): 커서 위치를 중심으로 확대/축소. 전체 보기 상태에서 더 축소하려는 휠은 페이지 스크롤로 넘긴다
  * - 확대 상태에서 드래그로 이동. 드래그 뒤에 따라오는 click 은 삼켜서 현/도시 링크가 잘못 열리지 않게 한다
- * - 터치는 한 손가락 스크롤을 막지 않기 위해 전체 보기에서는 브라우저에 맡기고, 확대 뒤에만 드래그 이동
+ * - 터치: 두 손가락 핀치로 확대/축소(두 손가락 중심 고정). 한 손가락은 전체 보기에서는 페이지 스크롤(touch-action: pan-y),
+ *   확대 뒤에는 지도 이동. 핀치 중·확대 상태의 touchmove 는 preventDefault 로 브라우저 제스처를 막는다
  */
 export function useMapZoom(width: number, height: number, maxScale = 8) {
   const full: Box = { x: 0, y: 0, w: width, h: height };
@@ -18,6 +19,10 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
   const vbRef = useRef<Box>(full);
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<{ id: number; sx: number; sy: number; start: Box; k: number; moved: boolean } | null>(null);
+  /** 현재 눌린 터치 포인터들 (핀치 판정용) */
+  const pointers = useRef(new Map<number, { x: number; y: number }>());
+  /** 핀치 시작 상태: 두 손가락 거리·중심과 그때의 box, 중심에 놓인 지도 좌표 */
+  const pinch = useRef<{ dist: number; start: Box; anchor: { x: number; y: number } } | null>(null);
   const swallowClick = useRef(false);
   const [dragging, setDragging] = useState(false);
   const anim = useRef<number | null>(null);
@@ -128,15 +133,71 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
     return () => el.removeEventListener("wheel", onWheel);
   }, [width, toViewBox, zoomAt]);
 
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el) return;
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length >= 2) e.preventDefault(); // 브라우저 핀치/스크롤 대신 우리가 처리
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (pinch.current || e.touches.length >= 2 || width / vbRef.current.w > 1.0001) e.preventDefault();
+    };
+    el.addEventListener("touchstart", onTouchStart, { passive: false });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [width]);
+
   const scale = width / vb.w;
   const zoomed = scale > 1.0001;
 
+  const pinchGeom = () => {
+    const [a, b] = [...pointers.current.values()];
+    return { dist: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y)), cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2 };
+  };
+  /** anchor(지도 좌표)가 화면의 (cx, cy) 에 오도록 하는, 폭 w 의 box */
+  const boxAnchoredAt = (w: number, anchor: { x: number; y: number }, cx: number, cy: number): Box => {
+    const el = svgRef.current!;
+    const r = el.getBoundingClientRect();
+    const h = (w * height) / width;
+    const k = Math.min(r.width / w, r.height / h);
+    const ox = (r.width - w * k) / 2;
+    const oy = (r.height - h * k) / 2;
+    return clampBox({ w, h, x: anchor.x - (cx - r.left - ox) / k, y: anchor.y - (cy - r.top - oy) / k });
+  };
+
   const onPointerDown = (e: ReactPointerEvent<SVGSVGElement>) => {
+    if (e.pointerType === "touch") {
+      pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.current.size === 2) {
+        // 두 번째 손가락 → 핀치 시작. 진행 중이던 한 손가락 드래그는 중단
+        drag.current = null;
+        const g = pinchGeom();
+        const anchor = toViewBox(g.cx, g.cy);
+        pinch.current = { dist: g.dist, start: vbRef.current, anchor: { x: anchor.x, y: anchor.y } };
+        swallowClick.current = true;
+        e.currentTarget.setPointerCapture(e.pointerId);
+        return;
+      }
+      if (pointers.current.size > 2) return;
+    }
     if (e.button !== 0 || !zoomed) return;
     const { k } = toViewBox(e.clientX, e.clientY);
     drag.current = { id: e.pointerId, sx: e.clientX, sy: e.clientY, start: vbRef.current, k, moved: false };
   };
   const onPointerMove = (e: ReactPointerEvent<SVGSVGElement>) => {
+    if (e.pointerType === "touch" && pointers.current.has(e.pointerId)) {
+      pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      const pz = pinch.current;
+      if (pz && pointers.current.size >= 2) {
+        const g = pinchGeom();
+        const w = Math.min(width, Math.max(width / maxScale, pz.start.w / (g.dist / pz.dist)));
+        setVb(boxAnchoredAt(w, pz.anchor, g.cx, g.cy));
+        return;
+      }
+    }
     const d = drag.current;
     if (!d || d.id !== e.pointerId) return;
     const dx = e.clientX - d.sx;
@@ -151,11 +212,24 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
     setVb(clampBox({ ...d.start, x: d.start.x - dx / d.k, y: d.start.y - dy / d.k }));
   };
   const endDrag = (e: ReactPointerEvent<SVGSVGElement>) => {
+    if (e.pointerType === "touch") {
+      pointers.current.delete(e.pointerId);
+      if (pinch.current && pointers.current.size < 2) {
+        pinch.current = null;
+        // 한 손가락이 남았고 확대 상태면 그 손가락으로 바로 이동을 이어간다
+        const rest = [...pointers.current.entries()][0];
+        if (rest && width / vbRef.current.w > 1.0001) {
+          const [pid, pt] = rest;
+          const { k } = toViewBox(pt.x, pt.y);
+          drag.current = { id: pid, sx: pt.x, sy: pt.y, start: vbRef.current, k, moved: true };
+        }
+      }
+    }
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
     const d = drag.current;
     if (!d || d.id !== e.pointerId) return;
     drag.current = null;
     setDragging(false);
-    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
   };
   const onClickCapture = (e: ReactMouseEvent<SVGSVGElement>) => {
     if (!swallowClick.current) return;
