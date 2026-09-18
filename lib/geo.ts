@@ -109,6 +109,8 @@ export type NationalPrefecturePath = {
   d: string;
   labelX: number;
   labelY: number;
+  /** 본섬 기준 경계 상자 [x0, y0, x1, y1] (전국 지도 좌표). 클릭 시 이 범위로 확대 */
+  bbox: [number, number, number, number];
 };
 
 export type NationalMap = {
@@ -157,7 +159,8 @@ export function getNationalMap(width = 700, height = 760): NationalMap {
   const prefectures = features.map((f) => {
     const p = f.properties.id === OKINAWA_ID ? okPath : mainPath;
     const [cx, cy] = p.centroid(f);
-    return { id: f.properties.id, code: f.properties.code, d: p(f) ?? "", labelX: cx, labelY: cy };
+    const [[x0, y0], [x1, y1]] = p.bounds(mainCluster(f, 0.6));
+    return { id: f.properties.id, code: f.properties.code, d: p(f) ?? "", labelX: cx, labelY: cy, bbox: [x0, y0, x1, y1] as [number, number, number, number] };
   });
 
   const rawProject = (lng: number, lat: number, prefectureId: number): Point => {

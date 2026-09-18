@@ -20,6 +20,7 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
   const drag = useRef<{ id: number; sx: number; sy: number; start: Box; k: number; moved: boolean } | null>(null);
   const swallowClick = useRef(false);
   const [dragging, setDragging] = useState(false);
+  const anim = useRef<number | null>(null);
 
   const setVb = useCallback((next: Box) => {
     vbRef.current = next;
@@ -70,7 +71,43 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
     [zoomAt],
   );
 
-  const reset = useCallback(() => setVb({ x: 0, y: 0, w: width, h: height }), [width, height, setVb]);
+  /** 현재 box 에서 target 으로 짧게 애니메이션 */
+  const animateTo = useCallback(
+    (target: Box, ms = 320) => {
+      if (anim.current) cancelAnimationFrame(anim.current);
+      const from = vbRef.current;
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const t = Math.min(1, (now - t0) / ms);
+        const e = 1 - Math.pow(1 - t, 3); // ease-out
+        setVb({ x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e, w: from.w + (target.w - from.w) * e, h: from.h + (target.h - from.h) * e });
+        if (t < 1) anim.current = requestAnimationFrame(step);
+        else anim.current = null;
+      };
+      anim.current = requestAnimationFrame(step);
+    },
+    [setVb],
+  );
+
+  const reset = useCallback(() => animateTo({ x: 0, y: 0, w: width, h: height }), [width, height, animateTo]);
+
+  /** 경계 상자 [x0,y0,x1,y1] 가 여백(pad, 비율)을 두고 화면에 꽉 차도록 확대 */
+  const fitTo = useCallback(
+    (bbox: [number, number, number, number], pad = 0.14) => {
+      const bw = Math.max(1, bbox[2] - bbox[0]);
+      const bh = Math.max(1, bbox[3] - bbox[1]);
+      const cx = (bbox[0] + bbox[2]) / 2;
+      const cy = (bbox[1] + bbox[3]) / 2;
+      let w = bw * (1 + pad * 2);
+      let h = bh * (1 + pad * 2);
+      if (w / h > width / height) h = (w * height) / width;
+      else w = (h * width) / height;
+      animateTo(clampBox({ w, h, x: cx - w / 2, y: cy - h / 2 }));
+    },
+    [width, height, clampBox, animateTo],
+  );
+
+  useEffect(() => () => { if (anim.current) cancelAnimationFrame(anim.current); }, []);
 
   // wheel 은 passive 리스너로는 preventDefault 가 안 되므로 직접 등록
   useEffect(() => {
@@ -133,8 +170,11 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
 
   return {
     viewBox: `${vb.x} ${vb.y} ${vb.w} ${vb.h}`,
+    box: vb,
     scale,
+    maxScale,
     zoomed,
+    fitTo,
     svgRef,
     svgProps: { onPointerDown, onPointerMove, onPointerUp: endDrag, onPointerCancel: endDrag, onClickCapture, style },
     zoomIn: () => zoomCenter(1.6),

@@ -138,7 +138,7 @@ export function PrefectureZoom({ width, height, target, neighbors, cities, pickM
           </g>
         ) : null}
       </svg>
-    <MapZoomControls className="absolute bottom-2 right-2" scale={zoom.scale} zoomed={zoom.zoomed} onZoomIn={zoom.zoomIn} onZoomOut={zoom.zoomOut} onReset={zoom.reset} />
+    <MapZoomControls className="absolute bottom-2 right-2" scale={zoom.scale} maxScale={zoom.maxScale} zoomed={zoom.zoomed} onZoomIn={zoom.zoomIn} onZoomOut={zoom.zoomOut} onReset={zoom.reset} />
     </div>
   );
 }
