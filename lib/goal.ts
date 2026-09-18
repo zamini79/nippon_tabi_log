@@ -11,6 +11,8 @@ export type RegionSummary = {
   done: number;
   planned: number; // 방문 0 · 계획만 있는 현
   total: number;
+  /** 이 지방에서 다녀온 도시(시) 수 */
+  cityCount: number;
 };
 
 export function summarizeRegions(prefectures: Prefecture[], stats: Record<number, CountStat>): RegionSummary[] {
@@ -18,6 +20,7 @@ export function summarizeRegions(prefectures: Prefecture[], stats: Record<number
     const prefs = prefectures.filter((p) => p.region === region).sort((a, b) => a.id - b.id);
     const done = prefs.filter((p) => (stats[p.id]?.visit_count ?? 0) > 0).length;
     const planned = prefs.filter((p) => (stats[p.id]?.visit_count ?? 0) === 0 && (stats[p.id]?.planned_count ?? 0) > 0).length;
+    const cityCount = prefs.reduce((n, p) => n + (stats[p.id]?.city_count ?? 0), 0);
     return {
       region,
       region_ko: prefs[0]?.region_ko ?? region,
@@ -26,6 +29,7 @@ export function summarizeRegions(prefectures: Prefecture[], stats: Record<number
       done,
       planned,
       total: prefs.length,
+      cityCount,
     };
   }).filter((r) => r.total > 0);
 }
@@ -64,8 +68,8 @@ export function newPrefectureIdsForTrip(trip: TripWithCities, stats: Record<numb
   return ids.filter((id) => (stats[id]?.visit_count ?? 0) === 0);
 }
 
-export function toStatMap(rows: { prefecture_id: number; visit_count: number; planned_count: number }[]): Record<number, CountStat> {
+export function toStatMap(rows: { prefecture_id: number; visit_count: number; planned_count: number; city_count?: number }[]): Record<number, CountStat> {
   const m: Record<number, CountStat> = {};
-  for (const r of rows) m[r.prefecture_id] = { visit_count: r.visit_count, planned_count: r.planned_count };
+  for (const r of rows) m[r.prefecture_id] = { visit_count: r.visit_count, planned_count: r.planned_count, city_count: r.city_count ?? 0 };
   return m;
 }

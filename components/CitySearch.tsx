@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLang } from "@/lib/lang";
 import { other, t, tShort } from "@/lib/names";
 import type { CityWithPrefecture } from "@/lib/types";
@@ -18,6 +18,17 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
   const lang = useLang();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  // 모바일: 아래 공간이 부족하면(하단 탭바·키보드) 목록을 입력창 위로 펼친다
+  const [above, setAbove] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const r = rootRef.current?.getBoundingClientRect();
+    if (!r) return;
+    const spaceBelow = window.innerHeight - r.bottom - 96; // 탭바 높이만큼 여유
+    setAbove(spaceBelow < 240 && r.top > 240);
+  }, [open, query, selectedIds.length]);
+  const popCls = `absolute left-0 right-0 z-50 ${above ? "bottom-full mb-1" : "top-full mt-1"}`;
 
   const byId = useMemo(() => new Map(cities.map((c) => [c.id, c])), [cities]);
   const q = query.trim().toLowerCase();
@@ -42,13 +53,15 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
   }, [cities, selectedIds, q]);
 
   const add = (id: string) => {
+    if (selectedIds.includes(id)) return;
     onChange([...selectedIds, id]);
     setQuery("");
+    setOpen(true);
   };
   const remove = (id: string) => onChange(selectedIds.filter((x) => x !== id));
 
   return (
-    <div className="relative">
+    <div className="relative" ref={rootRef}>
       <div className="flex min-h-[52px] flex-wrap items-center gap-2 rounded-xl border border-[#D6CBB5] bg-card px-2 py-1.5">
         {selectedIds.map((id) => {
           const c = byId.get(id);
@@ -86,34 +99,43 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
           onFocus={() => setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 120)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && candidates[0]) {
-              e.preventDefault();
-              add(candidates[0].id);
+            if (e.key === "Enter") {
+              e.preventDefault(); // 검색창의 Enter 가 폼 제출로 새지 않도록
+              if (candidates[0]) add(candidates[0].id);
             }
             if (e.key === "Backspace" && !query && selectedIds.length) remove(selectedIds[selectedIds.length - 1]);
           }}
           placeholder={selectedIds.length ? "도시 더 추가…" : "도시 이름 검색…"}
-          className="min-w-[160px] flex-1 bg-transparent px-2 py-2 text-sm outline-none"
+          className="min-w-[160px] flex-1 touch-manipulation bg-transparent px-2 py-2 text-sm outline-none"
           aria-label="도시 검색"
           autoComplete="off"
         />
       </div>
       {open && q && candidates.length === 0 && (
-        <div className="absolute left-0 right-0 top-full z-20 mt-1 rounded-xl border border-line bg-card px-3 py-2.5 text-xs text-muted shadow-lg">
+        <div className={`${popCls} rounded-xl border border-line bg-card px-3 py-2.5 text-xs text-muted shadow-lg`}>
           &lsquo;{query}&rsquo; 와 맞는 도시가 없어요. 현 확대 화면의 <span className="font-medium text-ink">+ 도시 추가</span>로 새 도시를 만들 수 있어요.
         </div>
       )}
       {open && candidates.length > 0 && (
-        <ul className="absolute left-0 right-0 top-full z-20 mt-1 max-h-72 overflow-auto rounded-xl border border-line bg-card p-1 shadow-lg" role="listbox">
+        <ul className={`${popCls} max-h-72 touch-manipulation overflow-auto rounded-xl border border-line bg-card p-1 shadow-lg`} role="listbox">
           {candidates.map((c) => {
             const label = labelFor(c.id);
             return (
               <li key={c.id}>
                 <button
                   type="button"
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={() => add(c.id)}
-                  className="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm hover:bg-bg"
+                  // 터치에서는 click 합성이 더블탭 판정·blur 에 밀릴 수 있어 pointerdown 시점에 바로 선택한다
+                  onPointerDown={(e) => {
+                    e.preventDefault();
+                    add(c.id);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      add(c.id);
+                    }
+                  }}
+                  className="flex w-full touch-manipulation items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm hover:bg-bg"
                 >
                   <span>
                     <span className="font-medium">{t(c, lang)}</span>

@@ -78,7 +78,7 @@ export type TripWithCities = Trip & { visits: VisitWithCity[] };
 export type CityWithPrefecture = City & { prefecture: Prefecture };
 
 /** 지도·폼에서 쓰는 가벼운 통계 맵 */
-export type CountStat = { visit_count: number; planned_count: number };
+export type CountStat = { visit_count: number; planned_count: number; city_count?: number };
 
 export type Photo = {
   id: string;

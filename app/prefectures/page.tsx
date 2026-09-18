@@ -37,6 +37,7 @@ export default async function PrefecturesPage() {
   });
 
   const visited = prefectures.filter((p) => (stats[p.id]?.visit_count ?? 0) > 0).length;
+  const visitedCities = prefStats.reduce((n, s) => n + (s.city_count ?? 0), 0);
   const plannedOnly = prefectures.filter((p) => (stats[p.id]?.visit_count ?? 0) === 0 && (stats[p.id]?.planned_count ?? 0) > 0).length;
   const doneTrips = trips.filter((t) => t.status === "done").length;
 
@@ -93,7 +94,9 @@ export default async function PrefecturesPage() {
           <div className="flex flex-col gap-3 rounded-2xl bg-ink px-6 py-5 text-bg sm:flex-row sm:items-center sm:gap-4">
             <div className="flex items-baseline gap-2">
               <div className="serif text-[44px] font-bold leading-none">{visited}</div>
-              <div className="text-base text-sand">/ 47현</div>
+              <div className="text-base text-sand">
+                / 47현{visitedCities > 0 ? <span className="ml-1.5 text-sm">· {visitedCities}시</span> : null}
+              </div>
             </div>
             <div className="flex flex-1 flex-col gap-2">
               <div className="flex h-2 overflow-hidden rounded-full bg-[#3A424A]" role="progressbar" aria-valuenow={visited} aria-valuemin={0} aria-valuemax={47}>

@@ -122,6 +122,7 @@ export default async function HomePage() {
               <span className="serif text-[26px] font-bold leading-none">
                 {visitedPrefs}
                 <span className="text-[13px] font-normal text-sand"> / 47</span>
+                {visitedCities > 0 ? <span className="ml-1.5 text-[12px] font-normal text-sand">· {visitedCities}시</span> : null}
               </span>
               <span className="flex h-1.5 overflow-hidden rounded-full bg-[#3A424A]">
                 <span className="bg-v3" style={{ width: `${(visitedPrefs / 47) * 100}%` }} />
@@ -152,6 +153,7 @@ export default async function HomePage() {
               <div className="serif text-[34px] font-bold leading-none">
                 {visitedPrefs}
                 <span className="text-base font-normal text-sand"> / 47</span>
+                {visitedCities > 0 ? <span className="ml-2 text-sm font-normal text-sand">· {visitedCities}시</span> : null}
               </div>
             </div>
           </div>

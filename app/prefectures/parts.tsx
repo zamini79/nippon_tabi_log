@@ -21,8 +21,9 @@ export function RegionBoard({ regions, stats }: Props) {
               <div className="h-1.5 bg-v3" style={{ width: `${(r.done / r.total) * 100}%` }} />
               <div className="h-1.5 bg-[#8FB3D0]" style={{ width: `${(r.planned / r.total) * 100}%` }} />
             </div>
-            <span className="text-right text-muted">
+            <span className="whitespace-nowrap text-right text-muted">
               {r.done}/{r.total}
+              {r.cityCount > 0 ? <span className="ml-1 text-[11px]">· {r.cityCount}시</span> : null}
             </span>
           </div>
           <div className="flex flex-wrap gap-1.5">
@@ -53,7 +54,11 @@ function PrefChip({ p, stat }: { p: Prefecture; stat?: CountStat }) {
   return (
     <Link href={`/prefectures/${p.code}`} className={`flex items-center gap-1 rounded-full border px-[9px] py-1 text-xs ${cls}`} title={t(p, lang)}>
       {tShort(p, lang)}
-      {n > 0 ? <span className="text-[10px] opacity-80">{n}</span> : null}
+      {n > 0 ? (
+        <span className="text-[10px] opacity-80">
+          {n}회{(stat?.city_count ?? 0) > 0 ? ` · ${stat!.city_count}시` : ""}
+        </span>
+      ) : null}
     </Link>
   );
 }
