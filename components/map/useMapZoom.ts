@@ -78,7 +78,8 @@ export function useMapZoom(width: number, height: number, maxScale = 8) {
       const from = vbRef.current;
       const t0 = performance.now();
       const step = (now: number) => {
-        const t = Math.min(1, (now - t0) / ms);
+        // 첫 프레임의 timestamp 는 예약 시점(t0)보다 앞설 수 있다 → 음수 t 를 막지 않으면 폭이 음수가 되는 프레임이 생긴다
+        const t = Math.max(0, Math.min(1, (now - t0) / ms));
         const e = 1 - Math.pow(1 - t, 3); // ease-out
         setVb({ x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e, w: from.w + (target.w - from.w) * e, h: from.h + (target.h - from.h) * e });
         if (t < 1) anim.current = requestAnimationFrame(step);
