@@ -58,7 +58,7 @@ export default async function HomePage() {
   });
 
   const doneTrips = trips.filter((t) => t.status === "done");
-  const recent = doneTrips.slice(0, 3);
+  const recent = doneTrips.slice(0, 6);
   const recentPhotos = await withSignedUrls(await getPhotosForTrips(recent.map((t) => t.id)));
   const plannedTrips = trips
     .filter((t) => t.status === "planned" && t.start_date && daysUntil(t.start_date) >= 0)

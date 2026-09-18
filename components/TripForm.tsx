@@ -48,6 +48,18 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
   // (달력에서 월을 넘길 때마다 input 이벤트가 오므로 onChange 에서 바로 맞추면 중간 값이 들어간다)
   const [startDate, setStartDate] = useState(trip?.start_date ?? "");
   const [endDate, setEndDate] = useState(trip?.end_date ?? "");
+  // 이름·메모도 상태로 든다. React 19 는 <form action> 이 끝나면 uncontrolled 입력을 초기화하므로,
+  // 서버 검증 오류가 돌아왔을 때 입력한 내용이 지워지지 않게 하려면 controlled 여야 한다.
+  const [title, setTitle] = useState(trip?.title ?? "");
+  const [memo, setMemo] = useState(trip?.memo ?? "");
+  // 제출 전에 잡을 수 있는 오류는 서버까지 보내지 않는다 (왕복 없이 바로 표시)
+  const [clientError, setClientError] = useState<string | null>(null);
+  const validate = (): string | null => {
+    if (!title.trim()) return "여행 이름을 입력해 주세요.";
+    if (cityIds.length === 0) return "도시를 하나 이상 골라 주세요.";
+    if (startDate && endDate && endDate < startDate) return "귀국일이 출발일보다 앞설 수 없어요.";
+    return null;
+  };
   const plusOneDay = (ymd: string) => {
     const [y, m, d] = ymd.split("-").map(Number);
     const t = new Date(Date.UTC(y, m - 1, d + 1));
@@ -100,7 +112,15 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
   const lblCls = "text-xs font-semibold text-[#3F4A55]";
 
   return (
-    <form action={formAction} className={`flex flex-col ${compact ? "gap-5" : "gap-6"}`}>
+    <form
+      action={formAction}
+      onSubmit={(e) => {
+        const err = validate();
+        setClientError(err);
+        if (err) e.preventDefault();
+      }}
+      className={`flex flex-col ${compact ? "gap-5" : "gap-6"}`}
+    >
       {trip ? <input type="hidden" name="id" value={trip.id} /> : null}
       <input type="hidden" name="status" value={status} />
 
@@ -127,7 +147,7 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-2 sm:col-span-2">
           <label htmlFor="trip-title" className={lblCls}>여행 이름</label>
-          <input id="trip-title" name="title" type="text" required defaultValue={trip?.title ?? ""} placeholder={planned ? "예) 시코쿠 우동 순례" : "예) 가을 단풍, 교토와 나라까지"} className={inputCls} />
+          <input id="trip-title" name="title" type="text" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder={planned ? "예) 시코쿠 우동 순례" : "예) 가을 단풍, 교토와 나라까지"} className={inputCls} />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="trip-start" className={lblCls}>출발</label>
@@ -182,7 +202,7 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
 
       <div className="flex flex-col gap-2">
         <label htmlFor="trip-memo" className={lblCls}>메모</label>
-        <textarea id="trip-memo" name="memo" rows={3} defaultValue={trip?.memo ?? ""} placeholder="기억해 둘 것, 다음에 갈 곳…" className="resize-none rounded-[10px] border border-[#D6CBB5] bg-card px-3.5 py-3 text-sm outline-none focus:border-ink" />
+        <textarea id="trip-memo" name="memo" rows={3} value={memo} onChange={(e) => setMemo(e.target.value)} placeholder="기억해 둘 것, 다음에 갈 곳…" className="resize-none rounded-[10px] border border-[#D6CBB5] bg-card px-3.5 py-3 text-sm outline-none focus:border-ink" />
       </div>
 
       {trip ? (
@@ -195,9 +215,9 @@ export function TripForm({ trip, cities: slimCities, prefectures, cityStats, pre
         </div>
       )}
 
-      {state?.error ? (
+      {clientError || state?.error ? (
         <p className="text-sm text-v3" role="alert">
-          {state.error}
+          {clientError ?? state?.error}
         </p>
       ) : null}
 
