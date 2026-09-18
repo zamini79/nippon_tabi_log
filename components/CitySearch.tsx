@@ -53,12 +53,20 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
       .map((x) => x.c);
   }, [cities, selectedIds, q]);
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const add = (id: string) => {
     if (selectedIds.includes(id)) return;
     onChange([...selectedIds, id]);
     setQuery("");
     setActive(0);
     setOpen(true);
+    // IME 가 뒤늦게 조합 글자를 넣는 경우까지 대비해 다음 틱에 DOM 값도 비운다
+    setTimeout(() => {
+      if (inputRef.current && inputRef.current.value) {
+        inputRef.current.value = "";
+        setQuery("");
+      }
+    }, 0);
   };
   useEffect(() => setActive(0), [q]);
   const remove = (id: string) => onChange(selectedIds.filter((x) => x !== id));
@@ -93,6 +101,7 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
           );
         })}
         <input
+          ref={inputRef}
           type="text"
           value={query}
           onChange={(e) => {
@@ -102,6 +111,8 @@ export function CitySearch({ cities, selectedIds, onChange, labelFor, planned }:
           onFocus={() => setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 120)}
           onKeyDown={(e) => {
+            // 한글 IME 조합 중의 Enter(조합 확정)는 무시 — 아니면 선택 후 조합 글자가 검색창에 남는다
+            if (e.nativeEvent.isComposing || e.keyCode === 229) return;
             if (e.key === "ArrowDown") {
               e.preventDefault();
               setOpen(true);
